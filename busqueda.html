@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Buscar estacionamiento - AutoPark</title>
+
+    <link
+        rel="stylesheet"
+        href="components/navbar/navbar.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/busqueda.css"
+    >
+</head>
+
+
+<body>
+
+    <!-- NAVBAR -->
+    <div id="navbar"></div>
+
+
+    <main class="busqueda-page">
+
+        <h1>Buscar estacionamiento</h1>
+
+
+        <div class="busqueda-layout">
+
+
+            <!-- =========================
+                 LADO IZQUIERDO
+            ========================== -->
+
+            <section class="busqueda-panel">
+
+
+                <!-- BUSCADOR -->
+
+                <label for="busqueda">
+                    Ubicación o zona
+                </label>
+
+                <div class="search-row">
+
+                    <input
+                        type="text"
+                        id="busqueda"
+                        placeholder="Centro de Pachuca"
+                    >
+
+                    <button
+                        type="button"
+                        id="btnBuscar"
+                        class="btn-buscar"
+                    >
+                        Buscar
+                    </button>
+
+                </div>
+
+
+                <!-- FILTROS -->
+
+                <div class="filtros">
+
+                    <p>Filtros</p>
+
+
+                    <div class="filter-buttons">
+
+                        <button
+                            class="filter-btn active"
+                            data-filter="disponibles"
+                        >
+                            Disponibles
+                        </button>
+
+
+                        <button
+                            class="filter-btn"
+                            data-filter="precio"
+                        >
+                            ≤ $25/h
+                        </button>
+
+
+                        <button
+                            class="filter-btn"
+                            data-filter="ahora"
+                        >
+                            Ahora
+                        </button>
+
+
+                        <button
+                            class="filter-btn"
+                            data-filter="cubierto"
+                        >
+                            Cubierto
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CONTADOR -->
+
+                <p
+                    id="contadorResultados"
+                    class="results-count"
+                >
+                    0 resultados
+                </p>
+
+
+                <!-- RESULTADOS -->
+
+                <div id="resultados"></div>
+
+
+                <!-- SIN RESULTADOS -->
+
+                <div
+                    id="sinResultados"
+                    class="sin-resultados hidden"
+                >
+
+                    <h2>
+                        No encontramos espacios
+                    </h2>
+
+                    <p>
+                        Intenta cambiar tu búsqueda o los filtros.
+                    </p>
+
+                    <button
+                        id="btnLimpiar"
+                        class="btn-limpiar"
+                    >
+                        Limpiar búsqueda
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 MAPA
+            ========================== -->
+
+            <aside class="map-card">
+
+                <h2>
+                    Mapa de resultados
+                </h2>
+
+
+                <div
+                    class="fake-map"
+                    id="mapaResultados"
+                >
+
+                    <div class="street street-v s1"></div>
+                    <div class="street street-v s2"></div>
+                    <div class="street street-v s3"></div>
+                    <div class="street street-v s4"></div>
+                    <div class="street street-v s5"></div>
+
+                    <div class="street street-h h1"></div>
+                    <div class="street street-h h2"></div>
+                    <div class="street street-h h3"></div>
+                    <div class="street street-h h4"></div>
+
+
+                    <div id="mapPins"></div>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- NAVBAR -->
+
+    <script>
+
+        fetch("components/navbar/navbar.html")
+
+            .then(response => response.text())
+
+            .then(data => {
+
+                document.getElementById("navbar").innerHTML = data;
+
+                const script =
+                    document.createElement("script");
+
+                script.src =
+                    "components/navbar/navbar.js";
+
+                document.body.appendChild(script);
+
+            })
+
+            .catch(error => {
+
+                console.error(
+                    "Error al cargar el navbar:",
+                    error
+                );
+
+            });
+
+    </script>
+
+
+    <script src="js/busqueda.js"></script>
+
+</body>
+
+</html>

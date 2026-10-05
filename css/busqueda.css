@@ -1,0 +1,653 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600&display=swap');
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+
+    background-color: #E4E8F7;
+
+    color: #101828;
+}
+
+
+/* =========================
+   PÁGINA
+========================= */
+
+.busqueda-page {
+    width: 100%;
+    max-width: 1440px;
+
+    margin: 0 auto;
+
+    padding: 34px 56px 80px;
+}
+
+
+.busqueda-page h1 {
+    margin: 0 0 34px;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 42px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+/* =========================
+   LAYOUT
+========================= */
+
+.busqueda-layout {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 650px)
+        minmax(400px, 638px);
+
+    gap: 40px;
+
+    align-items: start;
+}
+
+
+/* =========================
+   BUSCADOR
+========================= */
+
+.busqueda-panel > label {
+    display: block;
+
+    margin-bottom: 10px;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+
+    color: #475467;
+}
+
+
+.search-row {
+    display: grid;
+
+    grid-template-columns: 1fr 140px;
+
+    gap: 16px;
+}
+
+
+.search-row input {
+    height: 56px;
+
+    padding: 0 16px;
+
+    border: 1px solid #B8C7D9;
+    border-radius: 12px;
+
+    outline: none;
+
+    background-color: #FFFFFF;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+
+    color: #101828;
+}
+
+
+.search-row input:focus {
+    border-color: #475467;
+
+    box-shadow:
+        0 0 0 3px rgba(132, 215, 230, 0.35);
+}
+
+
+.btn-buscar {
+    height: 56px;
+
+    border: none;
+    border-radius: 24px;
+
+    background-color: #475467;
+
+    color: #FFFFFF;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.15s ease;
+}
+
+
+.btn-buscar:hover {
+    background-color: #344054;
+}
+
+
+.btn-buscar:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================
+   FILTROS
+========================= */
+
+.filtros {
+    margin-top: 32px;
+}
+
+
+.filtros > p {
+    margin: 0 0 14px;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+
+    color: #475467;
+}
+
+
+.filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 12px;
+}
+
+
+.filter-btn {
+    min-width: 96px;
+    height: 36px;
+
+    padding: 0 18px;
+
+    border: 1px solid #B8C7D9;
+    border-radius: 18px;
+
+    background-color: #FFFFFF;
+
+    color: #101828;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.filter-btn:hover {
+    border-color: #475467;
+
+    background-color: #F7F9FC;
+}
+
+
+.filter-btn.active {
+    background-color: #84D7E6;
+
+    border-color: #B8C7D9;
+}
+
+
+/* =========================
+   CONTADOR
+========================= */
+
+.results-count {
+    margin: 30px 0 22px;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 15px;
+
+    color: #475467;
+}
+
+
+/* =========================
+   TARJETAS
+========================= */
+
+#resultados {
+    display: flex;
+    flex-direction: column;
+
+    gap: 22px;
+}
+
+
+.parking-card {
+    min-height: 190px;
+
+    display: grid;
+
+    grid-template-columns:
+        130px
+        1fr;
+
+    gap: 20px;
+
+    padding: 18px;
+
+    background-color: #FFFFFF;
+
+    border: 1px solid #B8C7D9;
+    border-radius: 18px;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.parking-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(16, 24, 40, 0.10);
+}
+
+
+/* IMAGEN */
+
+.parking-image {
+    width: 130px;
+    height: 104px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #C4E3FF;
+
+    border-radius: 14px;
+}
+
+
+.parking-image img {
+    width: 80px;
+    height: 80px;
+
+    object-fit: contain;
+}
+
+
+/* INFORMACIÓN */
+
+.parking-content {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.parking-content h2 {
+    margin: 0;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+.parking-location {
+    margin: 12px 0 0;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 14px;
+
+    color: #475467;
+}
+
+
+.parking-price {
+    margin: 12px 0 0;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+
+    color: #101828;
+}
+
+
+/* PIE */
+
+.parking-footer {
+    margin-top: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 16px;
+}
+
+
+.available-badge {
+    min-width: 145px;
+    height: 36px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 14px;
+
+    background-color: #84D7E6;
+
+    border: 1px solid #B8C7D9;
+    border-radius: 18px;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 13px;
+
+    color: #101828;
+}
+
+
+.btn-details {
+    width: 132px;
+    height: 42px;
+
+    border: 1px solid #475467;
+    border-radius: 24px;
+
+    background-color: #FFFFFF;
+
+    color: #101828;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.15s ease;
+}
+
+
+.btn-details:hover {
+    background-color: #E4E8F7;
+}
+
+
+.btn-details:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================
+   SIN RESULTADOS
+========================= */
+
+.sin-resultados {
+    padding: 40px;
+
+    text-align: center;
+
+    background-color: #FFFFFF;
+
+    border: 1px solid #B8C7D9;
+    border-radius: 18px;
+}
+
+
+.sin-resultados.hidden {
+    display: none;
+}
+
+
+.sin-resultados h2 {
+    font-family: "Roboto", sans-serif;
+
+    color: #101828;
+}
+
+
+.sin-resultados p {
+    font-family: "Roboto Mono", monospace;
+
+    color: #475467;
+}
+
+
+.btn-limpiar {
+    height: 44px;
+
+    padding: 0 24px;
+
+    border: none;
+    border-radius: 22px;
+
+    background-color: #475467;
+
+    color: #FFFFFF;
+
+    font-family: "Roboto Mono", monospace;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   MAPA
+========================= */
+
+.map-card {
+    padding: 28px 30px 30px;
+
+    background-color: #FFFFFF;
+
+    border: 1px solid #B8C7D9;
+    border-radius: 18px;
+}
+
+
+.map-card h2 {
+    margin: 0 0 26px;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+.fake-map {
+    height: 524px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background-color: #C4E3FF;
+
+    border-radius: 20px;
+}
+
+
+/* CALLES */
+
+.street {
+    position: absolute;
+
+    background-color: #FFFFFF;
+
+    border-radius: 12px;
+}
+
+
+.street-v {
+    width: 74px;
+    height: 420px;
+
+    top: 42px;
+}
+
+
+.s1 {
+    left: 5%;
+}
+
+.s2 {
+    left: 23%;
+}
+
+.s3 {
+    left: 41%;
+}
+
+.s4 {
+    left: 59%;
+}
+
+.s5 {
+    left: 77%;
+}
+
+
+.street-h {
+    width: 92%;
+    height: 42px;
+
+    left: 4%;
+
+    background-color: #E4E8F7;
+
+    border-radius: 10px;
+}
+
+
+.h1 {
+    top: 14%;
+}
+
+.h2 {
+    top: 35%;
+}
+
+.h3 {
+    top: 56%;
+}
+
+.h4 {
+    top: 77%;
+}
+
+
+/* PIN */
+
+.map-pin {
+    width: 44px;
+    height: 44px;
+
+    position: absolute;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50% 50% 50% 0;
+
+    background-color: #475467;
+
+    color: #FFFFFF;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+
+    transform: rotate(-45deg);
+
+    z-index: 10;
+}
+
+
+.map-pin span {
+    transform: rotate(45deg);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1050px) {
+
+    .busqueda-layout {
+        grid-template-columns: 1fr;
+    }
+
+
+    .map-card {
+        order: -1;
+    }
+
+
+    .fake-map {
+        height: 400px;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .busqueda-page {
+        padding: 30px 20px 60px;
+    }
+
+
+    .busqueda-page h1 {
+        font-size: 40px;
+    }
+
+
+    .search-row {
+        grid-template-columns: 1fr;
+    }
+
+
+    .btn-buscar {
+        width: 100%;
+    }
+
+
+    .parking-card {
+        grid-template-columns: 1fr;
+    }
+
+
+    .parking-image {
+        width: 100%;
+    }
+
+
+    .parking-footer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+
+    .available-badge,
+    .btn-details {
+        width: 100%;
+    }
+
+}
