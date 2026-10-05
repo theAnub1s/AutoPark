@@ -1,0 +1,460 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600&display=swap');
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+
+    background-color: #E4E8F7;
+
+    color: #101828;
+}
+
+
+/* =========================
+   PÁGINA
+========================= */
+
+.registro-page {
+    width: 100%;
+    max-width: 1440px;
+
+    margin: 0 auto;
+
+    padding: 44px 92px 120px;
+}
+
+
+/* =========================
+   ENCABEZADO
+========================= */
+
+.registro-header h1 {
+    margin: 0;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 42px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+.registro-header p {
+    margin-top: 20px;
+    margin-bottom: 0;
+
+    max-width: 650px;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+    font-weight: 400;
+
+    color: #475467;
+
+    line-height: 1.6;
+}
+
+
+/* =========================
+   DISTRIBUCIÓN
+========================= */
+
+.registro-layout {
+    margin-top: 42px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 720px)
+        minmax(320px, 480px);
+
+    gap: 48px;
+
+    align-items: start;
+}
+
+
+/* =========================
+   TARJETA DEL FORMULARIO
+========================= */
+
+.registro-card {
+    min-height: 650px;
+
+    padding: 28px 36px;
+
+    background-color: #FFFFFF;
+
+    border: 1px solid #B8C7D9;
+    border-radius: 18px;
+}
+
+
+.registro-card h2 {
+    margin: 0 0 30px;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+
+    color: #101828;
+}
+
+
+/* =========================
+   CAMPOS
+========================= */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 22px 20px;
+}
+
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 9px;
+}
+
+
+.form-group label,
+.account-label {
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+    font-weight: 400;
+
+    color: #101828;
+}
+
+
+.form-group input {
+    width: 100%;
+    height: 56px;
+
+    padding: 0 16px;
+
+    border: 1px solid #B8C7D9;
+    border-radius: 12px;
+
+    outline: none;
+
+    background-color: #FFFFFF;
+
+    color: #101828;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.form-group input::placeholder {
+    color: #7B8797;
+}
+
+
+.form-group input:focus {
+    border-color: #475467;
+
+    box-shadow:
+        0 0 0 3px rgba(132, 215, 230, 0.35);
+}
+
+
+/* =========================
+   TIPO DE CUENTA
+========================= */
+
+.account-section {
+    margin-top: 28px;
+}
+
+
+.account-options {
+    margin-top: 12px;
+
+    display: flex;
+
+    gap: 12px;
+}
+
+
+.account-option {
+    min-width: 140px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 18px;
+
+    border: 1px solid #B8C7D9;
+    border-radius: 18px;
+
+    background-color: #FFFFFF;
+
+    color: #475467;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.account-option input {
+    display: none;
+}
+
+
+.account-option:hover {
+    background-color: #E4E8F7;
+}
+
+
+.account-option.selected {
+    background-color: #C4E3FF;
+
+    border-color: #475467;
+
+    color: #101828;
+}
+
+
+/* =========================
+   TÉRMINOS
+========================= */
+
+.terms {
+    margin-top: 28px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+
+    color: #475467;
+
+    cursor: pointer;
+}
+
+
+.terms input {
+    width: 20px;
+    height: 20px;
+
+    accent-color: #475467;
+}
+
+
+/* =========================
+   MENSAJE
+========================= */
+
+.registro-mensaje {
+    min-height: 24px;
+
+    margin: 18px 0 0;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+}
+
+
+/* =========================
+   BOTÓN
+========================= */
+
+.btn-crear-cuenta {
+    width: 100%;
+    height: 52px;
+
+    margin-top: 12px;
+
+    border: none;
+    border-radius: 12px;
+
+    background-color: #475467;
+
+    color: #FFFFFF;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        opacity 0.15s ease;
+}
+
+
+.btn-crear-cuenta:hover {
+    opacity: 0.9;
+}
+
+
+.btn-crear-cuenta:active {
+    transform: scale(0.99);
+}
+
+
+/* =========================
+   INICIAR SESIÓN
+========================= */
+
+.login-link {
+    margin-top: 18px;
+
+    text-align: center;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+
+    color: #475467;
+}
+
+
+.login-link a {
+    color: #101828;
+
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   PANEL DERECHO
+========================= */
+
+.registro-info {
+    min-height: 350px;
+
+    padding: 40px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+
+    background-color: #C4E3FF;
+
+    border: 1px solid #B8C7D9;
+    border-radius: 18px;
+}
+
+
+.registro-info-logo {
+    width: 120px;
+    height: 120px;
+
+    object-fit: contain;
+
+    margin-bottom: 28px;
+}
+
+
+.registro-info h2 {
+    margin: 0;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+
+    color: #101828;
+}
+
+
+.registro-info p {
+    margin-top: 20px;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+
+    line-height: 1.6;
+
+    color: #475467;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1000px) {
+
+    .registro-page {
+        padding: 40px 40px 80px;
+    }
+
+
+    .registro-layout {
+        grid-template-columns: 1fr;
+    }
+
+
+    .registro-info {
+        min-height: auto;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .registro-page {
+        padding: 32px 20px 60px;
+    }
+
+
+    .registro-header h1 {
+        font-size: 40px;
+    }
+
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .registro-card {
+        padding: 26px 22px;
+    }
+
+
+    .account-options {
+        flex-direction: column;
+    }
+
+
+    .account-option {
+        width: 100%;
+    }
+
+}

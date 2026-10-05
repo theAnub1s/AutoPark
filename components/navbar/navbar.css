@@ -240,3 +240,21 @@
     }
 
 }
+
+/* =========================
+   MODOS DEL NAVBAR
+========================= */
+
+.guest-only {
+    display: none;
+}
+
+
+body[data-navbar-mode="guest"] .auth-only {
+    display: none;
+}
+
+
+body[data-navbar-mode="guest"] .guest-only {
+    display: flex;
+}

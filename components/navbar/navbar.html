@@ -1,7 +1,6 @@
 <nav class="navbar">
 
-    <!-- LOGO -->
-    <a href="inicio.html" class="navbar-brand">
+    <a href="/inicio.html" class="navbar-brand">
 
         <img
             src="/assets/images/logo-autopark.png"
@@ -16,7 +15,6 @@
     </a>
 
 
-    <!-- BOTÓN MÓVIL -->
     <button
         class="navbar-menu-button"
         id="navbarMenuButton"
@@ -27,27 +25,40 @@
     </button>
 
 
-    <!-- OPCIONES -->
     <div class="navbar-links" id="navbarLinks">
 
-        <a href="inicio.html" class="nav-link">
+        <a href="/inicio.html" class="nav-link">
             Inicio
         </a>
 
-        <a href="busqueda.html" class="nav-link">
+        <a href="/busqueda.html" class="nav-link">
             Buscar
         </a>
 
-        <a href="reservas.html" class="nav-link">
+
+        <!-- USUARIO CON SESIÓN -->
+
+        <a href="/reservas.html" class="nav-link auth-only">
             Mis reservas
         </a>
 
-        <a href="espacios.html" class="nav-link">
+        <a href="/espacios.html" class="nav-link auth-only">
             Mis espacios
         </a>
 
-        <a href="perfil.html" class="nav-link">
+        <a href="/perfil.html" class="nav-link auth-only">
             Perfil
+        </a>
+
+
+        <!-- USUARIO SIN SESIÓN -->
+
+        <a href="/login.html" class="nav-link guest-only">
+            Iniciar sesión
+        </a>
+
+        <a href="/registro.html" class="nav-link guest-only">
+            Registrarse
         </a>
 
     </div>
