@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Mis espacios - AutoPark</title>
+
+    <link
+        rel="stylesheet"
+        href="components/navbar/navbar.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/espacios.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- NAVBAR -->
+    <div id="navbar"></div>
+
+
+    <main class="espacios-page">
+
+
+        <!-- ENCABEZADO -->
+
+        <section class="page-header">
+
+            <div>
+
+                <h1>Mis espacios</h1>
+
+                <p>
+                    Publica y administra la disponibilidad
+                    de tus estacionamientos.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="btn-publicar"
+                id="openModal"
+            >
+                + Publicar espacio
+            </button>
+
+        </section>
+
+
+
+        <!-- CONTENIDO -->
+
+        <div class="espacios-layout">
+
+
+            <!-- LISTA -->
+
+            <section
+                class="espacios-list"
+                id="espaciosList"
+            >
+
+
+                <!-- ESPACIO 1 -->
+
+                <article
+                    class="espacio-card"
+                    data-cantidad="5"
+                >
+
+                    <div class="espacio-image">
+
+                        <img
+                            src="assets/images/logo-autopark.png"
+                            alt="AutoPark"
+                        >
+
+                    </div>
+
+
+                    <div class="espacio-info">
+
+                        <h2>
+                            Estacionamiento Centro
+                        </h2>
+
+                        <p>
+                            Centro de Pachuca
+                        </p>
+
+                        <p>
+                            $20 MXN / hora
+                        </p>
+
+                        <p>
+                            Horario: 07:00 – 23:00
+                        </p>
+
+                    </div>
+
+
+                    <div class="espacio-actions">
+
+                        <span class="status disponible">
+                            Disponible
+                        </span>
+
+
+                        <button
+                            type="button"
+                            class="btn-secondary"
+                        >
+                            Editar
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="btn-primary"
+                        >
+                            Gestionar horario
+                        </button>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- ESPACIO 2 -->
+
+                <article
+                    class="espacio-card"
+                    data-cantidad="3"
+                >
+
+                    <div class="espacio-image">
+
+                        <img
+                            src="assets/images/logo-autopark.png"
+                            alt="AutoPark"
+                        >
+
+                    </div>
+
+
+                    <div class="espacio-info">
+
+                        <h2>
+                            Zona Universidad
+                        </h2>
+
+                        <p>
+                            Zona UPP
+                        </p>
+
+                        <p>
+                            $18 MXN / hora
+                        </p>
+
+                        <p>
+                            Horario: 08:00 – 21:00
+                        </p>
+
+                    </div>
+
+
+                    <div class="espacio-actions">
+
+                        <span class="status disponible">
+                            Disponible
+                        </span>
+
+
+                        <button
+                            type="button"
+                            class="btn-secondary"
+                        >
+                            Editar
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="btn-primary"
+                        >
+                            Gestionar horario
+                        </button>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+
+            <!-- RESUMEN -->
+
+            <aside class="summary-card">
+
+                <h2>
+                    Resumen de disponibilidad
+                </h2>
+
+
+                <div class="summary-item">
+
+                    <p>
+                        Espacios publicados
+                    </p>
+
+                    <strong id="totalEspacios">
+                        2
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-item">
+
+                    <p>
+                        Disponibles hoy
+                    </p>
+
+                    <strong id="disponiblesHoy">
+                        2
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-item">
+
+                    <p>
+                        Reservas próximas
+                    </p>
+
+                    <strong>
+                        5
+                    </strong>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =========================
+         MODAL
+    ========================== -->
+
+    <div
+        class="modal-overlay"
+        id="modalPublicar"
+    >
+
+        <section class="modal-card">
+
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h2 id="modalTitle">
+                        Publicar espacio
+                    </h2>
+
+                    <p>
+                        Ingresa los datos del estacionamiento.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    id="closeModal"
+                    aria-label="Cerrar"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+
+            <form id="publicarForm">
+
+
+                <!-- NOMBRE -->
+
+                <div class="form-group">
+
+                    <label for="nombreEspacio">
+                        Nombre del espacio
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nombreEspacio"
+                        placeholder="Ej. Estacionamiento Centro"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- UBICACIÓN -->
+
+                <div class="form-group">
+
+                    <label for="ubicacion">
+                        Ubicación
+                    </label>
+
+                    <input
+                        type="text"
+                        id="ubicacion"
+                        placeholder="Ej. Centro de Pachuca"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- PRECIO / CANTIDAD -->
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="precio">
+                            Precio por hora
+                        </label>
+
+                        <input
+                            type="number"
+                            id="precio"
+                            min="0"
+                            placeholder="20"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="cantidad">
+                            Espacios disponibles
+                        </label>
+
+                        <input
+                            type="number"
+                            id="cantidad"
+                            min="1"
+                            placeholder="5"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- HORARIOS -->
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="horaInicio">
+                            Hora de apertura
+                        </label>
+
+                        <input
+                            type="time"
+                            id="horaInicio"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="horaFin">
+                            Hora de cierre
+                        </label>
+
+                        <input
+                            type="time"
+                            id="horaFin"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <p
+                    id="publicarMensaje"
+                    class="form-message"
+                ></p>
+
+
+
+                <!-- BOTONES -->
+
+                <div class="modal-buttons">
+
+
+                    <button
+                        type="button"
+                        class="btn-cancelar"
+                        id="cancelModal"
+                    >
+                        Cancelar
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn-guardar"
+                        id="submitModal"
+                    >
+                        Publicar espacio
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </div>
+
+
+
+    <!-- NAVBAR -->
+
+    <script>
+
+        fetch("components/navbar/navbar.html")
+
+            .then(response => response.text())
+
+            .then(data => {
+
+                document.getElementById("navbar").innerHTML = data;
+
+                const script =
+                    document.createElement("script");
+
+                script.src =
+                    "components/navbar/navbar.js";
+
+                document.body.appendChild(script);
+
+            })
+
+            .catch(error => {
+
+                console.error(
+                    "Error al cargar el navbar:",
+                    error
+                );
+
+            });
+
+    </script>
+
+
+    <script src="js/espacios.js"></script>
+
+</body>
+
+</html>

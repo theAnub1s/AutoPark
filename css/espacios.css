@@ -1,0 +1,653 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600&display=swap');
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+
+    background-color: #E4E8F7;
+
+    color: #101828;
+}
+
+
+/* =========================
+   PÁGINA
+========================= */
+
+.espacios-page {
+    width: 100%;
+    max-width: 1440px;
+
+    margin: 0 auto;
+
+    padding: 34px 56px 80px;
+}
+
+
+/* =========================
+   ENCABEZADO
+========================= */
+
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    margin-bottom: 42px;
+}
+
+
+.page-header h1 {
+    margin: 0;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 42px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+.page-header p {
+    margin: 20px 0 0;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+
+    color: #475467;
+}
+
+
+/* =========================
+   PUBLICAR
+========================= */
+
+.btn-publicar {
+    width: 228px;
+    height: 52px;
+
+    border: none;
+    border-radius: 24px;
+
+    background-color: #475467;
+
+    color: #FFFFFF;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   LAYOUT
+========================= */
+
+.espacios-layout {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 820px)
+        minmax(300px, 424px);
+
+    gap: 34px;
+
+    align-items: start;
+}
+
+
+/* =========================
+   LISTA
+========================= */
+
+.espacios-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 30px;
+}
+
+
+/* =========================
+   TARJETA
+========================= */
+
+.espacio-card {
+    min-height: 248px;
+
+    display: grid;
+
+    grid-template-columns:
+        190px
+        1fr
+        170px;
+
+    gap: 28px;
+
+    align-items: center;
+
+    padding: 26px;
+
+    background-color: #FFFFFF;
+
+    border: 1px solid #B8C7D9;
+    border-radius: 18px;
+}
+
+
+/* =========================
+   IMAGEN
+========================= */
+
+.espacio-image {
+    width: 190px;
+    height: 148px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #C4E3FF;
+
+    border-radius: 16px;
+}
+
+
+.espacio-image img {
+    width: 105px;
+    height: 105px;
+
+    object-fit: contain;
+}
+
+
+/* =========================
+   INFORMACIÓN
+========================= */
+
+.espacio-info h2 {
+    margin: 0 0 22px;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+.espacio-info p {
+    margin: 8px 0;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 15px;
+
+    color: #475467;
+}
+
+
+/* =========================
+   ACCIONES
+========================= */
+
+.espacio-actions {
+    display: flex;
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 10px;
+}
+
+
+/* ESTADO */
+
+.status {
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 13px;
+}
+
+
+.status.disponible {
+    background-color: #84D7E6;
+
+    border: 1px solid #B8C7D9;
+
+    color: #101828;
+}
+
+
+/* BOTONES */
+
+.btn-secondary,
+.btn-primary {
+    height: 44px;
+
+    padding: 0 12px;
+
+    border-radius: 24px;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+
+.btn-secondary {
+    background-color: #FFFFFF;
+
+    border: 1px solid #475467;
+
+    color: #101828;
+}
+
+
+.btn-primary {
+    border: none;
+
+    background-color: #475467;
+
+    color: #FFFFFF;
+}
+
+
+/* =========================
+   HOVERS
+========================= */
+
+.btn-publicar,
+.btn-secondary,
+.btn-primary,
+.btn-cancelar,
+.btn-guardar {
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.15s ease,
+        opacity 0.2s ease;
+}
+
+
+.btn-publicar:hover,
+.btn-primary:hover,
+.btn-guardar:hover {
+    background-color: #344054;
+}
+
+
+.btn-secondary:hover,
+.btn-cancelar:hover {
+    background-color: #E4E8F7;
+}
+
+
+.btn-publicar:active,
+.btn-secondary:active,
+.btn-primary:active,
+.btn-cancelar:active,
+.btn-guardar:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================
+   RESUMEN
+========================= */
+
+.summary-card {
+    padding: 24px 32px 38px;
+
+    background-color: #FFFFFF;
+
+    border: 1px solid #B8C7D9;
+    border-radius: 18px;
+}
+
+
+.summary-card > h2 {
+    margin: 0 0 20px;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+.summary-item {
+    min-height: 128px;
+
+    margin-top: 22px;
+
+    padding: 22px;
+
+    border: 1px solid #B8C7D9;
+    border-radius: 18px;
+
+    background-color: #FFFFFF;
+}
+
+
+.summary-item p {
+    margin: 0;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 14px;
+
+    color: #475467;
+}
+
+
+.summary-item strong {
+    display: block;
+
+    margin-top: 14px;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 32px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.modal-overlay {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 2000;
+
+    padding: 30px;
+
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(16, 24, 40, 0.45);
+}
+
+
+.modal-overlay.show {
+    display: flex;
+}
+
+
+.modal-card {
+    width: 620px;
+    max-width: 100%;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    padding: 34px;
+
+    background-color: #FFFFFF;
+
+    border: 1px solid #B8C7D9;
+    border-radius: 18px;
+}
+
+
+/* =========================
+   HEADER MODAL
+========================= */
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 28px;
+}
+
+
+.modal-header h2 {
+    margin: 0;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+
+    color: #101828;
+}
+
+
+.modal-header p {
+    margin: 10px 0 0;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+
+    color: #475467;
+}
+
+
+.modal-close {
+    width: 42px;
+    height: 42px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #475467;
+
+    font-size: 32px;
+
+    cursor: pointer;
+}
+
+
+.modal-close:hover {
+    color: #101828;
+}
+
+
+/* =========================
+   FORMULARIO
+========================= */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin-bottom: 20px;
+}
+
+
+.form-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 18px;
+}
+
+
+.form-group label {
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+
+    color: #475467;
+}
+
+
+.form-group input {
+    width: 100%;
+    height: 56px;
+
+    padding: 0 16px;
+
+    border: 1px solid #B8C7D9;
+    border-radius: 12px;
+
+    outline: none;
+
+    background-color: #FFFFFF;
+
+    color: #101828;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+}
+
+
+.form-group input:focus {
+    border-color: #475467;
+
+    box-shadow:
+        0 0 0 3px rgba(132, 215, 230, 0.35);
+}
+
+
+/* CAMPOS BLOQUEADOS */
+
+.form-group input:disabled {
+    background-color: #E4E8F7;
+
+    color: #667085;
+
+    cursor: not-allowed;
+}
+
+
+.form-message {
+    min-height: 24px;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 14px;
+}
+
+
+/* =========================
+   BOTONES MODAL
+========================= */
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    margin-top: 18px;
+}
+
+
+.btn-cancelar,
+.btn-guardar {
+    min-width: 160px;
+    height: 48px;
+
+    border-radius: 24px;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+
+.btn-cancelar {
+    border: 1px solid #475467;
+
+    background-color: #FFFFFF;
+
+    color: #101828;
+}
+
+
+.btn-guardar {
+    border: none;
+
+    background-color: #475467;
+
+    color: #FFFFFF;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1050px) {
+
+    .espacios-layout {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 760px) {
+
+    .espacios-page {
+        padding: 30px 20px 60px;
+    }
+
+
+    .page-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+
+    .btn-publicar {
+        width: 100%;
+    }
+
+
+    .espacio-card {
+        grid-template-columns: 1fr;
+    }
+
+
+    .espacio-image {
+        width: 100%;
+    }
+
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+
+    .modal-buttons {
+        flex-direction: column;
+    }
+
+
+    .btn-cancelar,
+    .btn-guardar {
+        width: 100%;
+    }
+
+}
