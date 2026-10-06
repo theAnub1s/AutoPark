@@ -3,6 +3,11 @@ const modal =
         "modalPublicar"
     );
 
+const modalInstance =
+    bootstrap.Modal.getOrCreateInstance(
+        modal
+    );
+
 
 const openModal =
     document.getElementById(
@@ -353,9 +358,7 @@ openModal.addEventListener(
             "";
 
 
-        modal.classList.add(
-            "show"
-        );
+        modalInstance.show();
 
     }
 );
@@ -367,9 +370,7 @@ openModal.addEventListener(
 
 function cerrarModal() {
 
-    modal.classList.remove(
-        "show"
-    );
+    modalInstance.hide();
 
 
     publicarForm.reset();
@@ -572,9 +573,7 @@ espaciosList.addEventListener(
                 "";
 
 
-            modal.classList.add(
-                "show"
-            );
+            modalInstance.show();
 
         }
 
@@ -625,9 +624,7 @@ espaciosList.addEventListener(
                 "";
 
 
-            modal.classList.add(
-                "show"
-            );
+            modalInstance.show();
 
         }
 
