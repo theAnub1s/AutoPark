@@ -50,6 +50,12 @@ btnPublicar.addEventListener(
 
         } else {
 
+            sessionStorage.setItem(
+                "redirectAfterLogin",
+                "/espacios.html"
+            );
+
+
             window.location.href =
                 "/login.html";
 
