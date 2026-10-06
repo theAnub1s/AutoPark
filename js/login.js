@@ -122,8 +122,29 @@ loginForm.addEventListener(
 
 
         /* =========================
-           IR A INICIO
+           REDIRECCIÓN POSTERIOR
         ========================= */
+
+        const destinoPendiente =
+            sessionStorage.getItem(
+                "redirectAfterLogin"
+            );
+
+
+        if (destinoPendiente) {
+
+            sessionStorage.removeItem(
+                "redirectAfterLogin"
+            );
+
+
+            window.location.href =
+                destinoPendiente;
+
+            return;
+
+        }
+
 
         window.location.href =
             "/inicio.html";
