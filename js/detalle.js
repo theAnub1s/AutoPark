@@ -8,7 +8,11 @@ const estacionamientoGuardado =
     );
 
 
-/* SI ABRES DETALLE DIRECTAMENTE */
+/*
+    Si detalle.html se abre directamente
+    sin venir desde la búsqueda, se usa
+    este estacionamiento de ejemplo.
+*/
 
 const estacionamiento =
     estacionamientoGuardado
@@ -35,13 +39,16 @@ const detallesExtra = {
         tipo: "Exterior",
         acceso: "Automóvil y motocicleta",
         entrada: "Entrada sobre Av. principal",
-        descripcion: "Zona iluminada · Acceso amplio",
+        descripcion:
+            "Zona iluminada · Acceso amplio",
+
         servicios: [
             "Iluminación",
             "Vigilancia",
             "Acceso amplio"
         ]
     },
+
 
     2: {
         minutos: 12,
@@ -49,13 +56,16 @@ const detallesExtra = {
         tipo: "Exterior",
         acceso: "Automóvil y motocicleta",
         entrada: "Entrada por zona universitaria",
-        descripcion: "Acceso rápido · Zona transitada",
+        descripcion:
+            "Acceso rápido · Zona transitada",
+
         servicios: [
             "Iluminación",
             "Vigilancia",
             "Acceso amplio"
         ]
     },
+
 
     3: {
         minutos: 10,
@@ -63,13 +73,16 @@ const detallesExtra = {
         tipo: "Cubierto",
         acceso: "Automóvil",
         entrada: "Entrada sobre Av. principal",
-        descripcion: "Zona cubierta · Acceso controlado",
+        descripcion:
+            "Zona cubierta · Acceso controlado",
+
         servicios: [
             "Área cubierta",
             "Vigilancia",
             "Iluminación"
         ]
     },
+
 
     4: {
         minutos: 15,
@@ -77,12 +90,15 @@ const detallesExtra = {
         tipo: "Exterior",
         acceso: "Automóvil y motocicleta",
         entrada: "Entrada norte",
-        descripcion: "Espacio amplio · Fácil acceso",
+        descripcion:
+            "Espacio amplio · Fácil acceso",
+
         servicios: [
             "Iluminación",
             "Acceso amplio"
         ]
     },
+
 
     5: {
         minutos: 13,
@@ -90,7 +106,9 @@ const detallesExtra = {
         tipo: "Cubierto",
         acceso: "Automóvil",
         entrada: "Entrada por Plaza Universidad",
-        descripcion: "Zona cubierta · Vigilancia",
+        descripcion:
+            "Zona cubierta · Vigilancia",
+
         servicios: [
             "Área cubierta",
             "Vigilancia",
@@ -98,13 +116,16 @@ const detallesExtra = {
         ]
     },
 
+
     6: {
         minutos: 18,
         horario: "07:00 – 22:00",
         tipo: "Exterior",
         acceso: "Automóvil y motocicleta",
         entrada: "Acceso Las Torres",
-        descripcion: "Acceso amplio · Área iluminada",
+        descripcion:
+            "Acceso amplio · Área iluminada",
+
         servicios: [
             "Iluminación",
             "Acceso amplio"
@@ -124,34 +145,63 @@ const extra =
 ========================= */
 
 const parkingName =
-    document.getElementById("parkingName");
+    document.getElementById(
+        "parkingName"
+    );
+
 
 const parkingLocation =
-    document.getElementById("parkingLocation");
+    document.getElementById(
+        "parkingLocation"
+    );
+
 
 const parkingEntrance =
-    document.getElementById("parkingEntrance");
+    document.getElementById(
+        "parkingEntrance"
+    );
+
 
 const parkingDescription =
-    document.getElementById("parkingDescription");
+    document.getElementById(
+        "parkingDescription"
+    );
+
 
 const parkingAvailability =
-    document.getElementById("parkingAvailability");
+    document.getElementById(
+        "parkingAvailability"
+    );
+
 
 const parkingSchedule =
-    document.getElementById("parkingSchedule");
+    document.getElementById(
+        "parkingSchedule"
+    );
+
 
 const parkingType =
-    document.getElementById("parkingType");
+    document.getElementById(
+        "parkingType"
+    );
+
 
 const parkingAccess =
-    document.getElementById("parkingAccess");
+    document.getElementById(
+        "parkingAccess"
+    );
+
 
 const parkingPrice =
-    document.getElementById("parkingPrice");
+    document.getElementById(
+        "parkingPrice"
+    );
+
 
 const servicesList =
-    document.getElementById("servicesList");
+    document.getElementById(
+        "servicesList"
+    );
 
 
 /* =========================
@@ -194,22 +244,32 @@ parkingPrice.textContent =
     `$${estacionamiento.precio} MXN / hora`;
 
 
-/* SERVICIOS */
+/* =========================
+   SERVICIOS
+========================= */
 
 servicesList.innerHTML = "";
 
 
-extra.servicios.forEach(servicio => {
+extra.servicios.forEach(
+    servicio => {
 
-    const item =
-        document.createElement("p");
+        const item =
+            document.createElement(
+                "p"
+            );
 
-    item.textContent =
-        servicio;
 
-    servicesList.appendChild(item);
+        item.textContent =
+            servicio;
 
-});
+
+        servicesList.appendChild(
+            item
+        );
+
+    }
+);
 
 
 /* =========================
@@ -217,22 +277,39 @@ extra.servicios.forEach(servicio => {
 ========================= */
 
 const reservationForm =
-    document.getElementById("reservationForm");
+    document.getElementById(
+        "reservationForm"
+    );
+
 
 const fecha =
-    document.getElementById("fecha");
+    document.getElementById(
+        "fecha"
+    );
+
 
 const horaEntrada =
-    document.getElementById("horaEntrada");
+    document.getElementById(
+        "horaEntrada"
+    );
+
 
 const horaSalida =
-    document.getElementById("horaSalida");
+    document.getElementById(
+        "horaSalida"
+    );
+
 
 const totalEstimado =
-    document.getElementById("totalEstimado");
+    document.getElementById(
+        "totalEstimado"
+    );
+
 
 const reservationMessage =
-    document.getElementById("reservationMessage");
+    document.getElementById(
+        "reservationMessage"
+    );
 
 
 /* =========================
@@ -252,13 +329,19 @@ function establecerFecha() {
     const mes =
         String(
             hoy.getMonth() + 1
-        ).padStart(2, "0");
+        ).padStart(
+            2,
+            "0"
+        );
 
 
     const dia =
         String(
             hoy.getDate()
-        ).padStart(2, "0");
+        ).padStart(
+            2,
+            "0"
+        );
 
 
     const fechaActual =
@@ -276,7 +359,7 @@ function establecerFecha() {
 
 
 /* =========================
-   CONVERTIR HORA
+   CONVERTIR HORA A MINUTOS
 ========================= */
 
 function convertirAMinutos(hora) {
@@ -299,7 +382,8 @@ function convertirAMinutos(hora) {
 
 function calcularTotal() {
 
-    reservationMessage.textContent = "";
+    reservationMessage.textContent =
+        "";
 
 
     if (
@@ -309,6 +393,7 @@ function calcularTotal() {
 
         totalEstimado.textContent =
             "$0 MXN";
+
 
         return 0;
 
@@ -355,9 +440,13 @@ function calcularTotal() {
 
 
     /*
-        Conservamos la lógica de tu
-        compañero: cada fracción de
-        hora cuenta como una hora.
+        Cada fracción de hora
+        cuenta como una hora completa.
+
+        Ejemplo:
+
+        18:00 - 19:30
+        = 2 horas cobradas
     */
 
     const horas =
@@ -381,7 +470,7 @@ function calcularTotal() {
 
 
 /* =========================
-   EVENTOS
+   CAMBIOS EN HORARIO
 ========================= */
 
 horaEntrada.addEventListener(
@@ -397,7 +486,7 @@ horaSalida.addEventListener(
 
 
 /* =========================
-   PREPARAR RESERVA
+   GUARDAR RESERVA
 ========================= */
 
 reservationForm.addEventListener(
@@ -407,9 +496,7 @@ reservationForm.addEventListener(
         event.preventDefault();
 
 
-        const total =
-            calcularTotal();
-
+        /* VALIDAR FECHA */
 
         if (!fecha.value) {
 
@@ -426,12 +513,22 @@ reservationForm.addEventListener(
         }
 
 
+        /* CALCULAR TOTAL */
+
+        const total =
+            calcularTotal();
+
+
         if (total <= 0) {
 
             return;
 
         }
 
+
+        /* =========================
+           RESERVA PENDIENTE
+        ========================= */
 
         const reservaPendiente = {
 
@@ -453,11 +550,6 @@ reservationForm.addEventListener(
         };
 
 
-        /*
-            RF06 leerá esto para
-            realizar la reserva.
-        */
-
         sessionStorage.setItem(
             "reservaPendiente",
             JSON.stringify(
@@ -466,12 +558,126 @@ reservationForm.addEventListener(
         );
 
 
+        /* =========================
+           GUARDAR EN MIS RESERVAS
+        ========================= */
+
+        /*
+        ==========================================
+        IMPORTANTE - BACKEND
+        ==========================================
+
+        ESTA LÓGICA ES TEMPORAL.
+
+        Actualmente las reservas se almacenan
+        en localStorage únicamente para simular
+        el funcionamiento de AutoPark.
+
+        CUANDO SE IMPLEMENTE EL BACKEND:
+
+        - BORRAR / REEMPLAZAR este localStorage.
+        - Enviar la reserva mediante una API.
+        - Guardarla en la base de datos.
+        - Obtener el ID real desde el servidor.
+        - Validar disponibilidad desde el backend.
+
+        ==========================================
+        */
+
+
+        const reservasGuardadas =
+            localStorage.getItem(
+                "autoparkReservas"
+            );
+
+
+        const reservas =
+            reservasGuardadas
+                ? JSON.parse(
+                    reservasGuardadas
+                )
+                : [];
+
+
+        const nuevaReserva = {
+
+            /*
+                ID temporal.
+
+                El backend deberá generar
+                posteriormente el ID real.
+            */
+
+            id:
+                Date.now(),
+
+
+            estacionamiento:
+                estacionamiento,
+
+
+            fecha:
+                fecha.value,
+
+
+            horaEntrada:
+                horaEntrada.value,
+
+
+            horaSalida:
+                horaSalida.value,
+
+
+            total:
+                total,
+
+
+            estado:
+                "activa"
+
+        };
+
+
+        /*
+            Agregar la nueva reserva
+            al principio de la lista.
+        */
+
+        reservas.unshift(
+            nuevaReserva
+        );
+
+
+        /*
+            Guardar temporalmente.
+        */
+
+        localStorage.setItem(
+            "autoparkReservas",
+            JSON.stringify(
+                reservas
+            )
+        );
+
+
+        /* =========================
+           MENSAJE
+        ========================= */
+
         reservationMessage.textContent =
-            "Datos de reserva preparados correctamente.";
+            "Reserva realizada correctamente.";
 
 
         reservationMessage.style.color =
             "#475467";
+
+
+        /* =========================
+           IR A MIS RESERVAS
+        ========================= */
+
+        window.location.href =
+            "/reservas.html";
 
     }
 );

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Mis reservas - AutoPark</title>
+
+    <link
+        rel="stylesheet"
+        href="components/navbar/navbar.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/reservas.css"
+    >
+
+</head>
+
+
+<body>
+
+    <div id="navbar"></div>
+
+
+    <main class="reservas-page">
+
+        <header class="reservas-header">
+
+            <h1>
+                Mis reservas
+            </h1>
+
+            <p>
+                Consulta tus reservas activas y tu historial.
+            </p>
+
+        </header>
+
+
+        <div class="tabs">
+
+            <button
+                type="button"
+                class="tab-button active"
+                data-tab="activas"
+            >
+                Activas
+            </button>
+
+            <button
+                type="button"
+                class="tab-button"
+                data-tab="historial"
+            >
+                Historial
+            </button>
+
+        </div>
+
+
+        <section
+            id="reservasContainer"
+            class="reservas-container"
+        ></section>
+
+
+        <div
+            id="emptyState"
+            class="empty-state hidden"
+        >
+
+            <h2>
+                No hay reservas
+            </h2>
+
+            <p>
+                Aquí aparecerán tus reservas cuando realices una.
+            </p>
+
+        </div>
+
+    </main>
+
+
+
+    <script>
+
+        fetch("components/navbar/navbar.html")
+
+            .then(response => response.text())
+
+            .then(data => {
+
+                document.getElementById("navbar").innerHTML = data;
+
+                const script =
+                    document.createElement("script");
+
+                script.src =
+                    "components/navbar/navbar.js";
+
+                document.body.appendChild(script);
+
+            })
+
+            .catch(error => {
+
+                console.error(
+                    "Error al cargar el navbar:",
+                    error
+                );
+
+            });
+
+    </script>
+
+
+    <script src="js/reservas.js"></script>
+
+</body>
+
+</html>

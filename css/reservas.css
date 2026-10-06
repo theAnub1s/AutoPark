@@ -1,0 +1,384 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600&display=swap');
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+
+    background-color: #E4E8F7;
+
+    color: #101828;
+}
+
+
+/* =========================
+   PÁGINA
+========================= */
+
+.reservas-page {
+    width: 100%;
+    max-width: 1440px;
+
+    margin: 0 auto;
+
+    padding: 34px 56px 80px;
+}
+
+
+/* =========================
+   ENCABEZADO
+========================= */
+
+.reservas-header h1 {
+    margin: 0;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 42px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+.reservas-header p {
+    margin: 20px 0 0;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+
+    color: #475467;
+}
+
+
+/* =========================
+   PESTAÑAS
+========================= */
+
+.tabs {
+    margin-top: 34px;
+
+    display: flex;
+    align-items: flex-end;
+
+    gap: 12px;
+
+    border-bottom: 1px solid #B8C7D9;
+}
+
+
+.tab-button {
+    width: 120px;
+    height: 50px;
+
+    position: relative;
+
+    border: none;
+
+    background-color: transparent;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 15px;
+
+    color: #475467;
+
+    cursor: pointer;
+}
+
+
+.tab-button.active {
+    color: #101828;
+}
+
+
+.tab-button.active::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -1px;
+
+    width: 100%;
+    height: 3px;
+
+    border-radius: 2px;
+
+    background-color: #84D7E6;
+}
+
+
+/* =========================
+   CONTENEDOR
+========================= */
+
+.reservas-container {
+    margin-top: 40px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 30px;
+}
+
+
+/* =========================
+   TARJETA
+========================= */
+
+.reserva-card {
+    min-height: 220px;
+
+    display: grid;
+
+    grid-template-columns:
+        160px
+        minmax(0, 1fr)
+        auto;
+
+    gap: 30px;
+
+    align-items: center;
+
+    padding: 24px;
+
+    background-color: #FFFFFF;
+
+    border: 1px solid #B8C7D9;
+    border-radius: 18px;
+}
+
+
+/* LOGO */
+
+.reserva-image {
+    width: 160px;
+    height: 140px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #C4E3FF;
+
+    border-radius: 16px;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 40px;
+    font-weight: 500;
+
+    color: #475467;
+}
+
+
+/* INFO */
+
+.reserva-info h2 {
+    margin: 0 0 18px;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+.reserva-info p {
+    margin: 8px 0;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 15px;
+
+    color: #475467;
+}
+
+
+/* =========================
+   ACCIONES
+========================= */
+
+.reserva-actions {
+    min-width: 360px;
+
+    display: grid;
+
+    grid-template-columns:
+        130px
+        150px
+        130px;
+
+    gap: 14px;
+
+    align-items: center;
+}
+
+
+.status-badge {
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #B8C7D9;
+    border-radius: 18px;
+
+    background-color: #84D7E6;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 13px;
+
+    color: #101828;
+}
+
+
+.status-badge.cancelada,
+.status-badge.finalizada {
+    background-color: #E4E8F7;
+
+    color: #475467;
+}
+
+
+.btn-detail,
+.btn-cancel {
+    height: 46px;
+
+    border-radius: 24px;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.15s ease;
+}
+
+
+.btn-detail {
+    border: 1px solid #475467;
+
+    background-color: #FFFFFF;
+
+    color: #101828;
+}
+
+
+.btn-detail:hover {
+    background-color: #E4E8F7;
+}
+
+
+.btn-cancel {
+    border: none;
+
+    background-color: #475467;
+
+    color: #FFFFFF;
+}
+
+
+.btn-cancel:hover {
+    background-color: #344054;
+}
+
+
+.btn-detail:active,
+.btn-cancel:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================
+   VACÍO
+========================= */
+
+.empty-state {
+    margin-top: 40px;
+
+    padding: 50px;
+
+    text-align: center;
+
+    background-color: #FFFFFF;
+
+    border: 1px solid #B8C7D9;
+    border-radius: 18px;
+}
+
+
+.empty-state.hidden {
+    display: none;
+}
+
+
+.empty-state h2 {
+    font-family: "Roboto", sans-serif;
+
+    color: #101828;
+}
+
+
+.empty-state p {
+    font-family: "Roboto Mono", monospace;
+
+    color: #475467;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1050px) {
+
+    .reserva-card {
+        grid-template-columns:
+            140px
+            1fr;
+    }
+
+
+    .reserva-actions {
+        grid-column: 1 / -1;
+
+        width: 100%;
+        min-width: 0;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .reservas-page {
+        padding: 30px 20px 60px;
+    }
+
+
+    .reservas-header h1 {
+        font-size: 40px;
+    }
+
+
+    .reserva-card {
+        grid-template-columns: 1fr;
+    }
+
+
+    .reserva-image {
+        width: 100%;
+    }
+
+
+    .reserva-actions {
+        grid-template-columns: 1fr;
+    }
+
+}
