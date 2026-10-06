@@ -1,324 +1,134 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600&display=swap');
 
-
-/* =========================
-   GENERAL
-========================= */
-
 * {
     box-sizing: border-box;
 }
 
-
-/* =========================
-   NAVBAR
-========================= */
-
-.navbar {
-    width: 100%;
-    height: 82px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 56px;
-
+.autopark-navbar {
+    min-height: 82px;
     background-color: #C4E3FF;
-
+    border-bottom: 1px solid rgba(71, 84, 103, 0.12);
     position: relative;
-    z-index: 1000;
+    z-index: 1030;
 }
-
-
-/* =========================
-   LOGO AUTOPARK
-========================= */
-
-.navbar-brand {
-    display: flex;
-    align-items: center;
-
-    gap: 12px;
-
-    text-decoration: none;
-}
-
 
 .navbar-logo {
     width: 58px;
     height: 58px;
-
     object-fit: contain;
-
     display: block;
 }
 
-
 .navbar-title {
     font-family: "Roboto", sans-serif;
-
     font-size: 25px;
     font-weight: 500;
-
     color: #101828;
-
     line-height: 1;
 }
 
-
-/* =========================
-   OPCIONES
-========================= */
-
-.navbar-links {
-    display: flex;
-    align-items: center;
-
-    gap: 12px;
+.autopark-navbar .navbar-brand {
+    text-decoration: none;
 }
 
-
-.nav-link {
+.autopark-navbar .nav-link {
     min-width: 96px;
-    height: 40px;
-
-    padding: 0 14px;
-
+    min-height: 40px;
+    padding: 8px 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-
     border-radius: 20px;
-
     font-family: "Roboto Mono", monospace;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 400;
-
     color: #475467;
-
     text-decoration: none;
     white-space: nowrap;
-
     transition:
         background-color 0.2s ease,
         color 0.2s ease,
         transform 0.15s ease;
 }
 
-
-/* OPCIONES CON TEXTO MÁS LARGO */
-
-.wide-link {
+.autopark-navbar .wide-link {
     min-width: 128px;
 }
 
-
-/* HOVER */
-
-.nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.55);
-
+.autopark-navbar .nav-link:hover,
+.autopark-navbar .nav-link:focus {
+    background-color: rgba(255, 255, 255, 0.6);
     color: #101828;
 }
 
-
-/* CLICK */
-
-.nav-link:active {
+.autopark-navbar .nav-link:active {
     transform: scale(0.97);
 }
 
-
-/* PÁGINA SELECCIONADA */
-
-.nav-link.active {
+.autopark-navbar .nav-link.active {
     background-color: #FFFFFF;
-
     color: #101828;
 }
-
-
-/* =========================
-   CERRAR SESIÓN
-========================= */
 
 .logout-button {
     min-width: 144px;
-
     border: none;
-
-    background-color: transparent;
-
+    background: transparent;
     cursor: pointer;
 }
 
-
-.logout-button:hover {
-    background-color: rgba(255, 255, 255, 0.55);
-
-    color: #101828;
+.autopark-navbar .navbar-toggler {
+    border: 1px solid #475467;
+    box-shadow: none;
 }
 
-
-/* =========================
-   MENÚ MÓVIL
-========================= */
-
-.navbar-menu-button {
-    display: none;
-
-    width: 44px;
-    height: 44px;
-
-    align-items: center;
-    justify-content: center;
-
-    padding: 0;
-
-    border: none;
-    border-radius: 12px;
-
-    background-color: #475467;
-
-    color: #FFFFFF;
-
-    font-size: 24px;
-
-    cursor: pointer;
+.autopark-navbar .navbar-toggler:focus {
+    box-shadow: 0 0 0 3px rgba(132, 215, 230, 0.45);
 }
-
-
-/* =========================
-   MODOS DEL NAVBAR
-========================= */
-
-/*
-    Por defecto se considera que
-    el usuario tiene sesión.
-*/
 
 .guest-only {
     display: none;
 }
 
-
-/*
-    Las páginas públicas utilizan:
-
-    <body data-navbar-mode="guest">
-
-    para ocultar las opciones
-    exclusivas de usuarios autenticados.
-*/
-
 body[data-navbar-mode="guest"] .auth-only {
-    display: none;
+    display: none !important;
 }
-
 
 body[data-navbar-mode="guest"] .guest-only {
-    display: flex;
+    display: list-item;
 }
 
+body:not([data-navbar-mode="guest"]) .guest-only {
+    display: none !important;
+}
 
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 1100px) {
-
-    .navbar {
-        padding: 0 24px;
+@media (max-width: 991.98px) {
+    .autopark-navbar .navbar-collapse {
+        padding: 18px 0 8px;
     }
 
-
-    .navbar-menu-button {
-        display: flex;
+    .autopark-navbar .navbar-nav {
+        align-items: stretch !important;
+        gap: 8px;
     }
 
-
-    .navbar-links {
-        display: none;
-
-        position: absolute;
-
-        top: 82px;
-        left: 0;
-
-        width: 100%;
-
-        padding: 20px 24px;
-
-        flex-direction: column;
-        align-items: stretch;
-
-        gap: 10px;
-
-        background-color: #C4E3FF;
-
-        box-shadow:
-            0 8px 18px
-            rgba(16, 24, 40, 0.15);
-    }
-
-
-    .navbar-links.show {
-        display: flex;
-    }
-
-
-    .nav-link,
-    .wide-link,
+    .autopark-navbar .nav-link,
+    .autopark-navbar .wide-link,
     .logout-button {
         width: 100%;
         min-width: 0;
-
         justify-content: flex-start;
-
-        padding: 0 18px;
+        padding: 10px 16px;
     }
-
-
-    /*
-        Evita que guest-only aparezca
-        incorrectamente cuando el menú
-        móvil se abre.
-    */
-
-    body:not([data-navbar-mode="guest"])
-    .guest-only {
-        display: none;
-    }
-
-
-    body[data-navbar-mode="guest"]
-    .auth-only {
-        display: none;
-    }
-
 }
 
-
-/* =========================
-   CELULARES PEQUEÑOS
-========================= */
-
 @media (max-width: 480px) {
-
-    .navbar {
-        padding: 0 16px;
-    }
-
-
     .navbar-logo {
         width: 48px;
         height: 48px;
     }
 
-
     .navbar-title {
         font-size: 21px;
     }
-
 }

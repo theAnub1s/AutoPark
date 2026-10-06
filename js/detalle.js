@@ -496,6 +496,33 @@ reservationForm.addEventListener(
         event.preventDefault();
 
 
+        /* =========================
+           REQUIERE SESIÓN
+        ========================= */
+
+        const sesionActiva =
+            localStorage.getItem(
+                "sesionActiva"
+            ) === "true";
+
+
+        if (!sesionActiva) {
+
+            sessionStorage.setItem(
+                "redirectAfterLogin",
+                "/detalle.html"
+            );
+
+
+            window.location.href =
+                "/login.html";
+
+
+            return;
+
+        }
+
+
         /* VALIDAR FECHA */
 
         if (!fecha.value) {

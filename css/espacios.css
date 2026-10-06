@@ -453,279 +453,86 @@ body {
 
 
 /* =========================
-   MODAL
+   MODAL BOOTSTRAP
 ========================= */
 
-.modal-overlay {
-    display: none;
-
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 2000;
-
-    padding: 30px;
-
-    align-items: center;
-    justify-content: center;
-
-    background-color:
-        rgba(
-            16,
-            24,
-            40,
-            0.45
-        );
-}
-
-
-.modal-overlay.show {
-    display: flex;
-}
-
-
-.modal-card {
-    width: 620px;
-    max-width: 100%;
-
-    max-height: 90vh;
-
-    overflow-y: auto;
-
-    padding: 34px;
-
-    background-color: #FFFFFF;
-
-    border:
-        1px solid
-        #B8C7D9;
-
+.autopark-modal-content {
+    border: 1px solid #B8C7D9;
     border-radius: 18px;
+    overflow: hidden;
 }
 
-
-/* =========================
-   HEADER MODAL
-========================= */
-
-.modal-header {
-    display: flex;
-
-    justify-content: space-between;
-
-    gap: 20px;
-
-    margin-bottom: 28px;
+.autopark-modal-content .modal-header,
+.autopark-modal-content .modal-footer {
+    border-color: #D0D5DD;
 }
 
+.autopark-modal-content .modal-header {
+    align-items: flex-start;
+    margin-bottom: 0;
+}
 
-.modal-header h2 {
-    margin: 0;
-
-    font-family:
-        "Roboto",
-        sans-serif;
-
-    font-size: 32px;
-    font-weight: 400;
-
+.autopark-modal-content .modal-header h2 {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
     color: #101828;
 }
 
-
-.modal-header p {
-    margin: 10px 0 0;
-
-    font-family:
-        "Roboto Mono",
-        monospace;
-
-    font-size: 16px;
-
+.autopark-modal-content .modal-header p {
+    font-family: "Roboto Mono", monospace;
     color: #475467;
-}
-
-
-.modal-close {
-    width: 42px;
-    height: 42px;
-
-    border: none;
-
-    background: transparent;
-
-    color: #475467;
-
-    font-size: 32px;
-
-    cursor: pointer;
-}
-
-
-.modal-close:hover {
-    color: #101828;
-}
-
-
-/* =========================
-   FORMULARIO
-========================= */
-
-.form-group {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 8px;
-
-    margin-bottom: 20px;
-}
-
-
-.form-row {
-    display: grid;
-
-    grid-template-columns:
-        1fr
-        1fr;
-
-    gap: 18px;
-}
-
-
-.form-group label {
-    font-family:
-        "Roboto Mono",
-        monospace;
-
-    font-size: 16px;
-
-    color: #475467;
-}
-
-
-.form-group input,
-.form-group select {
-
-    width: 100%;
-    height: 56px;
-
-    padding:
-        0
-        16px;
-
-    border:
-        1px solid
-        #B8C7D9;
-
-    border-radius: 12px;
-
-    outline: none;
-
-    background-color: #FFFFFF;
-
-    color: #101828;
-
-    font-family:
-        "Roboto Mono",
-        monospace;
-
-    font-size: 16px;
-}
-
-
-.form-group input:focus,
-.form-group select:focus {
-
-    border-color: #475467;
-
-    box-shadow:
-        0 0 0 3px
-        rgba(
-            132,
-            215,
-            230,
-            0.35
-        );
-}
-
-
-/* =========================
-   CAMPOS BLOQUEADOS
-========================= */
-
-.form-group input:disabled,
-.form-group select:disabled {
-
-    background-color: #E4E8F7;
-
-    color: #667085;
-
-    cursor: not-allowed;
-}
-
-
-.form-message {
-    min-height: 24px;
-
-    font-family:
-        "Roboto Mono",
-        monospace;
-
     font-size: 14px;
 }
 
-
-/* =========================
-   BOTONES MODAL
-========================= */
-
-.modal-buttons {
-    display: flex;
-
-    justify-content: flex-end;
-
-    gap: 12px;
-
-    margin-top: 18px;
+.autopark-modal-content .form-label {
+    font-family: "Roboto Mono", monospace;
+    color: #475467;
 }
 
+.autopark-modal-content .form-control,
+.autopark-modal-content .form-select {
+    min-height: 52px;
+    border-color: #B8C7D9;
+    border-radius: 12px;
+    font-family: "Roboto Mono", monospace;
+}
+
+.autopark-modal-content .form-control:focus,
+.autopark-modal-content .form-select:focus {
+    border-color: #475467;
+    box-shadow: 0 0 0 0.25rem rgba(132, 215, 230, 0.3);
+}
+
+.autopark-modal-content .form-control:disabled,
+.autopark-modal-content .form-select:disabled {
+    background-color: #E4E8F7;
+    color: #667085;
+}
+
+.form-message {
+    min-height: 24px;
+    font-family: "Roboto Mono", monospace;
+    font-size: 14px;
+}
 
 .btn-cancelar,
 .btn-guardar {
-
     min-width: 160px;
-    height: 48px;
-
+    min-height: 48px;
     border-radius: 24px;
-
-    font-family:
-        "Roboto Mono",
-        monospace;
-
+    font-family: "Roboto Mono", monospace;
     font-size: 16px;
-
-    cursor: pointer;
 }
 
-
 .btn-cancelar {
-    border:
-        1px solid
-        #475467;
-
+    border: 1px solid #475467;
     background-color: #FFFFFF;
-
     color: #101828;
 }
 
-
 .btn-guardar {
     border: none;
-
     background-color: #475467;
-
     color: #FFFFFF;
 }
 

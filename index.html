@@ -2,15 +2,22 @@
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
     >
 
     <title>AutoPark</title>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
+    >
+
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
+    ></script>
 
     <link
         rel="stylesheet"
@@ -21,126 +28,135 @@
         rel="stylesheet"
         href="css/landing.css"
     >
-
 </head>
 
 
 <body>
 
-    <!-- NAVBAR -->
+    <header id="navbar"></header>
 
-    <div id="navbar"></div>
-
-
-    <!-- =========================
-         HERO
-    ========================== -->
 
     <main>
+
+        <!-- =========================
+             HERO
+        ========================== -->
 
         <section class="hero">
 
             <div class="hero-content">
 
+                <div class="container-fluid p-0">
 
-                <!-- TEXTO PRINCIPAL -->
-
-                <div class="hero-copy">
-
-                    <h1>
-                        Encuentra estacionamiento
-                        <br>
-                        sin perder tiempo
-                    </h1>
-
-                    <p>
-                        Busca, compara y reserva espacios
-                        disponibles en AutoPark desde una
-                        sola plataforma.
-                    </p>
+                    <div class="row g-5 align-items-start">
 
 
-                    <div class="hero-actions">
+                        <div class="col-lg-6">
 
-                        <a
-                            href="/busqueda.html"
-                            class="btn-main"
-                        >
-                            Buscar estacionamiento
-                        </a>
+                            <div class="hero-copy">
 
+                                <h1>
+                                    Encuentra estacionamiento
+                                    <br>
+                                    sin perder tiempo
+                                </h1>
 
-                        <button
-                            type="button"
-                            class="btn-secondary"
-                            id="btnPublicar"
-                        >
-                            Publicar mi espacio
-                        </button>
-
-                    </div>
-
-                </div>
+                                <p>
+                                    Busca, compara y reserva espacios
+                                    disponibles en AutoPark desde una
+                                    sola plataforma.
+                                </p>
 
 
-                <!-- DISPONIBILIDAD CERCA -->
+                                <div class="hero-actions">
 
-                <aside class="nearby-panel">
-
-                    <h2>
-                        Disponibilidad cerca de ti
-                    </h2>
-
-
-                    <article class="parking-preview">
-
-                        <div class="parking-preview-image">
-
-                            <img
-                                src="assets/images/logo-autopark.png"
-                                alt="AutoPark"
-                            >
-
-                        </div>
+                                    <a
+                                        href="/busqueda.html"
+                                        class="btn btn-main"
+                                    >
+                                        Buscar estacionamiento
+                                    </a>
 
 
-                        <div class="parking-preview-info">
+                                    <button
+                                        type="button"
+                                        class="btn btn-secondary"
+                                        id="btnPublicar"
+                                    >
+                                        Publicar mi espacio
+                                    </button>
 
-                            <h3>
-                                Centro Pachuca
-                            </h3>
-
-                            <p class="preview-zone">
-                                Zona Centro
-                            </p>
-
-                            <p class="preview-price">
-                                $25 MXN / hora
-                            </p>
-
-
-                            <div class="preview-footer">
-
-                                <span class="availability-badge">
-                                    6 espacios libres
-                                </span>
-
-
-                                <button
-                                    type="button"
-                                    class="btn-detail"
-                                    id="btnDetalle"
-                                >
-                                    Ver detalle
-                                </button>
+                                </div>
 
                             </div>
 
                         </div>
 
-                    </article>
 
-                </aside>
+                        <div class="col-lg-6">
+
+                            <aside class="nearby-panel card">
+
+                                <h2>
+                                    Disponibilidad cerca de ti
+                                </h2>
+
+
+                                <article class="parking-preview card">
+
+                                    <div class="parking-preview-image">
+
+                                        <img
+                                            src="assets/images/logo-autopark.png"
+                                            alt="Logotipo de AutoPark"
+                                        >
+
+                                    </div>
+
+
+                                    <div class="parking-preview-info">
+
+                                        <h3>
+                                            Centro Pachuca
+                                        </h3>
+
+                                        <p class="preview-zone">
+                                            Zona Centro
+                                        </p>
+
+                                        <p class="preview-price">
+                                            $25 MXN / hora
+                                        </p>
+
+
+                                        <div class="preview-footer">
+
+                                            <span class="availability-badge badge rounded-pill">
+                                                6 espacios libres
+                                            </span>
+
+
+                                            <button
+                                                type="button"
+                                                class="btn btn-detail"
+                                                id="btnDetalle"
+                                            >
+                                                Ver detalle
+                                            </button>
+
+                                        </div>
+
+                                    </div>
+
+                                </article>
+
+                            </aside>
+
+                        </div>
+
+                    </div>
+
+                </div>
 
             </div>
 
@@ -158,90 +174,92 @@
             </h2>
 
 
-            <div class="features-grid">
+            <div class="row g-4">
 
 
-                <!-- 1 -->
+                <div class="col-md-4">
 
-                <article class="feature-card">
+                    <article class="feature-card card h-100">
 
-                    <div class="feature-header">
+                        <div class="feature-header">
 
-                        <span class="feature-number">
-                            1
-                        </span>
+                            <span class="feature-number">
+                                1
+                            </span>
 
-                        <h3>
-                            Busca rápido
-                        </h3>
+                            <h3>
+                                Busca rápido
+                            </h3>
 
-                    </div>
-
-
-                    <p>
-                        Encuentra espacios por zona y disponibilidad.
-                    </p>
-
-                </article>
+                        </div>
 
 
-                <!-- 2 -->
+                        <p>
+                            Encuentra espacios por zona y disponibilidad.
+                        </p>
 
-                <article class="feature-card">
+                    </article>
 
-                    <div class="feature-header">
-
-                        <span class="feature-number">
-                            2
-                        </span>
-
-                        <h3>
-                            Reserva con claridad
-                        </h3>
-
-                    </div>
+                </div>
 
 
-                    <p>
-                        Consulta precio, horario y detalles
-                        antes de reservar.
-                    </p>
+                <div class="col-md-4">
 
-                </article>
+                    <article class="feature-card card h-100">
 
+                        <div class="feature-header">
 
-                <!-- 3 -->
+                            <span class="feature-number">
+                                2
+                            </span>
 
-                <article class="feature-card">
+                            <h3>
+                                Reserva con claridad
+                            </h3>
 
-                    <div class="feature-header">
-
-                        <span class="feature-number">
-                            3
-                        </span>
-
-                        <h3>
-                            Administra tus espacios
-                        </h3>
-
-                    </div>
+                        </div>
 
 
-                    <p>
-                        Publica y controla disponibilidad
-                        desde tu cuenta.
-                    </p>
+                        <p>
+                            Consulta precio, horario y detalles
+                            antes de reservar.
+                        </p>
 
-                </article>
+                    </article>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <article class="feature-card card h-100">
+
+                        <div class="feature-header">
+
+                            <span class="feature-number">
+                                3
+                            </span>
+
+                            <h3>
+                                Administra tus espacios
+                            </h3>
+
+                        </div>
+
+
+                        <p>
+                            Publica y controla disponibilidad
+                            desde tu cuenta.
+                        </p>
+
+                    </article>
+
+                </div>
 
             </div>
 
         </section>
 
-
-        <!-- =========================
-             FOOTER
-        ========================== -->
 
         <footer class="landing-footer">
 
@@ -252,10 +270,6 @@
     </main>
 
 
-    <!-- =========================
-         NAVBAR REUTILIZABLE
-    ========================== -->
-
     <script>
 
         fetch("components/navbar/navbar.html")
@@ -264,47 +278,9 @@
 
             .then(data => {
 
-                const navbarContainer =
-                    document.getElementById(
-                        "navbar"
-                    );
-
-
-                navbarContainer.innerHTML =
-                    data;
-
-
-                /*
-                    En la Landing, "Inicio"
-                    debe regresar a index.html
-                    cuando todavía no existe sesión.
-
-                    Si ya existe sesión,
-                    conserva inicio.html para llevar
-                    al panel del usuario.
-                */
-
-                const sesionActiva =
-                    localStorage.getItem(
-                        "sesionActiva"
-                    ) === "true";
-
-
-                const inicioLink =
-                    navbarContainer.querySelector(
-                        'a[href="/inicio.html"]'
-                    );
-
-
-                if (
-                    inicioLink &&
-                    !sesionActiva
-                ) {
-
-                    inicioLink.href =
-                        "/index.html";
-
-                }
+                document.getElementById(
+                    "navbar"
+                ).innerHTML = data;
 
 
                 const script =

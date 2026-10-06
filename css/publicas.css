@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600&display=swap');
+
+:root {
+    --autopark-primary: #C4E3FF;
+    --autopark-secondary: #475467;
+    --autopark-dark: #101828;
+    --autopark-surface: #E4E8F7;
+    --autopark-accent: #84D7E6;
+    --autopark-border: #B8C7D9;
+}
+
+body {
+    margin: 0;
+    background-color: var(--autopark-surface);
+    color: var(--autopark-dark);
+    font-family: "Roboto", sans-serif;
+}
+
+.public-hero {
+    background-color: var(--autopark-primary);
+    padding: 72px 0;
+}
+
+.public-hero h1 {
+    font-size: clamp(2.4rem, 5vw, 3.4rem);
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.public-hero p,
+.public-copy,
+.form-text,
+.accordion-body,
+.card-text {
+    font-family: "Roboto Mono", monospace;
+    color: var(--autopark-secondary);
+    line-height: 1.65;
+}
+
+.public-section {
+    padding: 64px 0;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--autopark-dark);
+    margin-bottom: 28px;
+}
+
+.autopark-card {
+    height: 100%;
+    border: 1px solid var(--autopark-border);
+    border-radius: 18px;
+    background-color: #FFFFFF;
+    box-shadow: none;
+}
+
+.autopark-card .card-body {
+    padding: 28px;
+}
+
+.autopark-icon {
+    width: 52px;
+    height: 52px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--autopark-primary);
+    color: var(--autopark-dark);
+    font-family: "Roboto Mono", monospace;
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+
+.autopark-btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #475467;
+    --bs-btn-border-color: #475467;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #344054;
+    --bs-btn-hover-border-color: #344054;
+    --bs-btn-active-bg: #344054;
+    --bs-btn-active-border-color: #344054;
+    border-radius: 24px;
+    font-family: "Roboto Mono", monospace;
+    padding: 11px 24px;
+}
+
+.autopark-btn-outline {
+    --bs-btn-color: #101828;
+    --bs-btn-border-color: #475467;
+    --bs-btn-hover-color: #101828;
+    --bs-btn-hover-bg: #C4E3FF;
+    --bs-btn-hover-border-color: #475467;
+    border-radius: 24px;
+    font-family: "Roboto Mono", monospace;
+    padding: 11px 24px;
+}
+
+.team-badge,
+.service-badge {
+    background-color: var(--autopark-accent) !important;
+    color: var(--autopark-dark) !important;
+    font-family: "Roboto Mono", monospace;
+    font-weight: 500;
+}
+
+.accordion {
+    --bs-accordion-border-color: var(--autopark-border);
+    --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(132, 215, 230, 0.25);
+    --bs-accordion-active-bg: var(--autopark-primary);
+    --bs-accordion-active-color: var(--autopark-dark);
+}
+
+.accordion-item {
+    overflow: hidden;
+}
+
+.accordion-button {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+}
+
+.contact-card {
+    border: 1px solid var(--autopark-border);
+    border-radius: 18px;
+    background-color: #FFFFFF;
+    padding: 32px;
+}
+
+.form-label {
+    font-family: "Roboto Mono", monospace;
+    color: var(--autopark-secondary);
+}
+
+.form-control,
+.form-select {
+    min-height: 52px;
+    border-color: var(--autopark-border);
+    border-radius: 12px;
+    font-family: "Roboto Mono", monospace;
+}
+
+textarea.form-control {
+    min-height: 150px;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--autopark-secondary);
+    box-shadow: 0 0 0 0.25rem rgba(132, 215, 230, 0.3);
+}
+
+.contact-info-card {
+    border: 0;
+    border-radius: 18px;
+    background-color: var(--autopark-primary);
+}
+
+.public-footer {
+    padding: 28px 0 42px;
+    font-family: "Roboto Mono", monospace;
+    font-size: 0.9rem;
+    color: var(--autopark-secondary);
+}
+
+.toast {
+    border-radius: 14px;
+    border: 1px solid var(--autopark-border);
+}
+
+@media (max-width: 767.98px) {
+    .public-hero {
+        padding: 48px 0;
+    }
+
+    .public-section {
+        padding: 46px 0;
+    }
+
+    .contact-card {
+        padding: 22px;
+    }
+}
