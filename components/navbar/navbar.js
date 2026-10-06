@@ -17,6 +17,75 @@ const logoutButton =
 
 
 /* =========================
+   PÁGINA ACTUAL
+========================= */
+
+const currentPage =
+    window.location.pathname
+        .split("/")
+        .pop() || "inicio.html";
+
+
+/* =========================
+   ESTADO DE SESIÓN
+========================= */
+
+/*
+==========================================
+IMPORTANTE - BACKEND
+==========================================
+
+Esta comprobación es TEMPORAL.
+
+Por ahora AutoPark utiliza localStorage
+para simular que un usuario inició sesión.
+
+Cuando exista el backend:
+
+- BORRAR / REEMPLAZAR esta comprobación.
+- Validar token, cookie o sesión real.
+- Obtener el usuario desde el servidor.
+
+==========================================
+*/
+
+const sesionActiva =
+    localStorage.getItem(
+        "sesionActiva"
+    ) === "true";
+
+
+/*
+    Login y registro siempre muestran
+    la navegación para invitados.
+*/
+
+const paginasInvitado = [
+    "login.html",
+    "registro.html"
+];
+
+
+if (
+    paginasInvitado.includes(
+        currentPage
+    )
+) {
+
+    document.body.dataset.navbarMode =
+        "guest";
+
+} else {
+
+    document.body.dataset.navbarMode =
+        sesionActiva
+            ? "user"
+            : "guest";
+
+}
+
+
+/* =========================
    ABRIR / CERRAR MENÚ
 ========================= */
 
@@ -40,14 +109,8 @@ if (
 
 
 /* =========================
-   PÁGINA ACTUAL
+   MARCAR PÁGINA ACTUAL
 ========================= */
-
-const currentPage =
-    window.location.pathname
-        .split("/")
-        .pop() || "inicio.html";
-
 
 const links =
     document.querySelectorAll(
@@ -58,15 +121,15 @@ const links =
 links.forEach(link => {
 
     /*
-        No todos los elementos .nav-link
-        son enlaces.
-
-        El botón "Cerrar sesión",
-        por ejemplo, no tiene href.
+        El botón Cerrar sesión también
+        utiliza la clase nav-link,
+        pero no contiene href.
     */
 
     const href =
-        link.getAttribute("href");
+        link.getAttribute(
+            "href"
+        );
 
 
     if (!href) {
@@ -97,8 +160,7 @@ links.forEach(link => {
 
 
 /* =========================
-   CERRAR MENÚ AL ELEGIR
-   UNA OPCIÓN
+   CERRAR MENÚ
 ========================= */
 
 links.forEach(link => {
@@ -129,66 +191,69 @@ if (logoutButton) {
 
     logoutButton.addEventListener(
         "click",
-        () => {
-
-
-            /*
-            ==========================================
-            IMPORTANTE - BACKEND
-            ==========================================
-
-            ESTA LÓGICA ES TEMPORAL.
-
-            Actualmente AutoPark todavía no tiene
-            autenticación real conectada al backend.
-
-            Cuando se implemente el backend,
-            BORRAR O REEMPLAZAR esta lógica por
-            el cierre de sesión real.
-
-            Por ejemplo:
-
-            - eliminar token JWT;
-            - invalidar la sesión del servidor;
-            - eliminar cookies de autenticación;
-            - llamar al endpoint de logout;
-            - limpiar la información del usuario.
-
-            ==========================================
-            */
-
-
-            /*
-                Datos temporales utilizados
-                actualmente por el frontend.
-            */
-
-            sessionStorage.clear();
-
-
-            localStorage.removeItem(
-                "usuarioSesion"
-            );
-
-
-            localStorage.removeItem(
-                "sesionActiva"
-            );
-
-
-            localStorage.removeItem(
-                "usuarioActual"
-            );
-
-
-            /*
-                Regresar al inicio de sesión.
-            */
-
-            window.location.href =
-                "/login.html";
-
-        }
+        cerrarSesion
     );
+
+}
+
+
+/* =========================
+   FUNCIÓN CERRAR SESIÓN
+========================= */
+
+function cerrarSesion() {
+
+    /*
+    ==========================================
+    IMPORTANTE - BACKEND
+    ==========================================
+
+    ESTA LÓGICA ES TEMPORAL.
+
+    Cuando se implemente el backend,
+    BORRAR / REEMPLAZAR esta sección por:
+
+    - endpoint de logout;
+    - eliminación del token;
+    - invalidación de sesión;
+    - eliminación de cookies;
+    - cierre de sesión real del servidor.
+
+    ==========================================
+    */
+
+
+    localStorage.removeItem(
+        "sesionActiva"
+    );
+
+
+    localStorage.removeItem(
+        "usuarioSesion"
+    );
+
+
+    localStorage.removeItem(
+        "usuarioActual"
+    );
+
+
+    /*
+        Información temporal que no debe
+        conservarse después de salir.
+    */
+
+    sessionStorage.removeItem(
+        "estacionamientoSeleccionado"
+    );
+
+
+    sessionStorage.removeItem(
+        "reservaPendiente"
+    );
+
+
+    window.location.href =
+        "/login.html";
 
 }
