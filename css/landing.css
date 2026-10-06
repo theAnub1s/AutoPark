@@ -1,0 +1,706 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600&display=swap');
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+
+    background-color: #E4E8F7;
+
+    color: #101828;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 430px;
+
+    background-color: #C4E3FF;
+}
+
+
+.hero-content {
+    width: 100%;
+    max-width: 1440px;
+
+    min-height: 430px;
+
+    margin: 0 auto;
+
+    padding:
+        44px
+        74px
+        54px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 650px)
+        minmax(420px, 520px);
+
+    justify-content: space-between;
+
+    align-items: start;
+
+    gap: 70px;
+}
+
+
+/* =========================
+   TEXTO HERO
+========================= */
+
+.hero-copy {
+    padding-top: 10px;
+}
+
+
+.hero-copy h1 {
+    margin: 0;
+
+    font-family:
+        "Roboto",
+        sans-serif;
+
+    font-size: 50px;
+    font-weight: 500;
+
+    line-height: 1.15;
+
+    color: #101828;
+}
+
+
+.hero-copy > p {
+    max-width: 570px;
+
+    margin:
+        34px
+        0
+        0;
+
+    font-family:
+        "Roboto Mono",
+        monospace;
+
+    font-size: 18px;
+
+    line-height: 1.6;
+
+    color: #475467;
+}
+
+
+/* =========================
+   BOTONES HERO
+========================= */
+
+.hero-actions {
+    margin-top: 52px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+}
+
+
+.btn-main,
+.btn-secondary {
+    min-height: 52px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding:
+        0
+        24px;
+
+    border-radius: 24px;
+
+    font-family:
+        "Roboto Mono",
+        monospace;
+
+    font-size: 16px;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        background-color 0.2s ease;
+}
+
+
+.btn-main {
+    min-width: 220px;
+
+    border: none;
+
+    background-color: #475467;
+
+    color: #FFFFFF;
+}
+
+
+.btn-secondary {
+    min-width: 205px;
+
+    border:
+        1px solid
+        #475467;
+
+    background-color: #FFFFFF;
+
+    color: #101828;
+}
+
+
+.btn-main:hover {
+    background-color: #344054;
+}
+
+
+.btn-secondary:hover {
+    background-color: #E4E8F7;
+}
+
+
+.btn-main:active,
+.btn-secondary:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================
+   PANEL CERCA DE TI
+========================= */
+
+.nearby-panel {
+    width: 100%;
+
+    min-height: 320px;
+
+    padding:
+        26px
+        32px;
+
+    background-color: #FFFFFF;
+
+    border:
+        1px solid
+        #B8C7D9;
+
+    border-radius: 18px;
+}
+
+
+.nearby-panel > h2 {
+    margin:
+        0
+        0
+        26px;
+
+    font-family:
+        "Roboto",
+        sans-serif;
+
+    font-size: 22px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+/* =========================
+   ESTACIONAMIENTO PREVIEW
+========================= */
+
+.parking-preview {
+    min-height: 190px;
+
+    padding: 18px;
+
+    display: grid;
+
+    grid-template-columns:
+        130px
+        1fr;
+
+    gap: 20px;
+
+    background-color: #FFFFFF;
+
+    border:
+        1px solid
+        #B8C7D9;
+
+    border-radius: 18px;
+}
+
+
+.parking-preview-image {
+    width: 130px;
+    height: 104px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background-color: #C4E3FF;
+
+    border-radius: 14px;
+}
+
+
+.parking-preview-image img {
+    width: 62px;
+    height: 62px;
+
+    object-fit: contain;
+}
+
+
+.parking-preview-info h3 {
+    margin: 0;
+
+    font-family:
+        "Roboto",
+        sans-serif;
+
+    font-size: 20px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+.preview-zone {
+    margin:
+        14px
+        0
+        0;
+
+    font-family:
+        "Roboto Mono",
+        monospace;
+
+    font-size: 14px;
+
+    color: #475467;
+}
+
+
+.preview-price {
+    margin:
+        13px
+        0
+        0;
+
+    font-family:
+        "Roboto Mono",
+        monospace;
+
+    font-size: 16px;
+
+    color: #101828;
+}
+
+
+.preview-footer {
+    grid-column:
+        1 / -1;
+
+    margin-top: 2px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 14px;
+}
+
+
+.availability-badge {
+    min-width: 145px;
+    height: 36px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding:
+        0
+        14px;
+
+    background-color: #84D7E6;
+
+    border:
+        1px solid
+        #B8C7D9;
+
+    border-radius: 18px;
+
+    font-family:
+        "Roboto Mono",
+        monospace;
+
+    font-size: 13px;
+
+    color: #101828;
+}
+
+
+.btn-detail {
+    min-width: 132px;
+    height: 42px;
+
+    border:
+        1px solid
+        #475467;
+
+    border-radius: 24px;
+
+    background-color: #FFFFFF;
+
+    font-family:
+        "Roboto Mono",
+        monospace;
+
+    font-size: 16px;
+
+    color: #101828;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.15s ease;
+}
+
+
+.btn-detail:hover {
+    background-color: #E4E8F7;
+}
+
+
+.btn-detail:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================
+   FUNCIONES
+========================= */
+
+.features-section {
+    width: 100%;
+    max-width: 1440px;
+
+    margin: 0 auto;
+
+    padding:
+        52px
+        74px
+        64px;
+}
+
+
+.features-section > h2 {
+    margin:
+        0
+        0
+        34px;
+
+    font-family:
+        "Roboto",
+        sans-serif;
+
+    font-size: 32px;
+    font-weight: 400;
+
+    color: #475467;
+}
+
+
+.features-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(0, 390px)
+        );
+
+    gap: 40px;
+}
+
+
+/* =========================
+   TARJETAS
+========================= */
+
+.feature-card {
+    min-height: 228px;
+
+    padding:
+        24px;
+
+    background-color: #FFFFFF;
+
+    border:
+        1px solid
+        #B8C7D9;
+
+    border-radius: 18px;
+}
+
+
+.feature-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+
+.feature-number {
+    width: 52px;
+    height: 52px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background-color: #C4E3FF;
+
+    border-radius: 50%;
+
+    font-family:
+        "Roboto",
+        sans-serif;
+
+    font-size: 18px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+.feature-card h3 {
+    margin: 0;
+
+    font-family:
+        "Roboto",
+        sans-serif;
+
+    font-size: 20px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+.feature-card > p {
+    margin:
+        24px
+        0
+        0;
+
+    font-family:
+        "Roboto Mono",
+        monospace;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+    color: #475467;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.landing-footer {
+    width: 100%;
+    max-width: 1440px;
+
+    margin: 0 auto;
+
+    padding:
+        0
+        74px
+        52px;
+
+    font-family:
+        "Roboto Mono",
+        monospace;
+
+    font-size: 14px;
+
+    color: #475467;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1100px) {
+
+    .hero-content {
+        grid-template-columns:
+            1fr
+            420px;
+
+        padding:
+            44px
+            40px
+            54px;
+
+        gap: 40px;
+    }
+
+
+    .features-section {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+
+    .landing-footer {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+
+    .features-grid {
+        gap: 24px;
+    }
+
+}
+
+
+@media (max-width: 900px) {
+
+    .hero-content {
+        grid-template-columns: 1fr;
+    }
+
+
+    .hero-copy {
+        padding-bottom: 10px;
+    }
+
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .feature-card {
+        min-height: auto;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .hero-content {
+        padding:
+            38px
+            20px
+            46px;
+    }
+
+
+    .hero-copy h1 {
+        font-size: 40px;
+    }
+
+
+    .hero-copy > p {
+        font-size: 16px;
+    }
+
+
+    .hero-actions {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .btn-main,
+    .btn-secondary {
+        width: 100%;
+    }
+
+
+    .nearby-panel {
+        padding:
+            24px
+            20px;
+    }
+
+
+    .parking-preview {
+        grid-template-columns: 1fr;
+    }
+
+
+    .parking-preview-image {
+        width: 100%;
+    }
+
+
+    .preview-footer {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .availability-badge,
+    .btn-detail {
+        width: 100%;
+    }
+
+
+    .features-section {
+        padding:
+            46px
+            20px;
+    }
+
+
+    .landing-footer {
+        padding:
+            0
+            20px
+            40px;
+    }
+
+}
