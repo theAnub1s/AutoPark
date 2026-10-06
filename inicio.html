@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Inicio - AutoPark</title>
+
+    <link
+        rel="stylesheet"
+        href="components/navbar/navbar.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/inicio.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <div id="navbar"></div>
+
+
+    <!-- CONTENIDO -->
+
+    <main class="inicio-page">
+
+
+        <!-- BIENVENIDA -->
+
+        <header class="welcome">
+
+            <h1 id="welcomeTitle">
+                Hola, Fernando
+            </h1>
+
+            <p>
+                Aquí tienes un resumen de tu actividad en AutoPark.
+            </p>
+
+        </header>
+
+
+        <!-- ESTADÍSTICAS -->
+
+        <section class="stats-grid">
+
+            <article class="stat-card">
+
+                <p>
+                    Reservas activas
+                </p>
+
+                <span id="reservasActivas">
+                    2
+                </span>
+
+            </article>
+
+
+            <article class="stat-card">
+
+                <p>
+                    Espacios publicados
+                </p>
+
+                <span id="espaciosPublicados">
+                    3
+                </span>
+
+            </article>
+
+
+            <article class="stat-card">
+
+                <p>
+                    Reservas este mes
+                </p>
+
+                <span id="reservasMes">
+                    8
+                </span>
+
+            </article>
+
+
+            <article class="stat-card">
+
+                <p>
+                    Disponibilidad promedio
+                </p>
+
+                <span>
+                    74%
+                </span>
+
+            </article>
+
+        </section>
+
+
+        <!-- ACCESOS RÁPIDOS -->
+
+        <section class="quick-section">
+
+            <h2>
+                Accesos rápidos
+            </h2>
+
+
+            <div class="quick-grid">
+
+
+                <a
+                    href="/busqueda.html"
+                    class="quick-card"
+                >
+
+                    <div class="quick-header">
+
+                        <span class="quick-number">
+                            1
+                        </span>
+
+                        <h3>
+                            Buscar
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        Encuentra un espacio disponible
+                    </p>
+
+                </a>
+
+
+                <a
+                    href="/reservas.html"
+                    class="quick-card"
+                >
+
+                    <div class="quick-header">
+
+                        <span class="quick-number">
+                            2
+                        </span>
+
+                        <h3>
+                            Reservas
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        Consulta y administra tus reservas
+                    </p>
+
+                </a>
+
+
+                <a
+                    href="/espacios.html"
+                    class="quick-card"
+                >
+
+                    <div class="quick-header">
+
+                        <span class="quick-number">
+                            3
+                        </span>
+
+                        <h3>
+                            Publicar
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        Agrega un nuevo espacio
+                    </p>
+
+                </a>
+
+
+                <a
+                    href="/perfil.html"
+                    class="quick-card"
+                >
+
+                    <div class="quick-header">
+
+                        <span class="quick-number">
+                            4
+                        </span>
+
+                        <h3>
+                            Perfil
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        Actualiza tu información
+                    </p>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- RECOMENDADOS -->
+
+        <section class="recommended-section">
+
+            <h2>
+                Recomendados cerca de ti
+            </h2>
+
+
+            <div
+                class="recommended-grid"
+                id="recommendedGrid"
+            ></div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- CARGAR NAVBAR -->
+
+    <script>
+
+        fetch("components/navbar/navbar.html")
+
+            .then(response => response.text())
+
+            .then(data => {
+
+                document.getElementById(
+                    "navbar"
+                ).innerHTML = data;
+
+
+                const script =
+                    document.createElement(
+                        "script"
+                    );
+
+
+                script.src =
+                    "components/navbar/navbar.js";
+
+
+                document.body.appendChild(
+                    script
+                );
+
+            })
+
+            .catch(error => {
+
+                console.error(
+                    "Error al cargar el navbar:",
+                    error
+                );
+
+            });
+
+    </script>
+
+
+    <script src="js/inicio.js"></script>
+
+</body>
+
+</html>
