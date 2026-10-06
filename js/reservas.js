@@ -229,7 +229,7 @@ function mostrarReservas() {
 
 
             card.className =
-                "reserva-card";
+                "reserva-card card";
 
 
             const estadoTexto =
@@ -278,7 +278,7 @@ function mostrarReservas() {
                 <div class="reserva-actions">
 
                     <span
-                        class="status-badge ${reserva.estado}"
+                        class="status-badge badge rounded-pill ${reserva.estado}"
                     >
                         ${estadoTexto}
                     </span>
@@ -286,7 +286,7 @@ function mostrarReservas() {
 
                     <button
                         type="button"
-                        class="btn-detail"
+                        class="btn btn-detail"
                         data-action="detalle"
                         data-id="${reserva.id}"
                     >
@@ -300,7 +300,7 @@ function mostrarReservas() {
                             ? `
                                 <button
                                     type="button"
-                                    class="btn-cancel"
+                                    class="btn btn-cancel"
                                     data-action="cancelar"
                                     data-id="${reserva.id}"
                                 >
@@ -347,12 +347,22 @@ tabButtons.forEach(
                             "active"
                         );
 
+                        item.setAttribute(
+                            "aria-selected",
+                            "false"
+                        );
+
                     }
                 );
 
 
                 button.classList.add(
                     "active"
+                );
+
+                button.setAttribute(
+                    "aria-selected",
+                    "true"
                 );
 
 
