@@ -480,7 +480,7 @@ if (btnLogout) {
 
 
             window.location.href =
-                "/login.html";
+                "login.html";
 
         }
     );
