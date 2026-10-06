@@ -217,6 +217,9 @@ En esta parte se entrega las capturas del todo el proyecto de como funciona
 <img width="1587" height="957" alt="image" src="https://github.com/user-attachments/assets/fa6df7fb-83e9-44dc-bff5-e6171e164c8b" />
 <img width="1592" height="961" alt="image" src="https://github.com/user-attachments/assets/912c0d93-b970-4fce-8881-fd04380215b0" />
 <img width="1592" height="958" alt="image" src="https://github.com/user-attachments/assets/b301b048-4b0c-4769-a43e-c7b467e471b7" />
+En esta parte se muestra lo del perfil del usario
+<img width="1887" height="1050" alt="image" src="https://github.com/user-attachments/assets/bc88117f-895f-47f9-8c18-b442322c02d0" />
+
 
 Entrega de Capturas de los HTML funcionando de una manera correcta este con las capturas en modalidad movil
 En esta parte se entrega las capturas del todo el proyecto de como funciona
