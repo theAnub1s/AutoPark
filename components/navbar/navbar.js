@@ -1,3 +1,7 @@
+/* =========================
+   ELEMENTOS
+========================= */
+
 const menuButton =
     document.getElementById(
         "navbarMenuButton"
@@ -16,6 +20,18 @@ const logoutButton =
     );
 
 
+const navbarBrand =
+    document.getElementById(
+        "navbarBrand"
+    );
+
+
+const navbarHome =
+    document.getElementById(
+        "navbarHome"
+    );
+
+
 /* =========================
    PÁGINA ACTUAL
 ========================= */
@@ -23,11 +39,11 @@ const logoutButton =
 const currentPage =
     window.location.pathname
         .split("/")
-        .pop() || "inicio.html";
+        .pop() || "index.html";
 
 
 /* =========================
-   ESTADO DE SESIÓN
+   SESIÓN
 ========================= */
 
 /*
@@ -37,14 +53,15 @@ IMPORTANTE - BACKEND
 
 Esta comprobación es TEMPORAL.
 
-Por ahora AutoPark utiliza localStorage
-para simular que un usuario inició sesión.
+Actualmente se utiliza localStorage para
+simular una sesión iniciada.
 
-Cuando exista el backend:
+Cuando exista backend:
 
-- BORRAR / REEMPLAZAR esta comprobación.
-- Validar token, cookie o sesión real.
-- Obtener el usuario desde el servidor.
+- reemplazar esta comprobación;
+- validar token/cookie/sesión;
+- consultar al servidor;
+- proteger también las rutas desde backend.
 
 ==========================================
 */
@@ -55,19 +72,131 @@ const sesionActiva =
     ) === "true";
 
 
+/* =========================
+   PÁGINAS PRIVADAS
+========================= */
+
 /*
-    Login y registro siempre muestran
-    la navegación para invitados.
+    Estas páginas requieren
+    una cuenta autenticada.
 */
 
-const paginasInvitado = [
+const paginasPrivadas = [
+
+    "inicio.html",
+    "reservas.html",
+    "espacios.html",
+    "perfil.html"
+
+];
+
+
+/* =========================
+   PROTEGER PÁGINAS
+========================= */
+
+if (
+    paginasPrivadas.includes(
+        currentPage
+    ) &&
+    !sesionActiva
+) {
+
+    /*
+        Guardamos a dónde quería ir
+        el usuario.
+
+        Después del login podremos
+        regresarlo automáticamente.
+    */
+
+    const destinoOriginal =
+        window.location.pathname +
+        window.location.search +
+        window.location.hash;
+
+
+    sessionStorage.setItem(
+        "redirectAfterLogin",
+        destinoOriginal
+    );
+
+
+    window.location.replace(
+        "/login.html"
+    );
+
+}
+
+
+/* =========================
+   DESTINO DEL INICIO
+========================= */
+
+/*
+    SIN SESIÓN:
+
+    Logo
+       ↓
+    index.html
+
+    Inicio
+       ↓
+    index.html
+
+
+    CON SESIÓN:
+
+    Logo
+       ↓
+    inicio.html
+
+    Inicio
+       ↓
+    inicio.html
+*/
+
+const paginaInicio =
+    sesionActiva
+        ? "/inicio.html"
+        : "/index.html";
+
+
+if (navbarBrand) {
+
+    navbarBrand.href =
+        paginaInicio;
+
+}
+
+
+if (navbarHome) {
+
+    navbarHome.href =
+        paginaInicio;
+
+}
+
+
+/* =========================
+   MODO DEL NAVBAR
+========================= */
+
+/*
+    Login y registro siempre utilizan
+    las opciones para invitados.
+*/
+
+const paginasDeAcceso = [
+
     "login.html",
     "registro.html"
+
 ];
 
 
 if (
-    paginasInvitado.includes(
+    paginasDeAcceso.includes(
         currentPage
     )
 ) {
@@ -86,7 +215,7 @@ if (
 
 
 /* =========================
-   ABRIR / CERRAR MENÚ
+   MENÚ MÓVIL
 ========================= */
 
 if (
@@ -109,7 +238,7 @@ if (
 
 
 /* =========================
-   MARCAR PÁGINA ACTUAL
+   PÁGINA ACTIVA
 ========================= */
 
 const links =
@@ -118,69 +247,80 @@ const links =
     );
 
 
-links.forEach(link => {
+links.forEach(
+    link => {
 
-    /*
-        El botón Cerrar sesión también
-        utiliza la clase nav-link,
-        pero no contiene href.
-    */
-
-    const href =
-        link.getAttribute(
-            "href"
-        );
+        const href =
+            link.getAttribute(
+                "href"
+            );
 
 
-    if (!href) {
+        /*
+            Cerrar sesión es un botón,
+            por eso no tiene href.
+        */
 
-        return;
+        if (!href) {
+
+            return;
+
+        }
+
+
+        const linkPage =
+            href
+                .split("/")
+                .pop();
+
+
+        /*
+            En la Landing, Inicio apunta
+            a index.html.
+
+            En el dashboard, Inicio apunta
+            a inicio.html.
+        */
+
+        if (
+            linkPage === currentPage &&
+            link.offsetParent !== null
+        ) {
+
+            link.classList.add(
+                "active"
+            );
+
+        }
 
     }
-
-
-    const linkPage =
-        href
-            .split("/")
-            .pop();
-
-
-    if (
-        linkPage === currentPage &&
-        link.offsetParent !== null
-    ) {
-
-        link.classList.add(
-            "active"
-        );
-
-    }
-
-});
+);
 
 
 /* =========================
-   CERRAR MENÚ
+   CERRAR MENÚ AL NAVEGAR
 ========================= */
 
-links.forEach(link => {
+links.forEach(
+    link => {
 
-    link.addEventListener(
-        "click",
-        () => {
+        link.addEventListener(
+            "click",
+            () => {
 
-            if (navbarLinks) {
+                if (navbarLinks) {
 
-                navbarLinks.classList.remove(
-                    "show"
-                );
+                    navbarLinks.classList.remove(
+                        "show"
+                    );
+
+                }
 
             }
+        );
 
-        }
-    );
-
-});
+    }
+);
 
 
 /* =========================
@@ -198,7 +338,7 @@ if (logoutButton) {
 
 
 /* =========================
-   FUNCIÓN CERRAR SESIÓN
+   FUNCIÓN LOGOUT
 ========================= */
 
 function cerrarSesion() {
@@ -208,10 +348,9 @@ function cerrarSesion() {
     IMPORTANTE - BACKEND
     ==========================================
 
-    ESTA LÓGICA ES TEMPORAL.
+    Lógica TEMPORAL.
 
-    Cuando se implemente el backend,
-    BORRAR / REEMPLAZAR esta sección por:
+    Posteriormente deberá reemplazarse por:
 
     - endpoint de logout;
     - eliminación del token;
@@ -238,11 +377,6 @@ function cerrarSesion() {
     );
 
 
-    /*
-        Información temporal que no debe
-        conservarse después de salir.
-    */
-
     sessionStorage.removeItem(
         "estacionamientoSeleccionado"
     );
@@ -253,7 +387,17 @@ function cerrarSesion() {
     );
 
 
+    sessionStorage.removeItem(
+        "redirectAfterLogin"
+    );
+
+
+    /*
+        Al cerrar sesión regresamos
+        a la Landing pública.
+    */
+
     window.location.href =
-        "/login.html";
+        "/index.html";
 
 }
