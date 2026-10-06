@@ -218,6 +218,26 @@ En esta parte se entrega las capturas del todo el proyecto de como funciona
 <img width="1592" height="961" alt="image" src="https://github.com/user-attachments/assets/912c0d93-b970-4fce-8881-fd04380215b0" />
 <img width="1592" height="958" alt="image" src="https://github.com/user-attachments/assets/b301b048-4b0c-4769-a43e-c7b467e471b7" />
 
+Entrega de Capturas de los HTML funcionando de una manera correcta este con las capturas en modalidad movil
+En esta parte se entrega las capturas del todo el proyecto de como funciona
+<img width="475" height="573" alt="image" src="https://github.com/user-attachments/assets/060af83d-1180-4412-8585-395d05049ba5" />
+<img width="471" height="569" alt="image" src="https://github.com/user-attachments/assets/57f0c4c9-57a9-47ca-837a-c81659d8c2a8" />
+<img width="470" height="567" alt="image" src="https://github.com/user-attachments/assets/dab0f43a-9994-40a3-b1b5-2be57e0cb40c" />
+<img width="470" height="572" alt="image" src="https://github.com/user-attachments/assets/f9007aa2-3a7d-4083-a6fa-b95b03313687" />
+<img width="470" height="579" alt="image" src="https://github.com/user-attachments/assets/6b409e7f-409f-4679-961e-913a769b93c7" />
+<img width="470" height="566" alt="image" src="https://github.com/user-attachments/assets/410426b8-e67c-43c2-8e74-02bd3bc151d6" />
+<img width="478" height="570" alt="image" src="https://github.com/user-attachments/assets/182473b8-d422-4da8-a784-613b4bde1767" />
+<img width="472" height="570" alt="image" src="https://github.com/user-attachments/assets/0d712ec5-5dbf-450c-9d8d-964b94f94d1a" />
+<img width="480" height="569" alt="image" src="https://github.com/user-attachments/assets/acfccebb-0ca8-4f9d-9372-4897a1a251dd" />
+<img width="478" height="573" alt="image" src="https://github.com/user-attachments/assets/b54f46d9-aa74-4639-9f57-251169f33c11" />
+<img width="476" height="571" alt="image" src="https://github.com/user-attachments/assets/95524bc4-a0bf-4f3a-b2ce-61fdff5ef28a" />
+<img width="478" height="576" alt="image" src="https://github.com/user-attachments/assets/98671956-9f2a-493d-85cd-d53921a14152" />
+<img width="473" height="574" alt="image" src="https://github.com/user-attachments/assets/cf344aee-ffce-428a-9e85-e9a133d49f93" />
+<img width="475" height="570" alt="image" src="https://github.com/user-attachments/assets/55c59ae8-7531-4bdc-b684-2556c8e0b2f7" />
+<img width="495" height="573" alt="image" src="https://github.com/user-attachments/assets/208c63f6-1212-4670-9c14-c452867997a7" />
+<img width="496" height="569" alt="image" src="https://github.com/user-attachments/assets/29f4cd82-8e79-44ce-b180-9c611dab5f70" />
+<img width="496" height="570" alt="image" src="https://github.com/user-attachments/assets/a445557c-5c34-42aa-b9e1-247122302ef1" />
+<img width="497" height="570" alt="image" src="https://github.com/user-attachments/assets/ff77036d-4dad-40ba-8e1d-4503e37d8fc4" />
 
 
 ## Documentación
