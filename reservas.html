@@ -58,25 +58,35 @@
         </header>
 
 
-        <div class="tabs">
+        <ul
+            class="nav nav-tabs tabs"
+            role="tablist"
+            aria-label="Filtros de reservas"
+        >
+            <li class="nav-item" role="presentation">
+                <button
+                    type="button"
+                    class="nav-link tab-button active"
+                    data-tab="activas"
+                    role="tab"
+                    aria-selected="true"
+                >
+                    Activas
+                </button>
+            </li>
 
-            <button
-                type="button"
-                class="tab-button active"
-                data-tab="activas"
-            >
-                Activas
-            </button>
-
-            <button
-                type="button"
-                class="tab-button"
-                data-tab="historial"
-            >
-                Historial
-            </button>
-
-        </div>
+            <li class="nav-item" role="presentation">
+                <button
+                    type="button"
+                    class="nav-link tab-button"
+                    data-tab="historial"
+                    role="tab"
+                    aria-selected="false"
+                >
+                    Historial
+                </button>
+            </li>
+        </ul>
 
 
         <section
