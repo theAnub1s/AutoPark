@@ -5,9 +5,18 @@ Aplicación web multipágina para buscar, consultar, reservar, publicar y admini
 ## Equipo
 
 **Equipo:** Grey Lancer  
+**Cuatrimestre y grupo:** 4.º Cuatrimestre – Grupo 1  
 **Líder / integración del repositorio:** Fernando Ruiz Díaz
 
-> Antes de la entrega final, agregar aquí los nombres completos del resto de integrantes exactamente como aparecen en la lista oficial del equipo.
+### Integrantes
+
+- Fernando Ruiz Díaz
+- Daniela Doñu Bolteada
+- Guillermo Ruiz Marquez
+- Johan Baru Cernates Gonzalez
+- Fernanda Itzel Hernandez Perez
+- Aritzel Vera Tena
+- Mario Camacho
 
 ## Objetivo
 
@@ -19,6 +28,7 @@ Desarrollar una aplicación web responsive que permita a los usuarios localizar 
 - CSS3
 - JavaScript
 - Bootstrap 5.3.3
+- Bootstrap Icons 1.11.3
 - Git
 - GitHub
 - GitHub Projects / Kanban
