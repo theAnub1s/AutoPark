@@ -147,7 +147,7 @@ loginForm.addEventListener(
 
 
         window.location.href =
-            "/inicio.html";
+            "inicio.html";
 
     }
 );

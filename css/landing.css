@@ -672,7 +672,8 @@ body {
 
 }
 
-.feature-number i {
-    font-size: 23px;
-    line-height: 1;
+.feature-icon {
+    width: 23px;
+    height: 23px;
+    display: block;
 }

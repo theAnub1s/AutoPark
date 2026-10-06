@@ -186,7 +186,8 @@ textarea.form-control {
 }
 
 
-.autopark-icon i {
-    font-size: 22px;
-    line-height: 1;
+.autopark-icon-img {
+    width: 22px;
+    height: 22px;
+    display: block;
 }

@@ -510,12 +510,12 @@ reservationForm.addEventListener(
 
             sessionStorage.setItem(
                 "redirectAfterLogin",
-                "/detalle.html"
+                "detalle.html"
             );
 
 
             window.location.href =
-                "/login.html";
+                "login.html";
 
 
             return;
@@ -704,7 +704,7 @@ reservationForm.addEventListener(
         ========================= */
 
         window.location.href =
-            "/reservas.html";
+            "reservas.html";
 
     }
 );

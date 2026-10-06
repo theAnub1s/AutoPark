@@ -51,13 +51,13 @@ if (
         destinoOriginal
     );
 
-    window.location.replace("/login.html");
+    window.location.replace("login.html");
 }
 
 const paginaInicio =
     sesionActiva
-        ? "/inicio.html"
-        : "/index.html";
+        ? "inicio.html"
+        : "index.html";
 
 if (navbarBrand) {
     navbarBrand.href = paginaInicio;
@@ -189,5 +189,5 @@ function cerrarSesion() {
         "redirectAfterLogin"
     );
 
-    window.location.href = "/index.html";
+    window.location.href = "index.html";
 }
