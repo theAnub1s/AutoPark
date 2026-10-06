@@ -432,7 +432,7 @@ reservasContainer.addEventListener(
 
 
             window.location.href =
-                "/detalle.html";
+                "detalle.html";
 
         }
 
