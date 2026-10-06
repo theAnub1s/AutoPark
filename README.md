@@ -208,16 +208,17 @@ El tablero de GitHub Projects debe mantener las columnas:
 - Terminado
 
 ## Evidencias para la entrega
+Entrega de Capturas de los HTML funcionando de una manera correcta este con las capturas en modalidad Escritorio
+En esta parte se entrega las capturas del todo el proyecto de como funciona
+<img width="1595" height="950" alt="image" src="https://github.com/user-attachments/assets/50094a90-ff2e-43eb-86dd-a2a7b43da6c8" />
+<img width="1592" height="957" alt="image" src="https://github.com/user-attachments/assets/91568a17-cc3a-454d-95cc-6831c1c1498f" />
+<img width="1597" height="952" alt="image" src="https://github.com/user-attachments/assets/7eaa022c-8ca5-46ea-ad34-6b5ba33703da" />
+<img width="1591" height="962" alt="image" src="https://github.com/user-attachments/assets/09d86818-9ce5-4ff5-a2e0-8262f288b825" />
+<img width="1587" height="957" alt="image" src="https://github.com/user-attachments/assets/fa6df7fb-83e9-44dc-bff5-e6171e164c8b" />
+<img width="1592" height="961" alt="image" src="https://github.com/user-attachments/assets/912c0d93-b970-4fce-8881-fd04380215b0" />
+<img width="1592" height="958" alt="image" src="https://github.com/user-attachments/assets/b301b048-4b0c-4769-a43e-c7b467e471b7" />
 
-Antes de la entrega final se deben incorporar evidencias de:
 
-- Landing en escritorio.
-- Landing en teléfono móvil.
-- Pantalla interna en escritorio.
-- Pantalla interna en teléfono móvil.
-- Tablero Kanban.
-- Historial de commits.
-- Pull Requests realizados.
 
 ## Documentación
 
