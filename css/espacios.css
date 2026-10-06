@@ -47,7 +47,10 @@ body {
 .page-header h1 {
     margin: 0;
 
-    font-family: "Roboto", sans-serif;
+    font-family:
+        "Roboto",
+        sans-serif;
+
     font-size: 42px;
     font-weight: 500;
 
@@ -58,7 +61,10 @@ body {
 .page-header p {
     margin: 20px 0 0;
 
-    font-family: "Roboto Mono", monospace;
+    font-family:
+        "Roboto Mono",
+        monospace;
+
     font-size: 16px;
 
     color: #475467;
@@ -80,7 +86,10 @@ body {
 
     color: #FFFFFF;
 
-    font-family: "Roboto Mono", monospace;
+    font-family:
+        "Roboto Mono",
+        monospace;
+
     font-size: 16px;
 
     cursor: pointer;
@@ -110,6 +119,7 @@ body {
 
 .espacios-list {
     display: flex;
+
     flex-direction: column;
 
     gap: 30px;
@@ -128,7 +138,7 @@ body {
     grid-template-columns:
         190px
         1fr
-        170px;
+        185px;
 
     gap: 28px;
 
@@ -138,7 +148,10 @@ body {
 
     background-color: #FFFFFF;
 
-    border: 1px solid #B8C7D9;
+    border:
+        1px solid
+        #B8C7D9;
+
     border-radius: 18px;
 }
 
@@ -152,6 +165,7 @@ body {
     height: 148px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -176,7 +190,10 @@ body {
 .espacio-info h2 {
     margin: 0 0 22px;
 
-    font-family: "Roboto", sans-serif;
+    font-family:
+        "Roboto",
+        sans-serif;
+
     font-size: 22px;
     font-weight: 500;
 
@@ -187,10 +204,20 @@ body {
 .espacio-info p {
     margin: 8px 0;
 
-    font-family: "Roboto Mono", monospace;
+    font-family:
+        "Roboto Mono",
+        monospace;
+
     font-size: 15px;
 
     color: #475467;
+}
+
+
+.cantidad-texto {
+    color: #101828 !important;
+
+    font-weight: 500;
 }
 
 
@@ -200,6 +227,7 @@ body {
 
 .espacio-actions {
     display: flex;
+
     flex-direction: column;
 
     align-items: stretch;
@@ -208,42 +236,72 @@ body {
 }
 
 
-/* ESTADO */
+/* =========================
+   ESTADO
+========================= */
 
 .status {
-    height: 36px;
+    min-height: 36px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
+    padding: 0 12px;
+
     border-radius: 18px;
 
-    font-family: "Roboto Mono", monospace;
+    font-family:
+        "Roboto Mono",
+        monospace;
+
     font-size: 13px;
+
+    text-align: center;
 }
 
 
 .status.disponible {
     background-color: #84D7E6;
 
-    border: 1px solid #B8C7D9;
+    border:
+        1px solid
+        #B8C7D9;
 
     color: #101828;
 }
 
 
-/* BOTONES */
+.status.no-disponible {
+    background-color: #FDECEC;
+
+    border:
+        1px solid
+        #FDA29B;
+
+    color: #B42318;
+}
+
+
+/* =========================
+   BOTONES
+========================= */
 
 .btn-secondary,
 .btn-primary {
-    height: 44px;
+    min-height: 44px;
 
-    padding: 0 12px;
+    padding:
+        0
+        12px;
 
     border-radius: 24px;
 
-    font-family: "Roboto Mono", monospace;
+    font-family:
+        "Roboto Mono",
+        monospace;
+
     font-size: 14px;
 
     cursor: pointer;
@@ -253,7 +311,9 @@ body {
 .btn-secondary {
     background-color: #FFFFFF;
 
-    border: 1px solid #475467;
+    border:
+        1px solid
+        #475467;
 
     color: #101828;
 }
@@ -277,6 +337,7 @@ body {
 .btn-primary,
 .btn-cancelar,
 .btn-guardar {
+
     transition:
         background-color 0.2s ease,
         color 0.2s ease,
@@ -289,12 +350,14 @@ body {
 .btn-publicar:hover,
 .btn-primary:hover,
 .btn-guardar:hover {
+
     background-color: #344054;
 }
 
 
 .btn-secondary:hover,
 .btn-cancelar:hover {
+
     background-color: #E4E8F7;
 }
 
@@ -304,6 +367,7 @@ body {
 .btn-primary:active,
 .btn-cancelar:active,
 .btn-guardar:active {
+
     transform: scale(0.97);
 }
 
@@ -313,11 +377,17 @@ body {
 ========================= */
 
 .summary-card {
-    padding: 24px 32px 38px;
+    padding:
+        24px
+        32px
+        38px;
 
     background-color: #FFFFFF;
 
-    border: 1px solid #B8C7D9;
+    border:
+        1px solid
+        #B8C7D9;
+
     border-radius: 18px;
 }
 
@@ -325,7 +395,10 @@ body {
 .summary-card > h2 {
     margin: 0 0 20px;
 
-    font-family: "Roboto", sans-serif;
+    font-family:
+        "Roboto",
+        sans-serif;
+
     font-size: 20px;
     font-weight: 500;
 
@@ -340,7 +413,10 @@ body {
 
     padding: 22px;
 
-    border: 1px solid #B8C7D9;
+    border:
+        1px solid
+        #B8C7D9;
+
     border-radius: 18px;
 
     background-color: #FFFFFF;
@@ -350,7 +426,10 @@ body {
 .summary-item p {
     margin: 0;
 
-    font-family: "Roboto Mono", monospace;
+    font-family:
+        "Roboto Mono",
+        monospace;
+
     font-size: 14px;
 
     color: #475467;
@@ -362,7 +441,10 @@ body {
 
     margin-top: 14px;
 
-    font-family: "Roboto", sans-serif;
+    font-family:
+        "Roboto",
+        sans-serif;
+
     font-size: 32px;
     font-weight: 500;
 
@@ -388,7 +470,13 @@ body {
     align-items: center;
     justify-content: center;
 
-    background-color: rgba(16, 24, 40, 0.45);
+    background-color:
+        rgba(
+            16,
+            24,
+            40,
+            0.45
+        );
 }
 
 
@@ -409,7 +497,10 @@ body {
 
     background-color: #FFFFFF;
 
-    border: 1px solid #B8C7D9;
+    border:
+        1px solid
+        #B8C7D9;
+
     border-radius: 18px;
 }
 
@@ -420,6 +511,7 @@ body {
 
 .modal-header {
     display: flex;
+
     justify-content: space-between;
 
     gap: 20px;
@@ -431,7 +523,10 @@ body {
 .modal-header h2 {
     margin: 0;
 
-    font-family: "Roboto", sans-serif;
+    font-family:
+        "Roboto",
+        sans-serif;
+
     font-size: 32px;
     font-weight: 400;
 
@@ -442,7 +537,10 @@ body {
 .modal-header p {
     margin: 10px 0 0;
 
-    font-family: "Roboto Mono", monospace;
+    font-family:
+        "Roboto Mono",
+        monospace;
+
     font-size: 16px;
 
     color: #475467;
@@ -476,6 +574,7 @@ body {
 
 .form-group {
     display: flex;
+
     flex-direction: column;
 
     gap: 8px;
@@ -487,27 +586,39 @@ body {
 .form-row {
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:
+        1fr
+        1fr;
 
     gap: 18px;
 }
 
 
 .form-group label {
-    font-family: "Roboto Mono", monospace;
+    font-family:
+        "Roboto Mono",
+        monospace;
+
     font-size: 16px;
 
     color: #475467;
 }
 
 
-.form-group input {
+.form-group input,
+.form-group select {
+
     width: 100%;
     height: 56px;
 
-    padding: 0 16px;
+    padding:
+        0
+        16px;
 
-    border: 1px solid #B8C7D9;
+    border:
+        1px solid
+        #B8C7D9;
+
     border-radius: 12px;
 
     outline: none;
@@ -516,22 +627,37 @@ body {
 
     color: #101828;
 
-    font-family: "Roboto Mono", monospace;
+    font-family:
+        "Roboto Mono",
+        monospace;
+
     font-size: 16px;
 }
 
 
-.form-group input:focus {
+.form-group input:focus,
+.form-group select:focus {
+
     border-color: #475467;
 
     box-shadow:
-        0 0 0 3px rgba(132, 215, 230, 0.35);
+        0 0 0 3px
+        rgba(
+            132,
+            215,
+            230,
+            0.35
+        );
 }
 
 
-/* CAMPOS BLOQUEADOS */
+/* =========================
+   CAMPOS BLOQUEADOS
+========================= */
 
-.form-group input:disabled {
+.form-group input:disabled,
+.form-group select:disabled {
+
     background-color: #E4E8F7;
 
     color: #667085;
@@ -543,7 +669,10 @@ body {
 .form-message {
     min-height: 24px;
 
-    font-family: "Roboto Mono", monospace;
+    font-family:
+        "Roboto Mono",
+        monospace;
+
     font-size: 14px;
 }
 
@@ -554,6 +683,7 @@ body {
 
 .modal-buttons {
     display: flex;
+
     justify-content: flex-end;
 
     gap: 12px;
@@ -564,12 +694,16 @@ body {
 
 .btn-cancelar,
 .btn-guardar {
+
     min-width: 160px;
     height: 48px;
 
     border-radius: 24px;
 
-    font-family: "Roboto Mono", monospace;
+    font-family:
+        "Roboto Mono",
+        monospace;
+
     font-size: 16px;
 
     cursor: pointer;
@@ -577,7 +711,9 @@ body {
 
 
 .btn-cancelar {
-    border: 1px solid #475467;
+    border:
+        1px solid
+        #475467;
 
     background-color: #FFFFFF;
 
@@ -610,12 +746,16 @@ body {
 @media (max-width: 760px) {
 
     .espacios-page {
-        padding: 30px 20px 60px;
+        padding:
+            30px
+            20px
+            60px;
     }
 
 
     .page-header {
         align-items: flex-start;
+
         flex-direction: column;
     }
 
