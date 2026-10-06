@@ -1,0 +1,568 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600&display=swap');
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+
+    background-color: #E4E8F7;
+
+    color: #101828;
+}
+
+
+/* =========================
+   PÁGINA
+========================= */
+
+.inicio-page {
+    width: 100%;
+    max-width: 1440px;
+
+    margin: 0 auto;
+
+    padding:
+        34px
+        62px
+        80px;
+}
+
+
+/* =========================
+   BIENVENIDA
+========================= */
+
+.welcome h1 {
+    margin: 0;
+
+    font-family: "Roboto", sans-serif;
+
+    font-size: 42px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+.welcome p {
+    margin:
+        20px
+        0
+        0;
+
+    font-family:
+        "Roboto Mono",
+        monospace;
+
+    font-size: 16px;
+
+    color: #475467;
+}
+
+
+/* =========================
+   ESTADÍSTICAS
+========================= */
+
+.stats-grid {
+    margin-top: 42px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(0, 280px)
+        );
+
+    gap: 20px;
+}
+
+
+.stat-card {
+    height: 128px;
+
+    padding:
+        20px
+        22px;
+
+    background-color: #FFFFFF;
+
+    border:
+        1px solid
+        #B8C7D9;
+
+    border-radius: 18px;
+}
+
+
+.stat-card p {
+    margin: 0;
+
+    font-family:
+        "Roboto Mono",
+        monospace;
+
+    font-size: 14px;
+
+    color: #475467;
+}
+
+
+.stat-card span {
+    display: block;
+
+    margin-top: 16px;
+
+    font-family:
+        "Roboto",
+        sans-serif;
+
+    font-size: 32px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+/* =========================
+   TÍTULOS SECCIONES
+========================= */
+
+.quick-section h2,
+.recommended-section h2 {
+
+    margin: 0;
+
+    font-family:
+        "Roboto",
+        sans-serif;
+
+    font-size: 32px;
+    font-weight: 400;
+
+    color: #475467;
+}
+
+
+/* =========================
+   ACCESOS RÁPIDOS
+========================= */
+
+.quick-section {
+    margin-top: 42px;
+}
+
+
+.quick-grid {
+    margin-top: 28px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(0, 286px)
+        );
+
+    gap: 30px;
+}
+
+
+.quick-card {
+    height: 164px;
+
+    padding:
+        24px
+        22px;
+
+    display: block;
+
+    background-color: #FFFFFF;
+
+    border:
+        1px solid
+        #B8C7D9;
+
+    border-radius: 18px;
+
+    text-decoration: none;
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+
+.quick-card:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 6px 18px
+        rgba(
+            16,
+            24,
+            40,
+            0.08
+        );
+}
+
+
+.quick-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+}
+
+
+.quick-number {
+    width: 44px;
+    height: 44px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background-color: #C4E3FF;
+
+    font-family:
+        "Roboto",
+        sans-serif;
+
+    font-size: 17px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+.quick-card h3 {
+    margin: 0;
+
+    font-family:
+        "Roboto",
+        sans-serif;
+
+    font-size: 20px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+.quick-card p {
+    margin:
+        14px
+        0
+        0;
+
+    font-family:
+        "Roboto Mono",
+        monospace;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    color: #475467;
+}
+
+
+/* =========================
+   RECOMENDADOS
+========================= */
+
+.recommended-section {
+    margin-top: 54px;
+}
+
+
+.recommended-grid {
+    margin-top: 28px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0, 624px)
+        );
+
+    gap: 28px;
+}
+
+
+/* =========================
+   TARJETA RECOMENDADA
+========================= */
+
+.recommended-card {
+    min-height: 190px;
+
+    padding: 18px;
+
+    display: grid;
+
+    grid-template-columns:
+        130px
+        minmax(0, 1fr);
+
+    gap: 20px;
+
+    position: relative;
+
+    background-color: #FFFFFF;
+
+    border:
+        1px solid
+        #B8C7D9;
+
+    border-radius: 18px;
+}
+
+
+/* IMAGEN */
+
+.recommended-image {
+    width: 130px;
+    height: 104px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background-color: #C4E3FF;
+}
+
+
+.recommended-image img {
+    width: 62px;
+    height: 62px;
+
+    object-fit: contain;
+}
+
+
+/* INFORMACIÓN */
+
+.recommended-info h3 {
+    margin: 0;
+
+    font-family:
+        "Roboto",
+        sans-serif;
+
+    font-size: 20px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+.recommended-location {
+    margin:
+        14px
+        0
+        0;
+
+    font-family:
+        "Roboto Mono",
+        monospace;
+
+    font-size: 14px;
+
+    color: #475467;
+}
+
+
+.recommended-price {
+    margin:
+        13px
+        0
+        0;
+
+    font-family:
+        "Roboto Mono",
+        monospace;
+
+    font-size: 16px;
+
+    color: #101828;
+}
+
+
+/* PARTE INFERIOR */
+
+.recommended-footer {
+    position: absolute;
+
+    left: 168px;
+    right: 28px;
+    bottom: 22px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+
+.available-badge {
+    min-width: 145px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding:
+        0
+        15px;
+
+    border:
+        1px solid
+        #B8C7D9;
+
+    border-radius: 18px;
+
+    background-color: #84D7E6;
+
+    font-family:
+        "Roboto Mono",
+        monospace;
+
+    font-size: 13px;
+
+    color: #101828;
+}
+
+
+.btn-detail {
+    min-width: 132px;
+    height: 42px;
+
+    border:
+        1px solid
+        #475467;
+
+    border-radius: 24px;
+
+    background-color: #FFFFFF;
+
+    font-family:
+        "Roboto Mono",
+        monospace;
+
+    font-size: 16px;
+
+    color: #101828;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.15s ease;
+}
+
+
+.btn-detail:hover {
+    background-color: #E4E8F7;
+}
+
+
+.btn-detail:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1100px) {
+
+    .stats-grid,
+    .quick-grid {
+        grid-template-columns:
+            repeat(
+                2,
+                1fr
+            );
+    }
+
+
+    .recommended-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .inicio-page {
+        padding:
+            30px
+            20px
+            60px;
+    }
+
+
+    .welcome h1 {
+        font-size: 36px;
+    }
+
+
+    .stats-grid,
+    .quick-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .recommended-card {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .recommended-image {
+        width: 100%;
+    }
+
+
+    .recommended-footer {
+        position: static;
+
+        grid-column: 1 / -1;
+
+        margin-top: 20px;
+
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .available-badge,
+    .btn-detail {
+        width: 100%;
+    }
+
+}
