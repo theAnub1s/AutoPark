@@ -1,0 +1,348 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #E4E8F7;
+    color: #101828;
+    font-family: "Roboto", sans-serif;
+}
+
+/* =========================
+   BARRA DE NAVEGACIÓN
+========================= */
+.navbar {
+    background-color: #C4E3FF;
+    border-bottom: 1px solid #B8C7D9;
+    padding: 16px 92px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-badge {
+    background-color: #475467;
+    color: #FFFFFF;
+    font-family: "Roboto Mono", monospace;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 18px;
+}
+
+.brand-name {
+    font-family: "Roboto", sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #101828;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-family: "Roboto Mono", monospace;
+    color: #101828;
+    font-size: 16px;
+    padding: 8px 18px;
+    border-radius: 20px;
+    transition: background-color 0.2s ease;
+}
+
+.nav-links li.active a {
+    background-color: #FFFFFF;
+    font-weight: 500;
+}
+
+/* =========================
+   PÁGINA PRINCIPAL
+========================= */
+.perfil-page {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 44px 92px 120px;
+}
+
+/* =========================
+   ENCABEZADO
+========================= */
+.perfil-header h1 {
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+    font-size: 42px;
+    font-weight: 500;
+    color: #101828;
+}
+
+.perfil-header p {
+    margin-top: 20px;
+    margin-bottom: 0;
+    max-width: 650px;
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+    font-weight: 400;
+    color: #475467;
+    line-height: 1.6;
+}
+
+/* =========================
+   DISTRIBUCIÓN (LAYOUT)
+========================= */
+.perfil-layout {
+    margin-top: 42px;
+    display: grid;
+    grid-template-columns: minmax(300px, 360px) minmax(0, 800px);
+    gap: 36px;
+    align-items: start;
+}
+
+/* =========================
+   TARJETAS
+========================= */
+.card-sidebar,
+.card-form {
+    background-color: #FFFFFF;
+    border: 1px solid #B8C7D9;
+    border-radius: 18px;
+    padding: 36px;
+}
+
+/* =========================
+   PANEL IZQUIERDO (SIDEBAR)
+========================= */
+.card-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.avatar {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background-color: #C4E3FF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Roboto", sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #475467;
+    margin-bottom: 20px;
+}
+
+.user-name {
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #101828;
+}
+
+.user-status {
+    margin-top: 8px;
+    font-family: "Roboto Mono", monospace;
+    font-size: 14px;
+    color: #475467;
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: #B8C7D9;
+    margin: 28px 0;
+}
+
+.stats-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "Roboto Mono", monospace;
+    font-size: 15px;
+    color: #475467;
+}
+
+.stat-number {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #101828;
+}
+
+/* =========================
+   FORMULARIO DE PERFIL
+========================= */
+.card-form h2 {
+    margin: 0 0 30px;
+    font-family: "Roboto", sans-serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: #101828;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.form-group label {
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+    font-weight: 400;
+    color: #101828;
+}
+
+.form-group input {
+    width: 100%;
+    height: 56px;
+    padding: 0 16px;
+    border: 1px solid #B8C7D9;
+    border-radius: 12px;
+    outline: none;
+    background-color: #FFFFFF;
+    color: #101828;
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:disabled {
+    background-color: #F8FAFC;
+    color: #475467;
+    cursor: not-allowed;
+}
+
+.form-group input:focus:not(:disabled) {
+    border-color: #475467;
+    box-shadow: 0 0 0 3px rgba(132, 215, 230, 0.35);
+}
+
+/* =========================
+   BOTONES
+========================= */
+.form-actions {
+    margin-top: 32px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.btn {
+    height: 48px;
+    padding: 0 24px;
+    border: none;
+    border-radius: 24px;
+    font-family: "Roboto Mono", monospace;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.btn:active {
+    transform: scale(0.99);
+}
+
+.btn-dark {
+    background-color: #475467;
+    color: #FFFFFF;
+}
+
+.btn-cyan {
+    background-color: #84D7E6;
+    color: #101828;
+}
+
+.btn-outline {
+    background-color: #FFFFFF;
+    border: 1px solid #B8C7D9;
+    color: #101828;
+}
+
+.btn-full {
+    width: 100%;
+    height: 52px;
+    border-radius: 12px;
+}
+
+.form-hint {
+    margin-top: 24px;
+    font-family: "Roboto Mono", monospace;
+    font-size: 14px;
+    color: #475467;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 1000px) {
+    .navbar {
+        padding: 16px 40px;
+    }
+    .perfil-page {
+        padding: 40px 40px 80px;
+    }
+    .perfil-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 650px) {
+    .navbar {
+        padding: 16px 20px;
+        flex-direction: column;
+        gap: 16px;
+    }
+    .perfil-page {
+        padding: 32px 20px 60px;
+    }
+    .perfil-header h1 {
+        font-size: 36px;
+    }
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    .form-actions {
+        flex-direction: column;
+    }
+    .btn {
+        width: 100%;
+    }
+}
