@@ -46,18 +46,18 @@ btnPublicar.addEventListener(
         if (sesionActiva) {
 
             window.location.href =
-                "/espacios.html";
+                "espacios.html";
 
         } else {
 
             sessionStorage.setItem(
                 "redirectAfterLogin",
-                "/espacios.html"
+                "espacios.html"
             );
 
 
             window.location.href =
-                "/login.html";
+                "login.html";
 
         }
 
@@ -124,7 +124,7 @@ btnDetalle.addEventListener(
 
 
         window.location.href =
-            "/detalle.html";
+            "detalle.html";
 
     }
 );
