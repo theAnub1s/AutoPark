@@ -102,19 +102,19 @@
 
     transition:
         background-color 0.2s ease,
-        color 0.2s ease;
+        color 0.2s ease,
+        transform 0.15s ease;
 }
 
 
-/* Más espacio para textos largos */
+/* OPCIONES CON TEXTO MÁS LARGO */
 
-.nav-link:nth-child(3),
-.nav-link:nth-child(4) {
+.wide-link {
     min-width: 128px;
 }
 
 
-/* Al pasar el mouse */
+/* HOVER */
 
 .nav-link:hover {
     background-color: rgba(255, 255, 255, 0.55);
@@ -123,10 +123,39 @@
 }
 
 
-/* Página seleccionada */
+/* CLICK */
+
+.nav-link:active {
+    transform: scale(0.97);
+}
+
+
+/* PÁGINA SELECCIONADA */
 
 .nav-link.active {
     background-color: #FFFFFF;
+
+    color: #101828;
+}
+
+
+/* =========================
+   CERRAR SESIÓN
+========================= */
+
+.logout-button {
+    min-width: 144px;
+
+    border: none;
+
+    background-color: transparent;
+
+    cursor: pointer;
+}
+
+
+.logout-button:hover {
+    background-color: rgba(255, 255, 255, 0.55);
 
     color: #101828;
 }
@@ -161,10 +190,43 @@
 
 
 /* =========================
+   MODOS DEL NAVBAR
+========================= */
+
+/*
+    Por defecto se considera que
+    el usuario tiene sesión.
+*/
+
+.guest-only {
+    display: none;
+}
+
+
+/*
+    Las páginas públicas utilizan:
+
+    <body data-navbar-mode="guest">
+
+    para ocultar las opciones
+    exclusivas de usuarios autenticados.
+*/
+
+body[data-navbar-mode="guest"] .auth-only {
+    display: none;
+}
+
+
+body[data-navbar-mode="guest"] .guest-only {
+    display: flex;
+}
+
+
+/* =========================
    RESPONSIVE
 ========================= */
 
-@media (max-width: 950px) {
+@media (max-width: 1100px) {
 
     .navbar {
         padding: 0 24px;
@@ -195,7 +257,9 @@
 
         background-color: #C4E3FF;
 
-        box-shadow: 0 8px 18px rgba(16, 24, 40, 0.15);
+        box-shadow:
+            0 8px 18px
+            rgba(16, 24, 40, 0.15);
     }
 
 
@@ -205,14 +269,32 @@
 
 
     .nav-link,
-    .nav-link:nth-child(3),
-    .nav-link:nth-child(4) {
+    .wide-link,
+    .logout-button {
         width: 100%;
         min-width: 0;
 
         justify-content: flex-start;
 
         padding: 0 18px;
+    }
+
+
+    /*
+        Evita que guest-only aparezca
+        incorrectamente cuando el menú
+        móvil se abre.
+    */
+
+    body:not([data-navbar-mode="guest"])
+    .guest-only {
+        display: none;
+    }
+
+
+    body[data-navbar-mode="guest"]
+    .auth-only {
+        display: none;
     }
 
 }
@@ -239,22 +321,4 @@
         font-size: 21px;
     }
 
-}
-
-/* =========================
-   MODOS DEL NAVBAR
-========================= */
-
-.guest-only {
-    display: none;
-}
-
-
-body[data-navbar-mode="guest"] .auth-only {
-    display: none;
-}
-
-
-body[data-navbar-mode="guest"] .guest-only {
-    display: flex;
 }
