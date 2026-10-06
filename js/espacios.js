@@ -1,35 +1,73 @@
 const modal =
-    document.getElementById("modalPublicar");
+    document.getElementById(
+        "modalPublicar"
+    );
+
 
 const openModal =
-    document.getElementById("openModal");
+    document.getElementById(
+        "openModal"
+    );
+
 
 const closeModal =
-    document.getElementById("closeModal");
+    document.getElementById(
+        "closeModal"
+    );
+
 
 const cancelModal =
-    document.getElementById("cancelModal");
+    document.getElementById(
+        "cancelModal"
+    );
+
 
 const publicarForm =
-    document.getElementById("publicarForm");
+    document.getElementById(
+        "publicarForm"
+    );
+
 
 const espaciosList =
-    document.getElementById("espaciosList");
+    document.getElementById(
+        "espaciosList"
+    );
+
 
 const totalEspacios =
-    document.getElementById("totalEspacios");
+    document.getElementById(
+        "totalEspacios"
+    );
+
 
 const disponiblesHoy =
-    document.getElementById("disponiblesHoy");
+    document.getElementById(
+        "disponiblesHoy"
+    );
+
 
 const publicarMensaje =
-    document.getElementById("publicarMensaje");
+    document.getElementById(
+        "publicarMensaje"
+    );
+
 
 const modalTitle =
-    document.getElementById("modalTitle");
+    document.getElementById(
+        "modalTitle"
+    );
+
+
+const modalDescription =
+    document.getElementById(
+        "modalDescription"
+    );
+
 
 const submitModal =
-    document.getElementById("submitModal");
+    document.getElementById(
+        "submitModal"
+    );
 
 
 /* =========================
@@ -37,46 +75,238 @@ const submitModal =
 ========================= */
 
 const nombreInput =
-    document.getElementById("nombreEspacio");
+    document.getElementById(
+        "nombreEspacio"
+    );
+
 
 const ubicacionInput =
-    document.getElementById("ubicacion");
+    document.getElementById(
+        "ubicacion"
+    );
+
 
 const precioInput =
-    document.getElementById("precio");
+    document.getElementById(
+        "precio"
+    );
+
 
 const cantidadInput =
-    document.getElementById("cantidad");
+    document.getElementById(
+        "cantidad"
+    );
+
+
+const disponibilidadInput =
+    document.getElementById(
+        "disponibilidad"
+    );
+
 
 const horaInicioInput =
-    document.getElementById("horaInicio");
+    document.getElementById(
+        "horaInicio"
+    );
+
 
 const horaFinInput =
-    document.getElementById("horaFin");
+    document.getElementById(
+        "horaFin"
+    );
 
 
 /* =========================
    ESTADO
 ========================= */
 
-let modoModal = "crear";
+let modoModal =
+    "crear";
 
-let tarjetaActual = null;
+
+let tarjetaActual =
+    null;
+
+
+/* =========================
+   IMPORTANTE - BACKEND
+========================= */
+
+/*
+
+    Actualmente los cambios se reflejan
+    únicamente en el frontend.
+
+    Cuando se implemente el backend:
+
+    - Los espacios deberán cargarse desde la API.
+    - Publicar deberá crear un registro real.
+    - Editar deberá actualizar la base de datos.
+    - La disponibilidad deberá guardarse
+      en el servidor.
+    - La cantidad disponible deberá obtenerse
+      y actualizarse desde el backend.
+    - Los horarios deberán persistirse
+      en la base de datos.
+
+*/
 
 
 /* =========================
    HABILITAR CAMPOS
 ========================= */
 
-function habilitarCamposGenerales() {
+function habilitarTodosLosCampos() {
 
-    nombreInput.disabled = false;
+    nombreInput.disabled =
+        false;
 
-    ubicacionInput.disabled = false;
 
-    precioInput.disabled = false;
+    ubicacionInput.disabled =
+        false;
 
-    cantidadInput.disabled = false;
+
+    precioInput.disabled =
+        false;
+
+
+    cantidadInput.disabled =
+        false;
+
+
+    disponibilidadInput.disabled =
+        false;
+
+
+    horaInicioInput.disabled =
+        false;
+
+
+    horaFinInput.disabled =
+        false;
+
+}
+
+
+/* =========================
+   BLOQUEAR CAMPOS GENERALES
+========================= */
+
+function bloquearCamposGenerales() {
+
+    nombreInput.disabled =
+        true;
+
+
+    ubicacionInput.disabled =
+        true;
+
+
+    precioInput.disabled =
+        true;
+
+
+    /*
+        Cantidad, disponibilidad
+        y horario permanecen editables
+        para cumplir RF08.
+    */
+
+    cantidadInput.disabled =
+        false;
+
+
+    disponibilidadInput.disabled =
+        false;
+
+
+    horaInicioInput.disabled =
+        false;
+
+
+    horaFinInput.disabled =
+        false;
+
+}
+
+
+/* =========================
+   ACTUALIZAR RESUMEN
+========================= */
+
+function actualizarResumen() {
+
+    const tarjetas =
+        espaciosList.querySelectorAll(
+            ".espacio-card"
+        );
+
+
+    totalEspacios.textContent =
+        tarjetas.length;
+
+
+    const disponibles =
+        espaciosList.querySelectorAll(
+            '.espacio-card[data-disponible="true"]'
+        );
+
+
+    disponiblesHoy.textContent =
+        disponibles.length;
+
+}
+
+
+/* =========================
+   ESTADO DE TARJETA
+========================= */
+
+function actualizarEstadoTarjeta(
+    tarjeta,
+    disponibilidad
+) {
+
+    const estado =
+        tarjeta.querySelector(
+            ".status"
+        );
+
+
+    const disponible =
+        disponibilidad ===
+        "Disponible";
+
+
+    tarjeta.dataset.disponible =
+        disponible
+            ? "true"
+            : "false";
+
+
+    estado.textContent =
+        disponibilidad;
+
+
+    estado.classList.remove(
+        "disponible",
+        "no-disponible"
+    );
+
+
+    if (disponible) {
+
+        estado.classList.add(
+            "disponible"
+        );
+
+    } else {
+
+        estado.classList.add(
+            "no-disponible"
+        );
+
+    }
 
 }
 
@@ -85,44 +315,75 @@ function habilitarCamposGenerales() {
    ABRIR PUBLICAR
 ========================= */
 
-openModal.addEventListener("click", () => {
+openModal.addEventListener(
+    "click",
+    () => {
 
-    modoModal = "crear";
+        modoModal =
+            "crear";
 
-    tarjetaActual = null;
 
-    publicarForm.reset();
+        tarjetaActual =
+            null;
 
-    habilitarCamposGenerales();
 
-    modalTitle.textContent =
-        "Publicar espacio";
+        publicarForm.reset();
 
-    submitModal.textContent =
-        "Publicar espacio";
 
-    publicarMensaje.textContent = "";
+        habilitarTodosLosCampos();
 
-    modal.classList.add("show");
 
-});
+        disponibilidadInput.value =
+            "Disponible";
+
+
+        modalTitle.textContent =
+            "Publicar espacio";
+
+
+        modalDescription.textContent =
+            "Ingresa los datos del estacionamiento.";
+
+
+        submitModal.textContent =
+            "Publicar espacio";
+
+
+        publicarMensaje.textContent =
+            "";
+
+
+        modal.classList.add(
+            "show"
+        );
+
+    }
+);
 
 
 /* =========================
-   CERRAR
+   CERRAR MODAL
 ========================= */
 
 function cerrarModal() {
 
-    modal.classList.remove("show");
+    modal.classList.remove(
+        "show"
+    );
+
 
     publicarForm.reset();
 
-    publicarMensaje.textContent = "";
 
-    habilitarCamposGenerales();
+    publicarMensaje.textContent =
+        "";
 
-    tarjetaActual = null;
+
+    habilitarTodosLosCampos();
+
+
+    tarjetaActual =
+        null;
 
 }
 
@@ -139,29 +400,40 @@ cancelModal.addEventListener(
 );
 
 
-/* CERRAR AL HACER CLIC FUERA */
+/* =========================
+   CERRAR AL DAR CLIC FUERA
+========================= */
 
-modal.addEventListener("click", event => {
+modal.addEventListener(
+    "click",
+    event => {
 
-    if (event.target === modal) {
+        if (
+            event.target ===
+            modal
+        ) {
 
-        cerrarModal();
+            cerrarModal();
+
+        }
 
     }
-
-});
+);
 
 
 /* =========================
    LEER TARJETA
 ========================= */
 
-function cargarDatosTarjeta(tarjeta) {
+function cargarDatosTarjeta(
+    tarjeta
+) {
 
     const titulo =
         tarjeta.querySelector(
             ".espacio-info h2"
         );
+
 
     const textos =
         tarjeta.querySelectorAll(
@@ -182,6 +454,7 @@ function cargarDatosTarjeta(tarjeta) {
     const precioTexto =
         textos[1].textContent;
 
+
     const precioEncontrado =
         precioTexto.match(
             /\$([\d.]+)/
@@ -197,7 +470,17 @@ function cargarDatosTarjeta(tarjeta) {
     /* CANTIDAD */
 
     cantidadInput.value =
-        tarjeta.dataset.cantidad || 1;
+        tarjeta.dataset.cantidad ||
+        0;
+
+
+    /* DISPONIBILIDAD */
+
+    disponibilidadInput.value =
+        tarjeta.dataset.disponible ===
+        "false"
+            ? "No disponible"
+            : "Disponible";
 
 
     /* HORARIO */
@@ -217,6 +500,7 @@ function cargarDatosTarjeta(tarjeta) {
         horaInicioInput.value =
             horarioEncontrado[1];
 
+
         horaFinInput.value =
             horarioEncontrado[2];
 
@@ -226,7 +510,7 @@ function cargarDatosTarjeta(tarjeta) {
 
 
 /* =========================
-   EDITAR / HORARIO
+   EDITAR / DISPONIBILIDAD
 ========================= */
 
 espaciosList.addEventListener(
@@ -256,11 +540,16 @@ espaciosList.addEventListener(
             )
         ) {
 
-            modoModal = "editar";
+            modoModal =
+                "editar";
 
-            tarjetaActual = tarjeta;
 
-            habilitarCamposGenerales();
+            tarjetaActual =
+                tarjeta;
+
+
+            habilitarTodosLosCampos();
+
 
             cargarDatosTarjeta(
                 tarjeta
@@ -270,11 +559,18 @@ espaciosList.addEventListener(
             modalTitle.textContent =
                 "Editar espacio";
 
+
+            modalDescription.textContent =
+                "Modifica los datos del estacionamiento.";
+
+
             submitModal.textContent =
                 "Guardar cambios";
 
+
             publicarMensaje.textContent =
                 "";
+
 
             modal.classList.add(
                 "show"
@@ -284,7 +580,8 @@ espaciosList.addEventListener(
 
 
         /* =====================
-           GESTIONAR HORARIO
+           GESTIONAR
+           DISPONIBILIDAD
         ===================== */
 
         if (
@@ -293,37 +590,40 @@ espaciosList.addEventListener(
             )
         ) {
 
-            modoModal = "horario";
+            modoModal =
+                "disponibilidad";
 
-            tarjetaActual = tarjeta;
+
+            tarjetaActual =
+                tarjeta;
 
 
-            habilitarCamposGenerales();
+            habilitarTodosLosCampos();
+
 
             cargarDatosTarjeta(
                 tarjeta
             );
 
 
-            /* BLOQUEAR CAMPOS */
-
-            nombreInput.disabled = true;
-
-            ubicacionInput.disabled = true;
-
-            precioInput.disabled = true;
-
-            cantidadInput.disabled = true;
+            bloquearCamposGenerales();
 
 
             modalTitle.textContent =
-                "Gestionar horario";
+                "Gestionar disponibilidad";
+
+
+            modalDescription.textContent =
+                "Actualiza la disponibilidad, cantidad y horario del espacio.";
+
 
             submitModal.textContent =
-                "Guardar horario";
+                "Guardar disponibilidad";
+
 
             publicarMensaje.textContent =
                 "";
+
 
             modal.classList.add(
                 "show"
@@ -342,6 +642,24 @@ espaciosList.addEventListener(
 function horarioValido() {
 
     if (
+        !horaInicioInput.value ||
+        !horaFinInput.value
+    ) {
+
+        publicarMensaje.textContent =
+            "Selecciona un horario válido.";
+
+
+        publicarMensaje.style.color =
+            "#B42318";
+
+
+        return false;
+
+    }
+
+
+    if (
         horaInicioInput.value >=
         horaFinInput.value
     ) {
@@ -349,8 +667,10 @@ function horarioValido() {
         publicarMensaje.textContent =
             "La hora de cierre debe ser posterior a la hora de apertura.";
 
+
         publicarMensaje.style.color =
             "#B42318";
+
 
         return false;
 
@@ -373,6 +693,10 @@ publicarForm.addEventListener(
         event.preventDefault();
 
 
+        publicarMensaje.textContent =
+            "";
+
+
         if (!horarioValido()) {
 
             return;
@@ -384,12 +708,20 @@ publicarForm.addEventListener(
            CREAR ESPACIO
         ===================== */
 
-        if (modoModal === "crear") {
+        if (
+            modoModal ===
+            "crear"
+        ) {
 
             const nuevaTarjeta =
                 document.createElement(
                     "article"
                 );
+
+
+            const disponible =
+                disponibilidadInput.value ===
+                "Disponible";
 
 
             nuevaTarjeta.className =
@@ -398,6 +730,12 @@ publicarForm.addEventListener(
 
             nuevaTarjeta.dataset.cantidad =
                 cantidadInput.value;
+
+
+            nuevaTarjeta.dataset.disponible =
+                disponible
+                    ? "true"
+                    : "false";
 
 
             nuevaTarjeta.innerHTML = `
@@ -433,13 +771,24 @@ publicarForm.addEventListener(
                         ${horaFinInput.value}
                     </p>
 
+                    <p class="cantidad-texto">
+                        ${cantidadInput.value}
+                        espacios disponibles
+                    </p>
+
                 </div>
 
 
                 <div class="espacio-actions">
 
-                    <span class="status disponible">
-                        Disponible
+                    <span
+                        class="status ${
+                            disponible
+                                ? "disponible"
+                                : "no-disponible"
+                        }"
+                    >
+                        ${disponibilidadInput.value}
                     </span>
 
 
@@ -455,7 +804,7 @@ publicarForm.addEventListener(
                         type="button"
                         class="btn-primary"
                     >
-                        Gestionar horario
+                        Gestionar disponibilidad
                     </button>
 
                 </div>
@@ -467,24 +816,15 @@ publicarForm.addEventListener(
             );
 
 
-            totalEspacios.textContent =
-                Number(
-                    totalEspacios.textContent
-                ) + 1;
-
-
-            disponiblesHoy.textContent =
-                Number(
-                    disponiblesHoy.textContent
-                ) + 1;
+            actualizarResumen();
 
 
             cerrarModal();
 
+
             return;
 
         }
-
 
 
         /* =====================
@@ -492,7 +832,8 @@ publicarForm.addEventListener(
         ===================== */
 
         if (
-            modoModal === "editar" &&
+            modoModal ===
+            "editar" &&
             tarjetaActual
         ) {
 
@@ -524,24 +865,46 @@ publicarForm.addEventListener(
                 `Horario: ${horaInicioInput.value} – ${horaFinInput.value}`;
 
 
+            const cantidadTexto =
+                tarjetaActual.querySelector(
+                    ".cantidad-texto"
+                );
+
+
+            cantidadTexto.textContent =
+                `${cantidadInput.value} espacios disponibles`;
+
+
             tarjetaActual.dataset.cantidad =
                 cantidadInput.value;
 
 
+            actualizarEstadoTarjeta(
+                tarjetaActual,
+                disponibilidadInput.value
+            );
+
+
+            actualizarResumen();
+
+
             cerrarModal();
+
 
             return;
 
         }
 
 
-
         /* =====================
-           CAMBIAR HORARIO
+           RF08
+           GESTIONAR
+           DISPONIBILIDAD
         ===================== */
 
         if (
-            modoModal === "horario" &&
+            modoModal ===
+            "disponibilidad" &&
             tarjetaActual
         ) {
 
@@ -551,8 +914,71 @@ publicarForm.addEventListener(
                 );
 
 
+            /*
+                Actualizar horario.
+            */
+
             textos[2].textContent =
                 `Horario: ${horaInicioInput.value} – ${horaFinInput.value}`;
+
+
+            /*
+                Actualizar cantidad.
+            */
+
+            tarjetaActual.dataset.cantidad =
+                cantidadInput.value;
+
+
+            const cantidadTexto =
+                tarjetaActual.querySelector(
+                    ".cantidad-texto"
+                );
+
+
+            cantidadTexto.textContent =
+                `${cantidadInput.value} espacios disponibles`;
+
+
+            /*
+                Actualizar disponibilidad.
+            */
+
+            actualizarEstadoTarjeta(
+                tarjetaActual,
+                disponibilidadInput.value
+            );
+
+
+            /*
+                Si la cantidad llega a 0,
+                automáticamente se considera
+                no disponible.
+            */
+
+            if (
+                Number(
+                    cantidadInput.value
+                ) === 0
+            ) {
+
+                disponibilidadInput.value =
+                    "No disponible";
+
+
+                actualizarEstadoTarjeta(
+                    tarjetaActual,
+                    "No disponible"
+                );
+
+            }
+
+
+            /*
+                Actualizar resumen.
+            */
+
+            actualizarResumen();
 
 
             cerrarModal();
@@ -561,3 +987,10 @@ publicarForm.addEventListener(
 
     }
 );
+
+
+/* =========================
+   INICIO
+========================= */
+
+actualizarResumen();

@@ -28,6 +28,7 @@
 <body>
 
     <!-- NAVBAR -->
+
     <div id="navbar"></div>
 
 
@@ -40,7 +41,9 @@
 
             <div>
 
-                <h1>Mis espacios</h1>
+                <h1>
+                    Mis espacios
+                </h1>
 
                 <p>
                     Publica y administra la disponibilidad
@@ -61,7 +64,6 @@
         </section>
 
 
-
         <!-- CONTENIDO -->
 
         <div class="espacios-layout">
@@ -80,6 +82,7 @@
                 <article
                     class="espacio-card"
                     data-cantidad="5"
+                    data-disponible="true"
                 >
 
                     <div class="espacio-image">
@@ -110,6 +113,10 @@
                             Horario: 07:00 – 23:00
                         </p>
 
+                        <p class="cantidad-texto">
+                            5 espacios disponibles
+                        </p>
+
                     </div>
 
 
@@ -132,7 +139,7 @@
                             type="button"
                             class="btn-primary"
                         >
-                            Gestionar horario
+                            Gestionar disponibilidad
                         </button>
 
                     </div>
@@ -140,12 +147,12 @@
                 </article>
 
 
-
                 <!-- ESPACIO 2 -->
 
                 <article
                     class="espacio-card"
                     data-cantidad="3"
+                    data-disponible="true"
                 >
 
                     <div class="espacio-image">
@@ -176,6 +183,10 @@
                             Horario: 08:00 – 21:00
                         </p>
 
+                        <p class="cantidad-texto">
+                            3 espacios disponibles
+                        </p>
+
                     </div>
 
 
@@ -198,7 +209,7 @@
                             type="button"
                             class="btn-primary"
                         >
-                            Gestionar horario
+                            Gestionar disponibilidad
                         </button>
 
                     </div>
@@ -206,7 +217,6 @@
                 </article>
 
             </section>
-
 
 
             <!-- RESUMEN -->
@@ -263,7 +273,6 @@
     </main>
 
 
-
     <!-- =========================
          MODAL
     ========================== -->
@@ -284,7 +293,7 @@
                         Publicar espacio
                     </h2>
 
-                    <p>
+                    <p id="modalDescription">
                         Ingresa los datos del estacionamiento.
                     </p>
 
@@ -301,7 +310,6 @@
                 </button>
 
             </div>
-
 
 
             <form id="publicarForm">
@@ -325,7 +333,6 @@
                 </div>
 
 
-
                 <!-- UBICACIÓN -->
 
                 <div class="form-group">
@@ -342,7 +349,6 @@
                     >
 
                 </div>
-
 
 
                 <!-- PRECIO / CANTIDAD -->
@@ -376,7 +382,7 @@
                         <input
                             type="number"
                             id="cantidad"
-                            min="1"
+                            min="0"
                             placeholder="5"
                             required
                         >
@@ -385,6 +391,31 @@
 
                 </div>
 
+
+                <!-- DISPONIBILIDAD -->
+
+                <div class="form-group">
+
+                    <label for="disponibilidad">
+                        Disponibilidad
+                    </label>
+
+                    <select
+                        id="disponibilidad"
+                        required
+                    >
+
+                        <option value="Disponible">
+                            Disponible
+                        </option>
+
+                        <option value="No disponible">
+                            No disponible
+                        </option>
+
+                    </select>
+
+                </div>
 
 
                 <!-- HORARIOS -->
@@ -424,12 +455,10 @@
                 </div>
 
 
-
                 <p
                     id="publicarMensaje"
                     class="form-message"
                 ></p>
-
 
 
                 <!-- BOTONES -->
@@ -463,7 +492,6 @@
     </div>
 
 
-
     <!-- NAVBAR -->
 
     <script>
@@ -474,15 +502,24 @@
 
             .then(data => {
 
-                document.getElementById("navbar").innerHTML = data;
+                document.getElementById(
+                    "navbar"
+                ).innerHTML = data;
+
 
                 const script =
-                    document.createElement("script");
+                    document.createElement(
+                        "script"
+                    );
+
 
                 script.src =
                     "components/navbar/navbar.js";
 
-                document.body.appendChild(script);
+
+                document.body.appendChild(
+                    script
+                );
 
             })
 
