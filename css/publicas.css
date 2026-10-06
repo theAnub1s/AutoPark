@@ -184,3 +184,9 @@ textarea.form-control {
         padding: 22px;
     }
 }
+
+
+.autopark-icon i {
+    font-size: 22px;
+    line-height: 1;
+}
