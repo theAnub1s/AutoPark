@@ -68,7 +68,7 @@
 
             <button
                 type="button"
-                class="btn-publicar"
+                class="btn btn-publicar"
                 id="openModal"
             >
                 + Publicar espacio
@@ -287,221 +287,213 @@
 
 
     <!-- =========================
-         MODAL
+         MODAL BOOTSTRAP
     ========================== -->
 
     <div
-        class="modal-overlay"
+        class="modal fade"
         id="modalPublicar"
+        tabindex="-1"
+        aria-labelledby="modalTitle"
+        aria-hidden="true"
     >
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content autopark-modal-content">
 
-        <section class="modal-card">
-
-
-            <div class="modal-header">
-
-                <div>
-
-                    <h2 id="modalTitle">
-                        Publicar espacio
-                    </h2>
-
-                    <p id="modalDescription">
-                        Ingresa los datos del estacionamiento.
-                    </p>
-
-                </div>
-
-
-                <button
-                    type="button"
-                    class="modal-close"
-                    id="closeModal"
-                    aria-label="Cerrar"
-                >
-                    ×
-                </button>
-
-            </div>
-
-
-            <form id="publicarForm">
-
-
-                <!-- NOMBRE -->
-
-                <div class="form-group">
-
-                    <label for="nombreEspacio">
-                        Nombre del espacio
-                    </label>
-
-                    <input
-                        type="text"
-                        id="nombreEspacio"
-                        placeholder="Ej. Estacionamiento Centro"
-                        required
-                    >
-
-                </div>
-
-
-                <!-- UBICACIÓN -->
-
-                <div class="form-group">
-
-                    <label for="ubicacion">
-                        Ubicación
-                    </label>
-
-                    <input
-                        type="text"
-                        id="ubicacion"
-                        placeholder="Ej. Centro de Pachuca"
-                        required
-                    >
-
-                </div>
-
-
-                <!-- PRECIO / CANTIDAD -->
-
-                <div class="form-row">
-
-
-                    <div class="form-group">
-
-                        <label for="precio">
-                            Precio por hora
-                        </label>
-
-                        <input
-                            type="number"
-                            id="precio"
-                            min="0"
-                            placeholder="20"
-                            required
+                <div class="modal-header">
+                    <div>
+                        <h2
+                            class="modal-title fs-3"
+                            id="modalTitle"
                         >
+                            Publicar espacio
+                        </h2>
 
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="cantidad">
-                            Espacios disponibles
-                        </label>
-
-                        <input
-                            type="number"
-                            id="cantidad"
-                            min="0"
-                            placeholder="5"
-                            required
+                        <p
+                            class="mb-0 mt-2"
+                            id="modalDescription"
                         >
-
+                            Ingresa los datos del estacionamiento.
+                        </p>
                     </div>
-
-                </div>
-
-
-                <!-- DISPONIBILIDAD -->
-
-                <div class="form-group">
-
-                    <label for="disponibilidad">
-                        Disponibilidad
-                    </label>
-
-                    <select
-                        id="disponibilidad"
-                        required
-                    >
-
-                        <option value="Disponible">
-                            Disponible
-                        </option>
-
-                        <option value="No disponible">
-                            No disponible
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <!-- HORARIOS -->
-
-                <div class="form-row">
-
-
-                    <div class="form-group">
-
-                        <label for="horaInicio">
-                            Hora de apertura
-                        </label>
-
-                        <input
-                            type="time"
-                            id="horaInicio"
-                            required
-                        >
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="horaFin">
-                            Hora de cierre
-                        </label>
-
-                        <input
-                            type="time"
-                            id="horaFin"
-                            required
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <p
-                    id="publicarMensaje"
-                    class="form-message"
-                ></p>
-
-
-                <!-- BOTONES -->
-
-                <div class="modal-buttons">
-
 
                     <button
                         type="button"
-                        class="btn-cancelar"
-                        id="cancelModal"
-                    >
-                        Cancelar
-                    </button>
-
-
-                    <button
-                        type="submit"
-                        class="btn-guardar"
-                        id="submitModal"
-                    >
-                        Publicar espacio
-                    </button>
-
+                        class="btn-close"
+                        id="closeModal"
+                        data-bs-dismiss="modal"
+                        aria-label="Cerrar"
+                    ></button>
                 </div>
 
-            </form>
 
-        </section>
+                <form id="publicarForm">
+                    <div class="modal-body">
 
+                        <div class="mb-3">
+                            <label
+                                for="nombreEspacio"
+                                class="form-label"
+                            >
+                                Nombre del espacio
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="nombreEspacio"
+                                placeholder="Ej. Estacionamiento Centro"
+                                required
+                            >
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label
+                                for="ubicacion"
+                                class="form-label"
+                            >
+                                Ubicación
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="ubicacion"
+                                placeholder="Ej. Centro de Pachuca"
+                                required
+                            >
+                        </div>
+
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label
+                                    for="precio"
+                                    class="form-label"
+                                >
+                                    Precio por hora
+                                </label>
+
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    id="precio"
+                                    min="0"
+                                    placeholder="20"
+                                    required
+                                >
+                            </div>
+
+                            <div class="col-md-6">
+                                <label
+                                    for="cantidad"
+                                    class="form-label"
+                                >
+                                    Espacios disponibles
+                                </label>
+
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    id="cantidad"
+                                    min="0"
+                                    placeholder="5"
+                                    required
+                                >
+                            </div>
+                        </div>
+
+
+                        <div class="mt-3">
+                            <label
+                                for="disponibilidad"
+                                class="form-label"
+                            >
+                                Disponibilidad
+                            </label>
+
+                            <select
+                                class="form-select"
+                                id="disponibilidad"
+                                required
+                            >
+                                <option value="Disponible">
+                                    Disponible
+                                </option>
+
+                                <option value="No disponible">
+                                    No disponible
+                                </option>
+                            </select>
+                        </div>
+
+
+                        <div class="row g-3 mt-0">
+                            <div class="col-md-6">
+                                <label
+                                    for="horaInicio"
+                                    class="form-label"
+                                >
+                                    Hora de apertura
+                                </label>
+
+                                <input
+                                    type="time"
+                                    class="form-control"
+                                    id="horaInicio"
+                                    required
+                                >
+                            </div>
+
+                            <div class="col-md-6">
+                                <label
+                                    for="horaFin"
+                                    class="form-label"
+                                >
+                                    Hora de cierre
+                                </label>
+
+                                <input
+                                    type="time"
+                                    class="form-control"
+                                    id="horaFin"
+                                    required
+                                >
+                            </div>
+                        </div>
+
+
+                        <p
+                            id="publicarMensaje"
+                            class="form-message mt-3 mb-0"
+                            role="alert"
+                        ></p>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button
+                            type="button"
+                            class="btn btn-cancelar"
+                            id="cancelModal"
+                            data-bs-dismiss="modal"
+                        >
+                            Cancelar
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="btn btn-guardar"
+                            id="submitModal"
+                        >
+                            Publicar espacio
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
     </div>
 
 
