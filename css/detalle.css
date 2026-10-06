@@ -1,0 +1,506 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600&display=swap');
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+
+    background-color: #E4E8F7;
+
+    color: #101828;
+}
+
+
+/* =========================
+   PÁGINA
+========================= */
+
+.detalle-page {
+    width: 100%;
+    max-width: 1440px;
+
+    margin: 0 auto;
+
+    padding: 34px 56px 80px;
+}
+
+
+/* =========================
+   ENCABEZADO
+========================= */
+
+.page-header {
+    margin-bottom: 34px;
+}
+
+
+.page-header h1 {
+    margin: 0;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 42px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+.page-header p {
+    margin: 20px 0 0;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+
+    color: #475467;
+}
+
+
+/* =========================
+   DISTRIBUCIÓN
+========================= */
+
+.detalle-layout {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 760px)
+        minmax(400px, 534px);
+
+    gap: 34px;
+
+    align-items: start;
+}
+
+
+/* =========================
+   VISTA PREVIA
+========================= */
+
+.parking-preview {
+    min-height: 360px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 50px 46px;
+
+    background-color: #C4E3FF;
+
+    border-radius: 22px;
+}
+
+
+.parking-preview-card {
+    width: 100%;
+    min-height: 260px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 42px;
+
+    padding: 38px 76px;
+
+    background-color: #FFFFFF;
+
+    border-radius: 18px;
+}
+
+
+/* LOGO */
+
+.parking-image {
+    width: 210px;
+    height: 150px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #475467;
+
+    border-radius: 20px;
+}
+
+
+.parking-image img {
+    width: 120px;
+    height: 120px;
+
+    object-fit: contain;
+}
+
+
+/* INFORMACIÓN */
+
+.parking-preview-info h2 {
+    margin: 0;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+.parking-preview-info p {
+    margin: 28px 0 0;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    color: #475467;
+}
+
+
+/* =========================
+   DETALLES
+========================= */
+
+.details-section {
+    margin-top: 50px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        232px;
+
+    gap: 28px;
+
+    align-items: end;
+}
+
+
+.details-content h2 {
+    margin: 0 0 30px;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+
+    color: #475467;
+}
+
+
+.details-text p {
+    margin: 12px 0;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+
+    color: #475467;
+}
+
+
+.details-text span {
+    font-weight: 400;
+}
+
+
+/* =========================
+   SERVICIOS
+========================= */
+
+.services-card {
+    min-height: 156px;
+
+    padding: 22px 24px;
+
+    background-color: #FFFFFF;
+
+    border: 1px solid #B8C7D9;
+    border-radius: 18px;
+}
+
+
+.services-card h3 {
+    margin: 0 0 20px;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+.services-card p {
+    margin: 8px 0;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 14px;
+
+    color: #475467;
+}
+
+
+/* =========================
+   RESERVA
+========================= */
+
+.reservation-card {
+    min-height: 584px;
+
+    padding: 20px 36px 32px;
+
+    background-color: #FFFFFF;
+
+    border: 1px solid #B8C7D9;
+    border-radius: 18px;
+}
+
+
+.reservation-title p {
+    margin: 0;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+.reservation-title h2 {
+    margin: 18px 0 30px;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 30px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+/* =========================
+   FORMULARIO
+========================= */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+
+.form-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 22px;
+}
+
+
+.form-group label {
+    font-family: "Roboto Mono", monospace;
+    font-size: 14px;
+
+    color: #475467;
+}
+
+
+.form-group input {
+    width: 100%;
+    height: 56px;
+
+    padding: 0 16px;
+
+    border: 1px solid #B8C7D9;
+    border-radius: 12px;
+
+    outline: none;
+
+    background-color: #FFFFFF;
+
+    color: #101828;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.form-group input:focus {
+    border-color: #475467;
+
+    box-shadow:
+        0 0 0 3px rgba(132, 215, 230, 0.35);
+}
+
+
+/* =========================
+   TOTAL
+========================= */
+
+.total-card {
+    min-height: 92px;
+
+    margin-top: 22px;
+
+    padding: 20px 22px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+
+    border: 1px solid #B8C7D9;
+    border-radius: 18px;
+
+    background-color: #FFFFFF;
+}
+
+
+.total-card span {
+    font-family: "Roboto Mono", monospace;
+    font-size: 14px;
+
+    color: #475467;
+}
+
+
+.total-card strong {
+    font-family: "Roboto", sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+/* =========================
+   MENSAJE
+========================= */
+
+.reservation-message {
+    min-height: 22px;
+
+    margin: 14px 0 0;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 13px;
+}
+
+
+/* =========================
+   BOTÓN
+========================= */
+
+.reserve-button {
+    width: 100%;
+    height: 54px;
+
+    margin-top: 8px;
+
+    border: none;
+    border-radius: 24px;
+
+    background-color: #475467;
+
+    color: #FFFFFF;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.15s ease;
+}
+
+
+.reserve-button:hover {
+    background-color: #344054;
+}
+
+
+.reserve-button:active {
+    transform: scale(0.98);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1050px) {
+
+    .detalle-layout {
+        grid-template-columns: 1fr;
+    }
+
+
+    .reservation-card {
+        width: 100%;
+    }
+
+}
+
+
+@media (max-width: 750px) {
+
+    .detalle-page {
+        padding: 30px 20px 60px;
+    }
+
+
+    .page-header h1 {
+        font-size: 40px;
+    }
+
+
+    .parking-preview {
+        min-height: auto;
+
+        padding: 30px 20px;
+    }
+
+
+    .parking-preview-card {
+        min-height: auto;
+
+        padding: 30px;
+
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+
+    .parking-image {
+        width: 100%;
+    }
+
+
+    .details-section {
+        grid-template-columns: 1fr;
+    }
+
+
+    .services-card {
+        width: 100%;
+    }
+
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+}

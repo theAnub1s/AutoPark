@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Detalle del estacionamiento - AutoPark</title>
+
+    <link
+        rel="stylesheet"
+        href="components/navbar/navbar.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/detalle.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- NAVBAR -->
+    <div id="navbar"></div>
+
+
+    <main class="detalle-page">
+
+
+        <!-- ENCABEZADO -->
+
+        <section class="page-header">
+
+            <h1 id="parkingName">
+                Estacionamiento Centro
+            </h1>
+
+            <p id="parkingLocation">
+                Centro de Pachuca · A 8 min de tu ubicación
+            </p>
+
+        </section>
+
+
+
+        <div class="detalle-layout">
+
+
+            <!-- =========================
+                 LADO IZQUIERDO
+            ========================== -->
+
+            <section class="detalle-main">
+
+
+                <!-- VISTA PREVIA -->
+
+                <div class="parking-preview">
+
+                    <div class="parking-preview-card">
+
+
+                        <div class="parking-image">
+
+                            <img
+                                src="assets/images/logo-autopark.png"
+                                alt="Logo AutoPark"
+                            >
+
+                        </div>
+
+
+                        <div class="parking-preview-info">
+
+                            <h2 id="parkingEntrance">
+                                Entrada sobre Av. principal
+                            </h2>
+
+                            <p id="parkingDescription">
+                                Zona iluminada · Acceso amplio
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- DETALLES -->
+
+                <section class="details-section">
+
+
+                    <div class="details-content">
+
+                        <h2>
+                            Detalles del espacio
+                        </h2>
+
+
+                        <div class="details-text">
+
+                            <p>
+                                Disponibilidad:
+                                <span id="parkingAvailability">
+                                    5 espacios
+                                </span>
+                            </p>
+
+                            <p>
+                                Horario:
+                                <span id="parkingSchedule">
+                                    07:00 – 23:00
+                                </span>
+                            </p>
+
+                            <p>
+                                Tipo:
+                                <span id="parkingType">
+                                    Exterior
+                                </span>
+                            </p>
+
+                            <p>
+                                Acceso:
+                                <span id="parkingAccess">
+                                    Automóvil y motocicleta
+                                </span>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- SERVICIOS -->
+
+                    <aside class="services-card">
+
+                        <h3>
+                            Servicios
+                        </h3>
+
+                        <div id="servicesList">
+
+                            <p>Iluminación</p>
+                            <p>Vigilancia</p>
+                            <p>Acceso amplio</p>
+
+                        </div>
+
+                    </aside>
+
+                </section>
+
+            </section>
+
+
+
+            <!-- =========================
+                 RESERVA
+            ========================== -->
+
+            <aside class="reservation-card">
+
+
+                <div class="reservation-title">
+
+                    <p>
+                        Reservar espacio
+                    </p>
+
+                    <h2 id="parkingPrice">
+                        $20 MXN / hora
+                    </h2>
+
+                </div>
+
+
+                <form id="reservationForm">
+
+
+                    <!-- FECHA -->
+
+                    <div class="form-group">
+
+                        <label for="fecha">
+                            Fecha
+                        </label>
+
+                        <input
+                            type="date"
+                            id="fecha"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- HORARIOS -->
+
+                    <div class="form-row">
+
+
+                        <div class="form-group">
+
+                            <label for="horaEntrada">
+                                Hora de entrada
+                            </label>
+
+                            <input
+                                type="time"
+                                id="horaEntrada"
+                                value="18:00"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="horaSalida">
+                                Hora de salida
+                            </label>
+
+                            <input
+                                type="time"
+                                id="horaSalida"
+                                value="20:00"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- TOTAL -->
+
+                    <div class="total-card">
+
+                        <span>
+                            Total estimado
+                        </span>
+
+                        <strong id="totalEstimado">
+                            $40 MXN
+                        </strong>
+
+                    </div>
+
+
+
+                    <p
+                        id="reservationMessage"
+                        class="reservation-message"
+                    ></p>
+
+
+
+                    <button
+                        type="submit"
+                        class="reserve-button"
+                    >
+                        Reservar ahora
+                    </button>
+
+                </form>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- CARGAR NAVBAR -->
+
+    <script>
+
+        fetch("components/navbar/navbar.html")
+
+            .then(response => response.text())
+
+            .then(data => {
+
+                document.getElementById("navbar").innerHTML = data;
+
+                const script =
+                    document.createElement("script");
+
+                script.src =
+                    "components/navbar/navbar.js";
+
+
+                script.onload = () => {
+
+                    /*
+                        detalle.html pertenece
+                        a la sección Buscar.
+                    */
+
+                    document
+                        .querySelectorAll(".nav-link")
+                        .forEach(link => {
+
+                            link.classList.remove(
+                                "active"
+                            );
+
+
+                            if (
+                                link
+                                    .getAttribute("href")
+                                    .includes("busqueda.html")
+                            ) {
+
+                                link.classList.add(
+                                    "active"
+                                );
+
+                            }
+
+                        });
+
+                };
+
+
+                document.body.appendChild(
+                    script
+                );
+
+            })
+
+            .catch(error => {
+
+                console.error(
+                    "Error al cargar el navbar:",
+                    error
+                );
+
+            });
+
+    </script>
+
+
+    <script src="js/detalle.js"></script>
+
+</body>
+
+</html>
