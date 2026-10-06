@@ -42,7 +42,8 @@ links.forEach(link => {
             .pop();
 
 
-    if (linkPage === currentPage) {
+    // Verificar si coincide la página Y si el elemento es visible según el CSS
+    if (linkPage === currentPage && link.offsetParent !== null) {
 
         link.classList.add("active");
 
