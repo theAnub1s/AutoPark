@@ -208,9 +208,11 @@ El tablero de GitHub Projects debe mantener las columnas:
 - Terminado
 
 ## Evidencias para la entrega
-Entrega de Capturas de los HTML funcionando de una manera correcta este con las capturas en modalidad Escritorio
-En esta parte lo que se elaboro en este apartado fue la cpatura correspondiente de las evidencias de escritorio de cada 
+Entrega de capturas de los HTML funcionando correctamente en modalidad Escritorio
+En este apartado se elaboraron y recopilaron las capturas de pantalla correspondientes a las evidencias del funcionamiento de las páginas HTML del proyecto AutoPark en modalidad Escritorio. Estas capturas permiten comprobar que cada una de las interfaces desarrolladas se visualiza y funciona correctamente en una computadora, respetando el diseño establecido y mostrando de manera adecuada los diferentes elementos de la aplicación web.
+Empezaremos con la parte de el inicio en donde se encuentra un pequeño apartado de bienvenida 
 <img width="1595" height="950" alt="image" src="https://github.com/user-attachments/assets/50094a90-ff2e-43eb-86dd-a2a7b43da6c8" />
+En esta segunda captura podemos notar la evidencia para la busca de estacionamientos al igual que los disponibles en la zonas correspondiente.
 <img width="1592" height="957" alt="image" src="https://github.com/user-attachments/assets/91568a17-cc3a-454d-95cc-6831c1c1498f" />
 <img width="1597" height="952" alt="image" src="https://github.com/user-attachments/assets/7eaa022c-8ca5-46ea-ad34-6b5ba33703da" />
 <img width="1591" height="962" alt="image" src="https://github.com/user-attachments/assets/09d86818-9ce5-4ff5-a2e0-8262f288b825" />
