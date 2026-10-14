@@ -183,7 +183,20 @@
               </div>
             </div>
 
-            <div class="total-card mt-4">
+            <!-- Cotizador dinámico, compartiendo la lógica del formulario RF06. -->
+            <div class="reserva-duracion mt-3" aria-label="Duración de la reserva">
+              <div>
+                <span id="etiquetaDuracionBusqueda" class="duracion-titulo">Duración</span>
+                <small class="duracion-nota">Cada fracción se cobra como una hora completa.</small>
+              </div>
+              <div id="controlDuracionBusqueda" class="duracion-acciones" role="group" aria-labelledby="etiquetaDuracionBusqueda">
+                <button type="button" class="btn btn-outline-secondary boton-duracion" data-duration-action="decrease" aria-label="Reducir una hora">−</button>
+                <output id="horasDuracionBusqueda" class="valor-duracion" aria-live="polite" aria-atomic="true">2 horas</output>
+                <button type="button" class="btn btn-outline-secondary boton-duracion" data-duration-action="increase" aria-label="Aumentar una hora">+</button>
+              </div>
+            </div>
+
+            <div class="total-card mt-3">
               <span>Total estimado</span>
               <strong id="totalEstimado">$0 MXN</strong>
               <small id="detalleHoras">Selecciona el horario de tu reserva.</small>
