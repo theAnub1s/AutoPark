@@ -1,171 +1,135 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Detalle del estacionamiento | AutoPark</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AutoPark | Detalle del estacionamiento</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="detalleEstacionamiento.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,600;1,700&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./css/detalle.css">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark navbar-autopark">
-<div class="container">
-<a class="navbar-brand d-flex align-items-center gap-2" href="../buscarEspacio/buscarEspacio.html">
-<img src="logoAuto.png" alt="Logo AutoPark" class="logo">
-<span>AutoPark</span>
+<nav class="navbar navbar-expand-lg autopark-navbar">
+<div class="container-fluid px-3 px-md-4 px-lg-5">
+<a class="navbar-brand d-flex align-items-center gap-2" href="#">
+<div class="logo-box">
+<img src="./assets/images/logo-autopark.png" alt="Logo AutoPark">
+</div>
+<span class="brand-name">AutoPark</span>
 </a>
-<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-label="Abrir menú">
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Abrir menú">
 <span class="navbar-toggler-icon"></span>
 </button>
 <div class="collapse navbar-collapse" id="menuPrincipal">
-<div class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
-<a class="nav-link active" href="../buscarEspacio/buscarEspacio.html">Buscar espacios</a>
-<a class="nav-link" href="../misReservas/misReservas.html">Mis reservas</a>
-<button id="btnTema" class="btn btn-outline-light btn-sm mt-2 mt-lg-0" type="button">🌙 Tema oscuro</button>
-</div>
+<ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+<li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
+<li class="nav-item"><a class="nav-link active" href="#">Buscar</a></li>
+<li class="nav-item"><a class="nav-link" href="#">Mis reservas</a></li>
+<li class="nav-item"><a class="nav-link" href="#">Mis espacios</a></li>
+<li class="nav-item"><a class="nav-link" href="#">Perfil</a></li>
+</ul>
 </div>
 </div>
 </nav>
-<main class="container py-4 py-lg-5">
-<div class="mb-4">
-<a href="../buscarEspacio/buscarEspacio.html" class="back-link">← Volver a buscar estacionamientos</a>
-<p class="eyebrow mt-4 mb-2">DETALLE DEL ESTACIONAMIENTO</p>
-<h1 id="nombreEstacionamiento">Estacionamiento Plaza Juárez</h1>
-<p class="subtitle">Consulta la información y reserva tu espacio.</p>
-</div>
+<main class="container-fluid main-container">
+<div class="container-xl">
+<section class="page-header">
+<h1>Estacionamiento Centro</h1>
+<p>Centro de Pachuca&nbsp;&nbsp;•&nbsp;&nbsp;A 8 min de tu ubicación</p>
+</section>
 <div class="row g-4">
-<section class="col-12 col-lg-8">
-<div class="parking-hero">
-<div class="parking-illustration" aria-label="Ilustración de un estacionamiento">
-<div class="parking-sign">P</div>
-<div class="parking-car">🚘</div>
-<div class="parking-lines"></div>
+<div class="col-12 col-lg-7">
+<section class="parking-preview">
+<div class="parking-preview-card">
+<div class="parking-image">
+<img src="./assets/images/logo-autopark.png" alt="AutoPark">
 </div>
-<div class="parking-content">
-<div class="d-flex flex-wrap gap-2 mb-3">
-<span class="status-badge"><span class="status-dot"></span> Disponible</span>
-<span class="zone-badge" id="zonaEstacionamiento">Centro</span>
+<div class="parking-preview-info">
+<h2>Entrada sobre Av. principal</h2>
+<p>Zona iluminada&nbsp;&nbsp;•&nbsp;&nbsp;Acceso amplio</p>
 </div>
-<h2>Estacionamiento seguro y accesible</h2>
-<p class="muted mb-3" id="ubicacionEstacionamiento">Centro de Pachuca, Hidalgo</p>
-<div class="parking-actions">
-<button id="btnFavorito" class="btn btn-outline-primary" type="button" aria-pressed="false">♡ Agregar a favoritos</button>
-<button id="btnCopiarUbicacion" class="btn btn-outline-secondary" type="button">Copiar ubicación</button>
-</div>
-</div>
-</div>
-<div class="info-grid mt-4">
-<article class="info-card">
-<span class="info-icon">💰</span>
-<p>Precio por hora</p>
-<h3 id="precioHora">$22.00</h3>
-</article>
-<article class="info-card">
-<span class="info-icon">🅿️</span>
-<p>Espacios disponibles</p>
-<h3 id="espaciosDisponibles">4 espacios</h3>
-</article>
-<article class="info-card">
-<span class="info-icon">🚗</span>
-<p>Capacidad total</p>
-<h3 id="capacidadTotal">10 espacios</h3>
-</article>
-</div>
-<div class="content-card mt-4">
-<h2>Información general</h2>
-<p class="muted">Consulta las características antes de realizar tu reserva.</p>
-<div class="detail-row"><span>Nombre</span><strong id="detalleNombre">Plaza Juárez</strong></div>
-<div class="detail-row"><span>Ubicación</span><strong id="detalleUbicacion">Centro de Pachuca</strong></div>
-<div class="detail-row"><span>Zona</span><strong id="detalleZona">Centro</strong></div>
-<div class="detail-row"><span>Horario de referencia</span><strong>06:00 a 22:00</strong></div>
-<div class="detail-row"><span>Tipo de servicio</span><strong>Estacionamiento por hora</strong></div>
-</div>
-<div class="content-card mt-4">
-<h2>Servicios disponibles</h2>
-<p class="muted">Selecciona un servicio para consultar su descripción.</p>
-<div id="listaServicios" class="service-list">
-<button type="button" class="service-button" data-servicio="seguridad">🛡️ Seguridad</button>
-<button type="button" class="service-button" data-servicio="iluminacion">💡 Iluminación</button>
-<button type="button" class="service-button" data-servicio="acceso">🚗 Acceso vehicular</button>
-<button type="button" class="service-button" data-servicio="ubicacion">📍 Ubicación céntrica</button>
-</div>
-<div id="descripcionServicio" class="service-description" aria-live="polite">Selecciona uno de los servicios para ver más información.</div>
 </div>
 </section>
-<aside class="col-12 col-lg-4">
-<div class="booking-card">
-<p class="eyebrow">TU PRÓXIMA RESERVA</p>
-<h2>Reserva tu espacio</h2>
-<p class="muted">Selecciona la fecha y el horario que necesitas.</p>
-<div class="price-display"><span id="precioResumen">$22.00</span><small>/ hora</small></div>
-<div class="summary-line"><span>Disponibilidad de referencia</span><strong id="resumenDisponibilidad">4 espacios</strong></div>
-<div class="summary-line"><span>Zona</span><strong id="resumenZona">Centro</strong></div>
-<button id="btnAbrirReserva" class="btn btn-primary w-100 mt-3" type="button">Reservar ahora</button>
-<a class="btn btn-outline-secondary w-100 mt-2" href="../misReservas/misReservas.html">Consultar mis reservas</a>
-<p class="small-note mt-3 mb-0">Los datos de disponibilidad son demostrativos y no representan inventario en tiempo real.</p>
+<section class="details-section">
+<div class="details-content">
+<h2>Detalles del espacio</h2>
+<div class="details-text">
+<p><span>Disponibilidad:</span> 5 espacios</p>
+<p><span>Horario:</span> 07:00 - 23:00</p>
+<p><span>Tipo:</span> Exterior</p>
+<p><span>Acceso:</span> Automóvil y motocicleta</p>
 </div>
-<div class="help-card mt-4">
-<h3>¿Necesitas ayuda?</h3>
-<p class="muted mb-0">Revisa los detalles del lugar antes de confirmar tu reserva.</p>
 </div>
-</aside>
+<div class="services-card">
+<h3>Servicios</h3>
+<p>Iluminación</p>
+<p>Vigilancia</p>
+<p>Acceso amplio</p>
 </div>
-</main>
-<div class="modal fade" id="modalReserva" tabindex="-1" aria-labelledby="tituloModalReserva" aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered">
-<div class="modal-content">
-<div class="modal-header">
-<div><p class="eyebrow mb-1">AUTOPARK</p><h2 class="modal-title fs-5" id="tituloModalReserva">Reservar estacionamiento</h2></div>
-<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+</section>
 </div>
-<form id="formReserva" novalidate>
-<div class="modal-body">
-<p class="muted">Completa los datos para calcular el costo estimado.</p>
-<div class="mb-3">
-<label for="fechaReserva" class="form-label">Fecha de reserva</label>
-<input id="fechaReserva" name="fecha" class="form-control" type="date" required>
-<div class="invalid-feedback">Selecciona una fecha válida.</div>
+<div class="col-12 col-lg-5">
+<section class="reservation-card">
+<div class="reservation-title">
+<p>Reservar espacio</p>
+<h2>$20 MXN / hora</h2>
+</div>
+<div class="form-group">
+<label for="fecha">Fecha</label>
+<input type="date" id="fecha" class="form-control">
 </div>
 <div class="row g-3">
-<div class="col-6">
-<label for="horaEntrada" class="form-label">Hora de entrada</label>
-<input id="horaEntrada" name="entrada" class="form-control" type="time" value="09:00" required>
-<div class="invalid-feedback">Indica la hora de entrada.</div>
-</div>
-<div class="col-6">
-<label for="horaSalida" class="form-label">Hora de salida</label>
-<input id="horaSalida" name="salida" class="form-control" type="time" value="11:00" required>
-<div class="invalid-feedback">Debe ser posterior a la entrada.</div>
+<div class="col-12 col-md-6">
+<div class="form-group">
+<label for="horaEntrada">Hora de entrada</label>
+<input type="time" id="horaEntrada" class="form-control" value="18:00">
 </div>
 </div>
-<div class="cost-box mt-4">
-<div class="d-flex justify-content-between"><span>Duración</span><strong id="duracionReserva">2 horas</strong></div>
-<div class="d-flex justify-content-between mt-2"><span>Precio por hora</span><strong id="precioCalculado">$22.00</strong></div>
-<hr>
-<div class="d-flex justify-content-between align-items-center"><span>Total estimado</span><strong id="totalReserva" class="total-price">$44.00</strong></div>
+<div class="col-12 col-md-6">
+<div class="form-group">
+<label for="horaSalida">Hora de salida</label>
+<input type="time" id="horaSalida" class="form-control" value="20:00">
 </div>
-<div id="mensajeValidacion" class="form-message mt-3" aria-live="polite"></div>
+</div>
+</div>
+<div class="total-card">
+<span>Total estimado</span>
+<strong id="totalEstimado">$40 MXN</strong>
+</div>
+<!-- BOTÓN MODIFICADO CON ATRIBUTOS DE BOOTSTRAP PARA ABRIR LA PANTALLA FLOTANTE -->
+<button id="btnReservar" class="btn btn-primary reserve-button" data-bs-toggle="modal" data-bs-target="#modalReserva">Reservar ahora</button>
+</section>
+</div>
+</div>
+</div>
+</main>
+<div class="modal fade" id="modalReserva" tabindex="-1" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content reservation-modal">
+<div class="modal-header">
+<h5 class="modal-title">Reserva confirmada</h5>
+<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+</div>
+<div class="modal-body">
+<div class="confirmation-icon">✓</div>
+<h3>¡Reserva realizada!</h3>
+<p>Tu espacio en Estacionamiento Centro ha sido reservado correctamente.</p>
+<div class="confirmation-data">
+<p><strong>Fecha:</strong><span id="confirmFecha"></span></p>
+<p><strong>Entrada:</strong><span id="confirmEntrada"></span></p>
+<p><strong>Salida:</strong><span id="confirmSalida"></span></p>
+<p><strong>Total:</strong><span id="confirmTotal"></span></p>
+</div>
 </div>
 <div class="modal-footer">
-<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
-<button type="submit" class="btn btn-primary">Confirmar reserva</button>
-</div>
-</form>
+<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
 </div>
 </div>
-</div>
-<div class="toast-container position-fixed bottom-0 end-0 p-3">
-<div id="toastAutoPark" class="toast border-0" role="status" aria-live="polite" aria-atomic="true">
-<div class="toast-header">
-<strong class="me-auto">AutoPark</strong>
-<small>Notificación</small>
-<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Cerrar"></button>
-</div>
-<div class="toast-body" id="mensajeToast">Acción realizada.</div>
 </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="detalleEstacionamiento.js"></script>
 </body>
 </html>
