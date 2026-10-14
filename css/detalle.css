@@ -345,6 +345,66 @@ body {
 }
 
 
+
+/* =========================
+   COTIZADOR DINÁMICO (RF06)
+========================= */
+
+.duration-panel {
+    margin-top: 2px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    border: 1px solid #B8C7D9;
+    border-radius: 16px;
+    background-color: #F6F8FC;
+}
+
+.duration-label {
+    display: block;
+    margin-bottom: 7px;
+    font-family: "Roboto Mono", monospace;
+    font-size: 14px;
+    color: #101828;
+}
+
+.duration-hint {
+    max-width: 230px;
+    margin: 0;
+    font-family: "Roboto Mono", monospace;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #475467;
+}
+
+.duration-controls {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.duration-button {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 12px;
+    font-size: 22px;
+    line-height: 1;
+}
+
+.duration-value {
+    min-width: 44px;
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+    color: #101828;
+}
+
 /* =========================
    TOTAL
 ========================= */
