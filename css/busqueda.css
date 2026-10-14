@@ -35,45 +35,8 @@
     font-family: "Raleway", sans-serif;
   }
   
-  /* Barra de navegación */
-  .autopark-navbar {
-    min-height: 76px;
-    background: var(--azul-claro);
-    border-bottom: 1px solid rgba(16, 24, 40, .08);
-    padding: 12px 0;
-  }
-  
-  .navbar-brand {
-    color: var(--azul-oscuro) !important;
-    text-decoration: none;
-    font-weight: 700;
-  }
-  
-  .logo-navbar {
-    width: 48px;
-    height: 48px;
-    object-fit: contain;
-  }
-  
-  .brand-name {
-    font-size: 22px;
-  }
-  
-  .nav-link {
-    padding: 10px 14px !important;
-    border-radius: 20px;
-    color: var(--azul-oscuro) !important;
-    font: 14px "Roboto Mono", monospace;
-  }
-  
-  .nav-link:hover {
-    background: rgba(255, 255, 255, .55);
-  }
-  
-  .nav-link.active {
-    background: var(--blanco);
-  }
-  
+  /* Navbar: usar exclusivamente components/navbar/navbar.css. */
+
   /* Contenido principal */
   .main-container {
     padding-top: 32px;
@@ -497,14 +460,6 @@
   @media (max-width: 991.98px) {
     .main-container {
       padding-top: 24px;
-    }
-  
-    .navbar-nav {
-      margin-top: 16px;
-    }
-  
-    .nav-link {
-      border-radius: 8px;
     }
   
     .filters-section {
