@@ -522,3 +522,6 @@ body {
 .toast{border:1px solid #B8C7D9;border-radius:12px}
 .toast-header{background:#C4E3FF;color:#101828}
 @media(max-width:480px){.page-header h1{font-size:32px}.reservation-card{padding:20px}.duration-controls{width:100%;justify-content:center}}
+
+/* Información al editar una reserva existente */
+.edit-reserva-notice{margin:0 0 18px;padding:12px 14px;border:1px solid #B8C7D9;border-radius:12px;background:#E4E8F7;color:#475467;font:13px/1.5 "Roboto Mono",monospace}
