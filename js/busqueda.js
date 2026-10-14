@@ -81,6 +81,9 @@ const horaEntrada = document.getElementById("horaEntrada");
 const horaSalida = document.getElementById("horaSalida");
 const totalEstimado = document.getElementById("totalEstimado");
 const detalleHoras = document.getElementById("detalleHoras");
+const controlDuracionBusqueda = document.getElementById("controlDuracionBusqueda");
+const horasDuracionBusqueda = document.getElementById("horasDuracionBusqueda");
+const botonesDuracionBusqueda = document.querySelectorAll("#controlDuracionBusqueda [data-duration-action]");
 const errorHorario = document.getElementById("errorHorario");
 
 const toastElemento = document.getElementById("toastAutoPark");
@@ -376,6 +379,62 @@ function abrirFormularioReserva() {
   modalReserva.show();
 }
 
+/* Duración dinámica de la reserva rápida (RF06).
+   Un único listener en el contenedor gestiona los dos botones. */
+function minutosDesdeHoraBusqueda(hora) {
+  const partes = hora.split(":").map(Number);
+  return partes[0] * 60 + partes[1];
+}
+
+function formatearHoraBusqueda(minutos) {
+  return String(Math.floor(minutos / 60)).padStart(2, "0") +
+    ":" + String(minutos % 60).padStart(2, "0");
+}
+
+function sincronizarContadorBusqueda() {
+  const entrada = horaEntrada.value ? minutosDesdeHoraBusqueda(horaEntrada.value) : NaN;
+  const salida = horaSalida.value ? minutosDesdeHoraBusqueda(horaSalida.value) : NaN;
+  const horas = Number.isFinite(entrada) && Number.isFinite(salida) && salida > entrada
+    ? Math.ceil((salida - entrada) / 60)
+    : 0;
+  const maxHoras = Number.isFinite(entrada)
+    ? Math.floor((1439 - entrada) / 60)
+    : 0;
+
+  horasDuracionBusqueda.textContent = horas
+    ? horas + (horas === 1 ? " hora" : " horas")
+    : "— horas";
+
+  botonesDuracionBusqueda.forEach(function sincronizarBoton(boton) {
+    boton.disabled = boton.dataset.durationAction === "decrease"
+      ? horas <= 1
+      : maxHoras < 1 || horas >= maxHoras;
+  });
+}
+
+function manejarContadorBusqueda(evento) {
+  const boton = evento.target.closest("button[data-duration-action]");
+  if (!boton || !controlDuracionBusqueda.contains(boton) || boton.disabled || !horaEntrada.value) {
+    return;
+  }
+
+  const entrada = minutosDesdeHoraBusqueda(horaEntrada.value);
+  const salida = horaSalida.value ? minutosDesdeHoraBusqueda(horaSalida.value) : NaN;
+  const horas = Number.isFinite(salida) && salida > entrada
+    ? Math.ceil((salida - entrada) / 60)
+    : 0;
+  const diferencia = boton.dataset.durationAction === "increase" ? 1 : -1;
+  const nuevaSalida = entrada + Math.max(1, horas + diferencia) * 60;
+
+  if (nuevaSalida >= 1440) {
+    return; // El formulario actual no permite reservas que cruzan medianoche.
+  }
+
+  horaSalida.value = formatearHoraBusqueda(nuevaSalida);
+  actualizarTotal();
+  validarCampo({ target: horaSalida });
+}
+
 /* Limpiar estado visual de un campo */
 function limpiarEstadoCampo(campo) {
   campo.classList.remove("is-valid", "is-invalid");
@@ -413,6 +472,7 @@ function calcularImporte() {
 
 /* Actualizar importe y validar horario */
 function actualizarTotal() {
+  sincronizarContadorBusqueda();
   const calculo = calcularImporte();
 
   const horarioIncorrecto = Boolean(
@@ -541,17 +601,21 @@ function confirmarReserva(evento) {
     return;
   }
 
+  // Mis reservas y Detalle comparten esta estructura. El backend la sustituirá después.
   const reserva = {
     id: Date.now(),
+    estacionamiento: { ...estacionamientoSeleccionado },
     estacionamientoId: estacionamientoSeleccionado.id,
     nombre: estacionamientoSeleccionado.nombre,
     ubicacion: estacionamientoSeleccionado.ubicacion,
-    zona: nombreZona(estacionamientoSeleccionado.zona),
+    zona: estacionamientoSeleccionado.zona,
     fecha: fechaReserva.value,
+    horaEntrada: horaEntrada.value,
+    horaSalida: horaSalida.value,
     entrada: horaEntrada.value,
     salida: horaSalida.value,
     total: calculo.total,
-    estado: "Confirmada",
+    estado: "activa",
     precioHora: estacionamientoSeleccionado.precio
   };
 
@@ -613,6 +677,9 @@ function registrarEventos() {
 
   horaEntrada.addEventListener("change", actualizarTotal);
   horaSalida.addEventListener("change", actualizarTotal);
+  horaEntrada.addEventListener("input", actualizarTotal);
+  horaSalida.addEventListener("input", actualizarTotal);
+  controlDuracionBusqueda.addEventListener("click", manejarContadorBusqueda);
 
   formReserva.addEventListener("submit", confirmarReserva);
 }
