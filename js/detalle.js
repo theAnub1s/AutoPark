@@ -376,6 +376,83 @@ function convertirAMinutos(hora) {
 }
 
 
+
+/* =========================
+   COTIZADOR DINÁMICO (RF06)
+========================= */
+
+/*
+    getElementById: selecciona el marcador único del número de horas.
+    querySelector: selecciona el contenedor mediante selector CSS.
+    querySelectorAll: obtiene ambos botones para gestionar su estado.
+    Un único listener en el padre aplica delegación de eventos.
+*/
+
+const duracionHoras = document.getElementById("duracionHoras");
+const controlDuracion = document.querySelector("#durationControl");
+const botonesDuracion = document.querySelectorAll("#durationControl [data-duration-action]");
+
+function formatearHora(minutos) {
+    const horas = String(Math.floor(minutos / 60)).padStart(2, "0");
+    const minutosRestantes = String(minutos % 60).padStart(2, "0");
+    return horas + ":" + minutosRestantes;
+}
+
+function actualizarContadorHoras() {
+    const entrada = horaEntrada.value ? convertirAMinutos(horaEntrada.value) : NaN;
+    const salida = horaSalida.value ? convertirAMinutos(horaSalida.value) : NaN;
+
+    // Mantener sincronizado el contador con la edición manual del horario.
+    const horas = Number.isFinite(entrada) && Number.isFinite(salida) && salida > entrada
+        ? Math.ceil((salida - entrada) / 60)
+        : 0;
+
+    // El formulario actual trabaja con reservas de un solo día.
+    const maxHoras = Number.isFinite(entrada)
+        ? Math.floor((1439 - entrada) / 60)
+        : 0;
+
+    duracionHoras.textContent = horas > 0 ? horas + " h" : "— h";
+
+    botonesDuracion.forEach(function actualizarBotonDuracion(boton) {
+        if (boton.dataset.durationAction === "decrease") {
+            boton.disabled = horas <= 1;
+        } else {
+            boton.disabled = maxHoras < 1 || horas >= maxHoras;
+        }
+    });
+}
+
+function manejarClickDuracion(evento) {
+    const boton = evento.target.closest("button[data-duration-action]");
+
+    if (!boton || !controlDuracion.contains(boton) || boton.disabled) {
+        return;
+    }
+
+    if (!horaEntrada.value) {
+        return;
+    }
+
+    const entrada = convertirAMinutos(horaEntrada.value);
+    const salida = horaSalida.value ? convertirAMinutos(horaSalida.value) : NaN;
+    const horasActuales = Number.isFinite(salida) && salida > entrada
+        ? Math.ceil((salida - entrada) / 60)
+        : 0;
+    const cambio = boton.dataset.durationAction === "increase" ? 1 : -1;
+    const horasNuevas = Math.max(1, horasActuales + cambio);
+    const minutosSalida = entrada + horasNuevas * 60;
+
+    if (minutosSalida >= 1440) {
+        return;
+    }
+
+    horaSalida.value = formatearHora(minutosSalida);
+    calcularTotal();
+}
+
+controlDuracion.addEventListener("click", manejarClickDuracion);
+
 /* =========================
    CALCULAR TOTAL
 ========================= */
@@ -384,6 +461,9 @@ function calcularTotal() {
 
     reservationMessage.textContent =
         "";
+
+
+    actualizarContadorHoras();
 
 
     if (
