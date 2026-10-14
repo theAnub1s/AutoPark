@@ -1,242 +1,83 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Buscar estacionamiento - AutoPark</title>
-
-    <link rel="stylesheet" href="assets/vendor/bootstrap/bootstrap.min.css">
-
-    <script src="assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
-
-    <link
-        rel="stylesheet"
-        href="components/navbar/navbar.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="css/busqueda.css"
-    >
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buscar estacionamientos | AutoPark</title>
+<link rel="stylesheet" href="assets/vendor/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="css/buscarEstacionamiento.css">
+<script src="assets/vendor/bootstrap/bootstrap.bundle.min.js" defer></script>
+<script src="js/buscarEstacionamiento.js" defer></script>
 </head>
-
-
 <body>
-
-    <!-- NAVBAR -->
-    <div id="navbar"></div>
-
-
-    <main class="busqueda-page">
-
-        <h1>Buscar estacionamiento</h1>
-
-
-        <div class="busqueda-layout">
-
-
-            <!-- =========================
-                 LADO IZQUIERDO
-            ========================== -->
-
-            <section class="busqueda-panel">
-
-
-                <!-- BUSCADOR -->
-
-                <label for="busqueda">
-                    Ubicación o zona
-                </label>
-
-                <div class="search-row">
-
-                    <input class="form-control"
-                        type="text"
-                        id="busqueda"
-                        placeholder="Centro de Pachuca"
-                    >
-
-                    <button
-                        type="button"
-                        id="btnBuscar"
-                        class="btn btn-buscar"
-                    >
-                        Buscar
-                    </button>
-
-                </div>
-
-
-                <!-- FILTROS -->
-
-                <div class="filtros">
-
-                    <p>Filtros</p>
-
-
-                    <div class="filter-buttons">
-
-                        <button
-                            class="btn filter-btn active"
-                            data-filter="disponibles"
-                        >
-                            Disponibles
-                        </button>
-
-
-                        <button
-                            class="btn filter-btn"
-                            data-filter="precio"
-                        >
-                            ≤ $25/h
-                        </button>
-
-
-                        <button
-                            class="btn filter-btn"
-                            data-filter="ahora"
-                        >
-                            Ahora
-                        </button>
-
-
-                        <button
-                            class="btn filter-btn"
-                            data-filter="cubierto"
-                        >
-                            Cubierto
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <!-- CONTADOR -->
-
-                <p
-                    id="contadorResultados"
-                    class="results-count"
-                >
-                    0 resultados
-                </p>
-
-
-                <!-- RESULTADOS -->
-
-                <div id="resultados"></div>
-
-
-                <!-- SIN RESULTADOS -->
-
-                <div
-                    id="sinResultados"
-                    class="sin-resultados hidden"
-                >
-
-                    <h2>
-                        No encontramos espacios
-                    </h2>
-
-                    <p>
-                        Intenta cambiar tu búsqueda o los filtros.
-                    </p>
-
-                    <button
-                        id="btnLimpiar"
-                        class="btn btn-limpiar"
-                    >
-                        Limpiar búsqueda
-                    </button>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- =========================
-                 MAPA
-            ========================== -->
-
-            <aside class="map-card">
-
-                <h2>
-                    Mapa de resultados
-                </h2>
-
-
-                <div
-                    class="fake-map"
-                    id="mapaResultados"
-                >
-
-                    <div class="street street-v s1"></div>
-                    <div class="street street-v s2"></div>
-                    <div class="street street-v s3"></div>
-                    <div class="street street-v s4"></div>
-                    <div class="street street-v s5"></div>
-
-                    <div class="street street-h h1"></div>
-                    <div class="street street-h h2"></div>
-                    <div class="street street-h h3"></div>
-                    <div class="street street-h h4"></div>
-
-
-                    <div id="mapPins"></div>
-
-                </div>
-
-            </aside>
-
-        </div>
-
-    </main>
-
-
-
-    <!-- NAVBAR -->
-
-    <script>
-
-        fetch("components/navbar/navbar.html")
-
-            .then(response => response.text())
-
-            .then(data => {
-
-                document.getElementById("navbar").innerHTML = data;
-
-                const script =
-                    document.createElement("script");
-
-                script.src =
-                    "components/navbar/navbar.js";
-
-                document.body.appendChild(script);
-
-            })
-
-            .catch(error => {
-
-                console.error(
-                    "Error al cargar el navbar:",
-                    error
-                );
-
-            });
-
-    </script>
-
-
-    <script src="js/busqueda.js"></script>
-
+<main class="container py-5">
+<header class="mb-4">
+<h1>Buscar estacionamientos</h1>
+<p>Encuentra un espacio disponible para tu vehículo.</p>
+</header>
+
+<section class="card p-4 mb-4">
+<label for="busquedaEstacionamiento" class="form-label">Buscar estacionamiento</label>
+<input type="text" id="busquedaEstacionamiento" class="form-control" placeholder="Escribe un nombre o ubicación..." autocomplete="off">
+
+<div class="d-flex flex-wrap gap-2 mt-3">
+<button type="button" id="btnAlternarResultados" class="btn btn-primary" aria-expanded="true" aria-controls="listaEstacionamientos">Ocultar resultados</button>
+<button type="button" id="btnLimpiarBusqueda" class="btn btn-outline-secondary">Limpiar búsqueda</button>
+</div>
+<p id="mensajeResultados" class="mt-3 mb-0" aria-live="polite">Se muestran todos los estacionamientos.</p>
+</section>
+
+<section id="listaEstacionamientos" class="row g-3">
+<div class="col-12 col-md-6 col-lg-4 estacionamiento-item" data-nombre="plaza juarez" data-ubicacion="centro de pachuca">
+<article class="card h-100">
+<div class="card-body">
+<h2 class="card-title h5">Plaza Juárez</h2>
+<p class="card-text">Ubicación: Centro de Pachuca</p>
+<p class="card-text">Precio: $22 MXN por hora</p>
+<p class="card-text">Espacios disponibles: 4</p>
+</div>
+</article>
+</div>
+
+<div class="col-12 col-md-6 col-lg-4 estacionamiento-item" data-nombre="estacionamiento universidad" data-ubicacion="zona upp pachuca">
+<article class="card h-100">
+<div class="card-body">
+<h2 class="card-title h5">Estacionamiento Universidad</h2>
+<p class="card-text">Ubicación: Zona UPP, Pachuca</p>
+<p class="card-text">Precio: $18 MXN por hora</p>
+<p class="card-text">Espacios disponibles: 8</p>
+</div>
+</article>
+</div>
+
+<div class="col-12 col-md-6 col-lg-4 estacionamiento-item" data-nombre="estacionamiento hidalgo" data-ubicacion="centro de pachuca">
+<article class="card h-100">
+<div class="card-body">
+<h2 class="card-title h5">Estacionamiento Hidalgo</h2>
+<p class="card-text">Ubicación: Centro de Pachuca</p>
+<p class="card-text">Precio: $20 MXN por hora</p>
+<p class="card-text">Espacios disponibles: 6</p>
+</div>
+</article>
+</div>
+
+<div class="col-12 col-md-6 col-lg-4 estacionamiento-item" data-nombre="campus norte" data-ubicacion="norte de pachuca">
+<article class="card h-100">
+<div class="card-body">
+<h2 class="card-title h5">Campus Norte</h2>
+<p class="card-text">Ubicación: Norte de Pachuca</p>
+<p class="card-text">Precio: $15 MXN por hora</p>
+<p class="card-text">Espacios disponibles: 12</p>
+</div>
+</article>
+</div>
+</section>
+
+<div id="mensajeSinResultados" class="alert alert-warning mt-3 d-none" role="status">
+No se encontraron estacionamientos con esa búsqueda.
+</div>
+</main>
 </body>
-
 </html>
+```
