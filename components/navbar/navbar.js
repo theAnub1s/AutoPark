@@ -32,6 +32,7 @@ const sesionActiva =
 
 const paginasPrivadas = [
     "inicio.html",
+    "busqueda.html",
     "reservas.html",
     "espacios.html",
     "perfil.html"

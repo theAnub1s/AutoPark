@@ -35,45 +35,8 @@
     font-family: "Raleway", sans-serif;
   }
   
-  /* Barra de navegación */
-  .autopark-navbar {
-    min-height: 76px;
-    background: var(--azul-claro);
-    border-bottom: 1px solid rgba(16, 24, 40, .08);
-    padding: 12px 0;
-  }
-  
-  .navbar-brand {
-    color: var(--azul-oscuro) !important;
-    text-decoration: none;
-    font-weight: 700;
-  }
-  
-  .logo-navbar {
-    width: 48px;
-    height: 48px;
-    object-fit: contain;
-  }
-  
-  .brand-name {
-    font-size: 22px;
-  }
-  
-  .nav-link {
-    padding: 10px 14px !important;
-    border-radius: 20px;
-    color: var(--azul-oscuro) !important;
-    font: 14px "Roboto Mono", monospace;
-  }
-  
-  .nav-link:hover {
-    background: rgba(255, 255, 255, .55);
-  }
-  
-  .nav-link.active {
-    background: var(--blanco);
-  }
-  
+  /* Navbar: usar exclusivamente components/navbar/navbar.css. */
+
   /* Contenido principal */
   .main-container {
     padding-top: 32px;
@@ -499,14 +462,6 @@
       padding-top: 24px;
     }
   
-    .navbar-nav {
-      margin-top: 16px;
-    }
-  
-    .nav-link {
-      border-radius: 8px;
-    }
-  
     .filters-section {
       align-items: flex-start;
     }
@@ -711,3 +666,12 @@
     }
   }
   
+/* Contador de duración en la reserva rápida (RF06) */
+.reserva-duracion{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;padding:13px 16px;background:#f5f7fc;border:1px solid var(--gris-borde);border-radius:12px}
+.duracion-titulo{display:block;font-weight:700;color:var(--azul-oscuro)}
+.duracion-nota{display:block;max-width:200px;font:11px/1.5 "Roboto Mono",monospace;color:var(--gris-secundario)}
+.duracion-acciones{display:flex;align-items:center;gap:8px}
+.boton-duracion{width:36px;height:36px;display:grid;place-items:center;padding:0;border-radius:10px;font-size:20px;line-height:1}
+.valor-duracion{min-width:63px;text-align:center;white-space:nowrap;font:600 13px "Roboto Mono",monospace}
+.boton-duracion:disabled{opacity:.45}
+@media(max-width:480px){.reserva-duracion{align-items:stretch}.duracion-acciones{justify-content:flex-end}}

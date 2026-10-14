@@ -25,7 +25,30 @@ function obtenerEstacionamiento(){
     };
 }
 
-const estacionamiento=obtenerEstacionamiento();
+/* Al entrar desde Mis reservas se puede editar una reserva existente.
+   Se usa el mismo formulario de RF06, sin generar un ID nuevo. */
+const idEdicion = new URLSearchParams(window.location.search).get("editar");
+let reservaEnEdicion = null;
+
+function buscarReservaEdicion() {
+    if (idEdicion === null) return null;
+    const reserva = obtenerReservas().find(function coincidirId(item) {
+        return String(item.id) === String(idEdicion);
+    });
+    if (!reserva || !["activa", "Confirmada"].includes(reserva.estado)) return null;
+    return reserva;
+}
+
+reservaEnEdicion = buscarReservaEdicion();
+const estacionamiento = reservaEnEdicion
+    ? (reservaEnEdicion.estacionamiento || {
+        id: reservaEnEdicion.estacionamientoId,
+        nombre: reservaEnEdicion.nombre || "Estacionamiento",
+        ubicacion: reservaEnEdicion.ubicacion || "Ubicación no especificada",
+        precio: Number(reservaEnEdicion.precioHora) || 0,
+        disponibles: 0
+    })
+    : obtenerEstacionamiento();
 
 const detallesExtra={
     1:{minutos:8,horario:"07:00 – 23:00",tipo:"Exterior",acceso:"Automóvil y motocicleta",entrada:"Entrada sobre Av. principal",descripcion:"Zona iluminada · Acceso amplio",servicios:["Iluminación","Vigilancia","Acceso amplio"]},
@@ -132,7 +155,7 @@ function establecerFecha(){
 
     fecha.min=fechaActual;
 
-    if(!fecha.value||fecha.value<fechaActual){
+    if(!fecha.value){
         fecha.value=fechaActual;
     }
 }
@@ -295,6 +318,9 @@ function abrirConfirmacion(){
         estacionamiento.nombre+". Fecha: "+fecha.value+
         ". Horario: "+horaEntrada.value+" a "+horaSalida.value+
         ". Total: $"+reservaTemporal.total.toFixed(2)+" MXN.";
+    if (reservaEnEdicion) {
+        document.getElementById("tituloConfirmacion").textContent = "Confirmar cambios";
+    }
     bootstrap.Modal.getOrCreateInstance(modal).show();
 }
 
@@ -302,16 +328,30 @@ function confirmarDesdeModal(){
     if(!reservaTemporal)return;
 
     const reservas=obtenerReservas();
-    reservas.unshift(reservaTemporal);
 
-    if(!guardarReservas(reservas))return;
+    if (reservaEnEdicion) {
+        const indice = reservas.findIndex(function coincidirReserva(item) {
+            return String(item.id) === String(reservaEnEdicion.id);
+        });
+        if (indice < 0 || !["activa", "Confirmada"].includes(reservas[indice].estado)) {
+            mostrarToast("La reserva ya no está disponible para editar.");
+            return;
+        }
+        // Sustituye la misma reserva: conserva su ID y no genera duplicados.
+        reservas[indice] = { ...reservas[indice], ...reservaTemporal, id: reservas[indice].id };
+    } else {
+        reservas.unshift(reservaTemporal);
+    }
 
-    reservaTemporal=null;
+    if (!guardarReservas(reservas)) return;
 
-    const modal=document.getElementById("modalConfirmarReserva");
+    const fueEdicion = Boolean(reservaEnEdicion);
+    reservaTemporal = null;
+
+    const modal = document.getElementById("modalConfirmarReserva");
     bootstrap.Modal.getOrCreateInstance(modal).hide();
 
-    mostrarToast("Reserva guardada correctamente.");
+    mostrarToast(fueEdicion ? "Cambios guardados correctamente." : "Reserva guardada correctamente.");
 
     setTimeout(redirigirAReservas,800);
 }
@@ -357,6 +397,11 @@ function enviarFormulario(evento){
 
     if(total<=0)return;
 
+    if (idEdicion !== null && !reservaEnEdicion) {
+        mostrarToast("Esta reserva no existe o ya no se puede editar.");
+        return;
+    }
+
     const sesionActiva=localStorage.getItem("sesionActiva")==="true";
 
     if(!sesionActiva){
@@ -370,7 +415,8 @@ function enviarFormulario(evento){
 
     // Formato compatible con las pantallas de reservas trabajadas anteriormente.
     reservaTemporal={
-        id:Date.now(),
+        ...(reservaEnEdicion || {}),
+        id: reservaEnEdicion ? reservaEnEdicion.id : Date.now(),
         nombre:estacionamiento.nombre,
         estacionamiento:estacionamiento,
         estacionamientoId:estacionamiento.id,
@@ -419,9 +465,28 @@ function manejarConfirmacionDelegada(evento){
     if(evento.target.closest("#btnConfirmarReserva"))confirmarDesdeModal();
 }
 
+function prepararModoEdicion() {
+    if (idEdicion === null) return;
+
+    if (!reservaEnEdicion) {
+        reservationMessage.textContent = "Esta reserva ya no existe o no está activa.";
+        reservationMessage.style.color = "#B42318";
+        reservationForm.querySelector('button[type="submit"]').disabled = true;
+        return;
+    }
+
+    document.getElementById("reservationTitle").textContent = "Editar reserva";
+    document.getElementById("reservationSubmitText").textContent = "Guardar cambios";
+    document.getElementById("editModeNotice").classList.remove("d-none");
+    fecha.value = reservaEnEdicion.fecha || fecha.value;
+    horaEntrada.value = reservaEnEdicion.horaEntrada || reservaEnEdicion.entrada || "18:00";
+    horaSalida.value = reservaEnEdicion.horaSalida || reservaEnEdicion.salida || "20:00";
+}
+
 function iniciarAplicacion(){
     mostrarInformacion();
     establecerFecha();
+    prepararModoEdicion();
     calcularTotal();
     horaEntrada.addEventListener("input",calcularTotal);
     horaSalida.addEventListener("input",calcularTotal);
