@@ -90,6 +90,10 @@
                             <p id="parkingDescription">
                                 Zona iluminada · Acceso amplio
                             </p>
+                            <div class="detail-quick-actions">
+                                <button type="button" id="btnFavorito" class="btn btn-outline-secondary detail-quick-button" aria-pressed="false">♡ Favorito</button>
+                                <button type="button" id="btnCopiarUbicacion" class="btn btn-outline-secondary detail-quick-button">Copiar ubicación</button>
+                            </div>
 
                         </div>
 
@@ -155,13 +159,8 @@
                             Servicios
                         </h3>
 
-                        <div id="servicesList">
-
-                            <p>Iluminación</p>
-                            <p>Vigilancia</p>
-                            <p>Acceso amplio</p>
-
-                        </div>
+                        <div id="servicesList" aria-label="Servicios del estacionamiento"></div>
+                        <p id="serviceDescription" class="service-description" aria-live="polite">Selecciona un servicio para ver más información.</p>
 
                     </aside>
 
@@ -180,7 +179,7 @@
 
                 <div class="reservation-title">
 
-                    <p>
+                    <p id="reservationTitle">
                         Reservar espacio
                     </p>
 
@@ -190,6 +189,8 @@
 
                 </div>
 
+
+                <p id="editModeNotice" class="edit-reserva-notice d-none">Editando una reserva existente. Los cambios reemplazarán el horario y el total anteriores.</p>
 
                 <form id="reservationForm">
 
@@ -252,6 +253,19 @@
 
 
 
+                    <!-- INTERACCIÓN LIBRE: COTIZADOR DINÁMICO RF06 -->
+                    <div class="duration-panel">
+                        <div class="duration-copy">
+                            <span id="duracionLabel" class="duration-label">Duración de la reserva</span>
+                            <small class="duration-hint">Cada fracción se cobra como una hora completa.</small>
+                        </div>
+                        <div id="durationControl" class="duration-controls" role="group" aria-labelledby="duracionLabel">
+                            <button type="button" class="btn btn-outline-secondary duration-button" data-duration-action="decrease" aria-label="Reducir una hora">−</button>
+                            <output id="duracionReserva" class="duration-value" aria-live="polite">2 horas</output>
+                            <button type="button" class="btn btn-outline-secondary duration-button" data-duration-action="increase" aria-label="Aumentar una hora">+</button>
+                        </div>
+                    </div>
+
                     <!-- TOTAL -->
 
                     <div class="total-card">
@@ -279,7 +293,7 @@
                         type="submit"
                         class="btn reserve-button"
                     >
-                        Reservar ahora
+                        <span id="reservationSubmitText">Reservar ahora</span>
                     </button>
 
                 </form>
@@ -291,6 +305,17 @@
     </main>
 
 
+
+    <!-- Notificación de acciones -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="toastAutoPark" class="toast" role="status" aria-live="polite" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">AutoPark</strong><small>Notificación</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Cerrar"></button>
+            </div>
+            <div id="mensajeToast" class="toast-body"></div>
+        </div>
+    </div>
 
     <!-- CARGAR NAVBAR -->
 
@@ -311,7 +336,7 @@
                     "components/navbar/navbar.js";
 
 
-                script.onload = () => {
+                script.addEventListener("load", function marcarBuscarActivo() {
 
                     /*
                         detalle.html pertenece
@@ -341,7 +366,7 @@
 
                         });
 
-                };
+                });
 
 
                 document.body.appendChild(

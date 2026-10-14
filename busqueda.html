@@ -1,242 +1,261 @@
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="es" data-bs-theme="light">
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AutoPark | Buscar espacios</title>
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+  <link href="assets/vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
 
-    <title>Buscar estacionamiento - AutoPark</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="assets/vendor/bootstrap/bootstrap.min.css">
-
-    <script src="assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
-
-    <link
-        rel="stylesheet"
-        href="components/navbar/navbar.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="css/busqueda.css"
-    >
+  <link rel="stylesheet" href="css/busqueda.css">
+  <link rel="stylesheet" href="components/navbar/navbar.css">
 </head>
-
-
 <body>
 
-    <!-- NAVBAR -->
-    <div id="navbar"></div>
+  <!-- Mismo navbar reutilizable de todas las pantallas de AutoPark. -->
+  <div id="navbar"></div>
 
+  <main class="container-xl main-container">
 
-    <main class="busqueda-page">
+    <header class="page-header">
+      <h1>Buscar espacio</h1>
+      <p>Encuentra un espacio de estacionamiento disponible por ubicación o zona.</p>
+    </header>
 
-        <h1>Buscar estacionamiento</h1>
+    <section class="search-panel" aria-label="Buscar estacionamientos">
+      <form id="formBusqueda" novalidate>
+        <div class="row g-3 align-items-end">
 
+          <div class="col-12 col-lg-7">
+            <label for="busqueda" class="form-label">Ubicación o nombre</label>
+            <input id="busqueda" class="form-control" type="search"
+              placeholder="Ej. Centro, Universidad, Zona UPP"
+              autocomplete="off">
+          </div>
 
-        <div class="busqueda-layout">
+          <div class="col-12 col-md-6 col-lg-3">
+            <label for="zona" class="form-label">Zona</label>
+            <select id="zona" class="form-select">
+              <option value="todas">Todas las zonas</option>
+              <option value="centro">Centro</option>
+              <option value="upp">Zona UPP</option>
+              <option value="norte">Norte</option>
+            </select>
+          </div>
 
-
-            <!-- =========================
-                 LADO IZQUIERDO
-            ========================== -->
-
-            <section class="busqueda-panel">
-
-
-                <!-- BUSCADOR -->
-
-                <label for="busqueda">
-                    Ubicación o zona
-                </label>
-
-                <div class="search-row">
-
-                    <input class="form-control"
-                        type="text"
-                        id="busqueda"
-                        placeholder="Centro de Pachuca"
-                    >
-
-                    <button
-                        type="button"
-                        id="btnBuscar"
-                        class="btn btn-buscar"
-                    >
-                        Buscar
-                    </button>
-
-                </div>
-
-
-                <!-- FILTROS -->
-
-                <div class="filtros">
-
-                    <p>Filtros</p>
-
-
-                    <div class="filter-buttons">
-
-                        <button
-                            class="btn filter-btn active"
-                            data-filter="disponibles"
-                        >
-                            Disponibles
-                        </button>
-
-
-                        <button
-                            class="btn filter-btn"
-                            data-filter="precio"
-                        >
-                            ≤ $25/h
-                        </button>
-
-
-                        <button
-                            class="btn filter-btn"
-                            data-filter="ahora"
-                        >
-                            Ahora
-                        </button>
-
-
-                        <button
-                            class="btn filter-btn"
-                            data-filter="cubierto"
-                        >
-                            Cubierto
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <!-- CONTADOR -->
-
-                <p
-                    id="contadorResultados"
-                    class="results-count"
-                >
-                    0 resultados
-                </p>
-
-
-                <!-- RESULTADOS -->
-
-                <div id="resultados"></div>
-
-
-                <!-- SIN RESULTADOS -->
-
-                <div
-                    id="sinResultados"
-                    class="sin-resultados hidden"
-                >
-
-                    <h2>
-                        No encontramos espacios
-                    </h2>
-
-                    <p>
-                        Intenta cambiar tu búsqueda o los filtros.
-                    </p>
-
-                    <button
-                        id="btnLimpiar"
-                        class="btn btn-limpiar"
-                    >
-                        Limpiar búsqueda
-                    </button>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- =========================
-                 MAPA
-            ========================== -->
-
-            <aside class="map-card">
-
-                <h2>
-                    Mapa de resultados
-                </h2>
-
-
-                <div
-                    class="fake-map"
-                    id="mapaResultados"
-                >
-
-                    <div class="street street-v s1"></div>
-                    <div class="street street-v s2"></div>
-                    <div class="street street-v s3"></div>
-                    <div class="street street-v s4"></div>
-                    <div class="street street-v s5"></div>
-
-                    <div class="street street-h h1"></div>
-                    <div class="street street-h h2"></div>
-                    <div class="street street-h h3"></div>
-                    <div class="street street-h h4"></div>
-
-
-                    <div id="mapPins"></div>
-
-                </div>
-
-            </aside>
+          <div class="col-12 col-md-6 col-lg-2">
+            <button class="btn btn-primary w-100 btn-search" type="submit">
+              Buscar
+            </button>
+          </div>
 
         </div>
+      </form>
+    </section>
 
-    </main>
+    <section class="filters-section">
+      <div class="filter-buttons" role="group" aria-label="Filtros por zona">
+        <button class="filter-btn active" type="button"
+          data-zone="todas" aria-pressed="true">Todas</button>
+        <button class="filter-btn" type="button"
+          data-zone="centro" aria-pressed="false">Centro</button>
+        <button class="filter-btn" type="button"
+          data-zone="upp" aria-pressed="false">Zona UPP</button>
+        <button class="filter-btn" type="button"
+          data-zone="norte" aria-pressed="false">Norte</button>
+      </div>
 
+      <div class="sort-container">
+        <label for="ordenar">Ordenar por</label>
+        <select id="ordenar" class="form-select sort-select">
+          <option value="disponibilidad">Mayor disponibilidad</option>
+          <option value="precio">Menor precio</option>
+          <option value="distancia">Menor distancia</option>
+        </select>
+      </div>
+    </section>
 
+    <section class="results-section">
+      <div class="results-header">
+        <div>
+          <h2>Espacios disponibles</h2>
+          <p id="contadorResultados" aria-live="polite">
+            Cargando estacionamientos...
+          </p>
+        </div>
 
-    <!-- NAVBAR -->
+        <button id="btnLimpiar" class="btn btn-outline-secondary btn-clear" type="button">
+          Limpiar filtros
+        </button>
+      </div>
 
-    <script>
+      <div id="resultados" class="row g-4"></div>
 
-        fetch("components/navbar/navbar.html")
+      <div id="sinResultados" class="no-results d-none">
+        <div class="no-results-icon">⌕</div>
+        <h3>No encontramos espacios</h3>
+        <p>Prueba con otra ubicación o selecciona una zona diferente.</p>
+        <button id="btnReiniciar" class="btn btn-primary" type="button">
+          Mostrar todos
+        </button>
+      </div>
+    </section>
+  </main>
 
-            .then(response => response.text())
+  <!-- Modal de detalles -->
+  <div class="modal fade" id="modalDetalles" tabindex="-1"
+    aria-labelledby="modalTitulo" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content autopark-modal">
 
-            .then(data => {
+        <div class="modal-header">
+          <h2 class="modal-title" id="modalTitulo">Detalle del estacionamiento</h2>
+          <button type="button" class="btn-close"
+            data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
 
-                document.getElementById("navbar").innerHTML = data;
+        <div class="modal-body">
+          <div class="modal-parking-logo">
+            <img src="assets/images/logo-autopark.png" alt="AutoPark">
+          </div>
 
-                const script =
-                    document.createElement("script");
+          <div class="modal-info">
+            <p><strong>Ubicación</strong><span id="modalUbicacion"></span></p>
+            <p><strong>Zona</strong><span id="modalZona"></span></p>
+            <p><strong>Precio por hora</strong><span id="modalPrecio"></span></p>
+            <p><strong>Espacios libres</strong><span id="modalDisponibles"></span></p>
+            <p><strong>Distancia estimada</strong><span id="modalDistancia"></span></p>
+          </div>
+        </div>
 
-                script.src =
-                    "components/navbar/navbar.js";
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary"
+            data-bs-dismiss="modal">Cerrar</button>
+          <button id="btnAbrirReserva" type="button" class="btn btn-primary">
+            Reservar espacio
+          </button>
+        </div>
 
-                document.body.appendChild(script);
+      </div>
+    </div>
+  </div>
 
-            })
+  <!-- Modal de reserva -->
+  <div class="modal fade" id="modalReserva" tabindex="-1"
+    aria-labelledby="tituloReserva" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content autopark-modal">
 
-            .catch(error => {
+        <div class="modal-header">
+          <h2 class="modal-title" id="tituloReserva">Reservar espacio</h2>
+          <button type="button" class="btn-close"
+            data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
 
-                console.error(
-                    "Error al cargar el navbar:",
-                    error
-                );
+        <form id="formReserva" novalidate>
+          <div class="modal-body">
 
-            });
+            <p id="reservaEstacionamiento" class="reservation-name"></p>
 
-    </script>
+            <div class="mb-3">
+              <label for="fechaReserva" class="form-label">Fecha</label>
+              <input id="fechaReserva" class="form-control" type="date" required>
+              <div class="invalid-feedback">Selecciona una fecha válida.</div>
+            </div>
 
+            <div class="row g-3">
+              <div class="col-6">
+                <label for="horaEntrada" class="form-label">Hora de entrada</label>
+                <input id="horaEntrada" class="form-control"
+                  type="time" value="18:00" required>
+                <div class="invalid-feedback">Indica la entrada.</div>
+              </div>
 
-    <script src="js/busqueda.js"></script>
+              <div class="col-6">
+                <label for="horaSalida" class="form-label">Hora de salida</label>
+                <input id="horaSalida" class="form-control"
+                  type="time" value="20:00" required>
+                <div class="invalid-feedback">Debe ser posterior a la entrada.</div>
+              </div>
+            </div>
 
+            <!-- Cotizador dinámico, compartiendo la lógica del formulario RF06. -->
+            <div class="reserva-duracion mt-3" aria-label="Duración de la reserva">
+              <div>
+                <span id="etiquetaDuracionBusqueda" class="duracion-titulo">Duración</span>
+                <small class="duracion-nota">Cada fracción se cobra como una hora completa.</small>
+              </div>
+              <div id="controlDuracionBusqueda" class="duracion-acciones" role="group" aria-labelledby="etiquetaDuracionBusqueda">
+                <button type="button" class="btn btn-outline-secondary boton-duracion" data-duration-action="decrease" aria-label="Reducir una hora">−</button>
+                <output id="horasDuracionBusqueda" class="valor-duracion" aria-live="polite" aria-atomic="true">2 horas</output>
+                <button type="button" class="btn btn-outline-secondary boton-duracion" data-duration-action="increase" aria-label="Aumentar una hora">+</button>
+              </div>
+            </div>
+
+            <div class="total-card mt-3">
+              <span>Total estimado</span>
+              <strong id="totalEstimado">$0 MXN</strong>
+              <small id="detalleHoras">Selecciona el horario de tu reserva.</small>
+            </div>
+
+            <div id="errorHorario" class="alert alert-danger d-none mt-3" role="alert">
+              La hora de salida debe ser posterior a la entrada.
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary"
+              data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Confirmar reserva</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Notificaciones -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="toastAutoPark" class="toast align-items-center border-0"
+      role="status" aria-live="polite" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body" id="toastMensaje">Acción completada.</div>
+        <button type="button" class="btn-close me-2 m-auto"
+          data-bs-dismiss="toast" aria-label="Cerrar notificación"></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+  <!-- Navbar centralizado: conserva enlaces, sesión, logo y cierre de sesión. -->
+  <script>
+    function comprobarNavbarBusqueda(respuesta) {
+      if (!respuesta.ok) {
+        throw new Error("No se pudo cargar el navbar (" + respuesta.status + ")");
+      }
+      return respuesta.text();
+    }
+
+    function montarNavbarBusqueda(marcado) {
+      document.getElementById("navbar").innerHTML = marcado;
+      const scriptNavbar = document.createElement("script");
+      scriptNavbar.src = "components/navbar/navbar.js";
+      document.body.appendChild(scriptNavbar);
+    }
+
+    function reportarErrorNavbarBusqueda(error) {
+      console.error("Error al cargar el navbar de AutoPark:", error);
+    }
+
+    fetch("components/navbar/navbar.html")
+      .then(comprobarNavbarBusqueda)
+      .then(montarNavbarBusqueda)
+      .catch(reportarErrorNavbarBusqueda);
+  </script>
+  <script src="js/busqueda.js"></script>
 </body>
-
 </html>

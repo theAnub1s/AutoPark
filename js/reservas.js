@@ -116,8 +116,25 @@ function cargarReservas() {
 }
 
 
-let reservas =
-    cargarReservas();
+/* Compatibilidad con reservas anteriores creadas desde otras pantallas. */
+function normalizarReserva(reserva) {
+    if (!reserva || typeof reserva !== "object") return null;
+    const estacionamiento = reserva.estacionamiento || {
+        id: reserva.estacionamientoId,
+        nombre: reserva.nombre || "Estacionamiento",
+        ubicacion: reserva.ubicacion || "Ubicación no especificada",
+        precio: Number(reserva.precioHora) || 0
+    };
+    return {
+        ...reserva,
+        estacionamiento,
+        horaEntrada: reserva.horaEntrada || reserva.entrada || "",
+        horaSalida: reserva.horaSalida || reserva.salida || "",
+        estado: reserva.estado === "Confirmada" ? "activa" : reserva.estado
+    };
+}
+
+let reservas = cargarReservas().map(normalizarReserva).filter(Boolean);
 
 
 /* =========================
@@ -300,6 +317,15 @@ function mostrarReservas() {
                             ? `
                                 <button
                                     type="button"
+                                    class="btn btn-detail"
+                                    data-action="editar"
+                                    data-id="${reserva.id}"
+                                >
+                                    Editar
+                                </button>
+
+                                <button
+                                    type="button"
                                     class="btn btn-cancel"
                                     data-action="cancelar"
                                     data-id="${reserva.id}"
@@ -434,6 +460,14 @@ reservasContainer.addEventListener(
             window.location.href =
                 "detalle.html";
 
+        }
+
+
+        /* EDITAR: reutilizar el formulario de detalle sin crear otra reserva. */
+        if (button.dataset.action === "editar" && reserva.estado === "activa") {
+            sessionStorage.setItem("estacionamientoSeleccionado", JSON.stringify(reserva.estacionamiento));
+            window.location.href = "detalle.html?editar=" + encodeURIComponent(reserva.id);
+            return;
         }
 
 

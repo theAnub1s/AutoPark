@@ -504,3 +504,24 @@ body {
     }
 
 }
+/* RF06 - Interacciones integradas en el diseño original */
+.detail-quick-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.detail-quick-button{border-radius:22px;font:13px "Roboto Mono",monospace}
+.service-item{display:block;width:100%;margin:8px 0;padding:10px 12px;border:1px solid #B8C7D9;border-radius:10px;background:#fff;color:#475467;text-align:left;font:13px "Roboto Mono",monospace;cursor:pointer}
+.service-item.active,.service-item:hover{background:#C4E3FF;color:#101828;border-color:#475467}
+.service-description{margin:14px 0 0;padding:10px 0 0;border-top:1px solid #B8C7D9;font:12px/1.5 "Roboto Mono",monospace;color:#475467}
+.duration-panel{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-top:3px;padding:16px;border:1px solid #B8C7D9;border-radius:16px;background:#F6F8FC}
+.duration-copy{min-width:0;flex:1 1 160px}
+.duration-label{display:block;margin-bottom:6px;font:14px "Roboto Mono",monospace;color:#101828}
+.duration-hint{display:block;font:12px/1.5 "Roboto Mono",monospace;color:#475467}
+.duration-controls{display:flex;align-items:center;gap:7px}
+.duration-button{width:40px;height:40px;padding:0;display:grid;place-items:center;border-radius:12px;font-size:22px;line-height:1}
+.duration-value{min-width:62px;text-align:center;font:600 16px "Roboto",sans-serif;color:#101828}
+.duration-button:disabled{opacity:.45}
+.reservation-card.reservation-highlight{box-shadow:0 8px 24px rgba(71,84,103,.16)}
+.toast{border:1px solid #B8C7D9;border-radius:12px}
+.toast-header{background:#C4E3FF;color:#101828}
+@media(max-width:480px){.page-header h1{font-size:32px}.reservation-card{padding:20px}.duration-controls{width:100%;justify-content:center}}
+
+/* Información al editar una reserva existente */
+.edit-reserva-notice{margin:0 0 18px;padding:12px 14px;border:1px solid #B8C7D9;border-radius:12px;background:#E4E8F7;color:#475467;font:13px/1.5 "Roboto Mono",monospace}
