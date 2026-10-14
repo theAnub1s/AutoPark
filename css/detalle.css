@@ -1,103 +1,524 @@
-:root{--azul:#557ef7;--azul-oscuro:#1f1e50;--fondo:#e5eaf5;--rosa:#ff6f82;--blanco:#fff;--texto:#344054;--gris:#667085;--borde:#e4e7ec;--tarjeta:#fff;--sombra:0 10px 30px rgba(31,30,80,.07)}
-*{box-sizing:border-box}
-body{margin:0;background:#f7f8fc;color:var(--texto);font-family:"Raleway",sans-serif}
-button,input{font:inherit}
-.navbar-autopark{background:var(--azul-oscuro);padding:12px 0}
-.navbar-brand{font-weight:800;letter-spacing:.3px}
-.logo{width:38px;height:38px;object-fit:contain;border-radius:8px}
-.nav-link{font-weight:600}
-.btn{border-radius:10px;font-weight:700;padding:10px 15px}
-.btn-primary{background:var(--azul);border-color:var(--azul)}
-.btn-primary:hover{background:#3e64d9;border-color:#3e64d9}
-.btn-outline-primary{color:var(--azul);border-color:var(--azul)}
-.btn-outline-primary:hover{background:var(--azul);border-color:var(--azul)}
-h1,h2,h3,p{overflow-wrap:break-word}
-h1{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;color:var(--azul-oscuro)}
-h2{font-size:1.35rem;font-weight:800;color:var(--azul-oscuro)}
-h3{font-size:1.15rem;font-weight:800}
-.eyebrow{color:var(--azul);font-family:"Roboto Mono",monospace;font-size:.76rem;font-weight:600;letter-spacing:1.2px}
-.subtitle,.muted{color:var(--gris)}
-.back-link{color:var(--azul);font-weight:700;text-decoration:none}
-.back-link:hover{text-decoration:underline}
-.parking-hero,.content-card,.booking-card,.help-card,.info-card{background:var(--tarjeta);border:1px solid var(--borde);border-radius:18px;box-shadow:var(--sombra)}
-.parking-hero{overflow:hidden}
-.parking-illustration{position:relative;display:flex;align-items:center;justify-content:center;min-height:210px;overflow:hidden;background:linear-gradient(135deg,#e5eaf5,#d6def5)}
-.parking-sign{position:absolute;top:22px;left:24px;display:grid;place-items:center;width:52px;height:52px;border-radius:12px;background:var(--azul);color:white;font-family:"Roboto Mono",monospace;font-size:1.7rem;font-weight:700;box-shadow:0 5px 12px #557ef744}
-.parking-car{z-index:1;font-size:5rem;filter:drop-shadow(0 8px 5px #1f1e5022)}
-.parking-lines{position:absolute;bottom:-20px;left:0;width:100%;height:75px;background:repeating-linear-gradient(110deg,transparent 0 55px,#fff 56px 65px,transparent 66px 110px);opacity:.8}
-.parking-content{padding:24px}
-.status-badge,.zone-badge{display:inline-flex;align-items:center;gap:7px;border-radius:30px;padding:7px 11px;font-size:.8rem;font-weight:700}
-.status-badge{background:#e8f8ee;color:#18794e}
-.status-dot{width:8px;height:8px;border-radius:50%;background:#20a464}
-.zone-badge{background:#eef2ff;color:#3949ab}
-.parking-actions{display:flex;flex-wrap:wrap;gap:10px}
-.info-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.info-card{padding:20px 16px}
-.info-icon{font-size:1.5rem}
-.info-card p{margin:10px 0 5px;color:var(--gris);font-size:.88rem}
-.info-card h3{margin:0;color:var(--azul-oscuro);font-family:"Roboto Mono",monospace}
-.content-card{padding:24px}
-.detail-row{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;padding:14px 0;border-bottom:1px solid var(--borde)}
-.detail-row:last-child{border-bottom:0;padding-bottom:0}
-.detail-row span{color:var(--gris)}
-.detail-row strong{text-align:right}
-.service-list{display:flex;flex-wrap:wrap;gap:10px}
-.service-button{padding:10px 13px;border:1px solid var(--borde);border-radius:10px;background:var(--tarjeta);color:var(--texto);font-weight:700;cursor:pointer;transition:.2s}
-.service-button:hover,.service-button.active{border-color:var(--azul);background:#eef2ff;color:var(--azul-oscuro)}
-.service-description{margin-top:15px;padding:13px;border-radius:10px;background:#f2f4f7;color:var(--gris);font-size:.92rem}
-.booking-card{position:sticky;top:20px;padding:25px}
-.booking-card h2{font-size:1.55rem}
-.price-display{margin:22px 0;display:flex;align-items:baseline;gap:8px;color:var(--azul-oscuro)}
-.price-display span{font-family:"Roboto Mono",monospace;font-size:2rem;font-weight:700}
-.price-display small{color:var(--gris)}
-.summary-line{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--borde);font-size:.9rem}
-.summary-line span{color:var(--gris)}
-.summary-line strong{text-align:right}
-.small-note{color:var(--gris);font-size:.78rem;line-height:1.5}
-.help-card{padding:20px}
-.help-card h3{color:var(--azul-oscuro)}
-.modal-content{background:var(--tarjeta);border:1px solid var(--borde);border-radius:18px;color:var(--texto)}
-.modal-header,.modal-footer{border-color:var(--borde);padding:20px 24px}
-.modal-body{padding:24px}
-.form-label{font-weight:700;font-size:.9rem}
-.form-control{border-color:#d0d5dd;border-radius:10px;padding:11px}
-.form-control:focus,.form-select:focus{border-color:var(--azul);box-shadow:0 0 0 3px rgba(85,126,247,.15)}
-.cost-box{padding:16px;border:1px solid var(--borde);border-radius:12px;background:#f8f9fc}
-.total-price{color:var(--azul);font-family:"Roboto Mono",monospace;font-size:1.25rem}
-.form-message{font-size:.88rem;color:#b42318}
-.toast{background:var(--tarjeta);color:var(--texto);box-shadow:var(--sombra);border-radius:12px;overflow:hidden}
-.toast-header{background:var(--tarjeta);color:var(--texto);border-color:var(--borde)}
-[data-bs-theme="dark"] body{background:#101828;color:#eaecf0}
-[data-bs-theme="dark"] h1,[data-bs-theme="dark"] h2,[data-bs-theme="dark"] h3,[data-bs-theme="dark"] .info-card h3{color:#e0e7ff}
-[data-bs-theme="dark"] .parking-hero,[data-bs-theme="dark"] .content-card,[data-bs-theme="dark"] .booking-card,[data-bs-theme="dark"] .help-card,[data-bs-theme="dark"] .info-card,[data-bs-theme="dark"] .modal-content,[data-bs-theme="dark"] .toast,[data-bs-theme="dark"] .toast-header{background:#1d2939;color:#eaecf0;border-color:#344054}
-[data-bs-theme="dark"] .muted,[data-bs-theme="dark"] .subtitle,[data-bs-theme="dark"] .info-card p,[data-bs-theme="dark"] .detail-row span,[data-bs-theme="dark"] .summary-line span,[data-bs-theme="dark"] .small-note{color:#c0c7d2}
-[data-bs-theme="dark"] .parking-illustration{background:linear-gradient(135deg,#344054,#1d2939)}
-[data-bs-theme="dark"] .service-button{background:#1d2939;color:#eaecf0;border-color:#475467}
-[data-bs-theme="dark"] .service-button:hover,[data-bs-theme="dark"] .service-button.active{background:#344054;color:#fff}
-[data-bs-theme="dark"] .service-description,[data-bs-theme="dark"] .cost-box{background:#101828;color:#d0d5dd;border-color:#344054}
-[data-bs-theme="dark"] .form-control{background:#101828;color:#eaecf0;border-color:#475467}
-[data-bs-theme="dark"] .form-control:focus{border-color:var(--azul)}
-@media(max-width:767px){.info-grid{grid-template-columns:1fr}.info-card{display:grid;grid-template-columns:40px 1fr;align-items:center;column-gap:10px;padding:15px}.info-icon{grid-row:span 2}.info-card p{margin:0}.info-card h3{margin-top:4px}.parking-illustration{min-height:160px}.parking-content,.content-card{padding:19px}.booking-card{position:static}.detail-row{gap:12px;font-size:.9rem}.detail-row strong{max-width:58%}}
-@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
-/* Estados de validación */
-.form-group input.is-valid{border-color:#12B76A}
-.form-group input.is-invalid{border-color:#F04438}
-.reservation-form.was-validated input:invalid{border-color:#F04438}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600&display=swap');
 
-/* Servicios interactivos */
-.service-item{display:block;width:100%;margin:8px 0;padding:10px 12px;text-align:left;border:1px solid #B8C7D9;border-radius:10px;background:#fff;color:#475467;cursor:pointer;transition:background-color .2s,border-color .2s}
-.service-item:hover,.service-item.active{background:#C4E3FF;border-color:#475467;color:#101828}
 
-/* Realce de la tarjeta */
-.reservation-card{transition:box-shadow .2s ease}
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+
+    background-color: #E4E8F7;
+
+    color: #101828;
+}
+
+
+/* =========================
+   PÁGINA
+========================= */
+
+.detalle-page {
+    width: 100%;
+    max-width: 1440px;
+
+    margin: 0 auto;
+
+    padding: 34px 56px 80px;
+}
+
+
+/* =========================
+   ENCABEZADO
+========================= */
+
+.page-header {
+    margin-bottom: 34px;
+}
+
+
+.page-header h1 {
+    margin: 0;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 42px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+.page-header p {
+    margin: 20px 0 0;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+
+    color: #475467;
+}
+
+
+/* =========================
+   DISTRIBUCIÓN
+========================= */
+
+.detalle-layout {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 760px)
+        minmax(400px, 534px);
+
+    gap: 34px;
+
+    align-items: start;
+}
+
+
+/* =========================
+   VISTA PREVIA
+========================= */
+
+.parking-preview {
+    min-height: 360px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 50px 46px;
+
+    background-color: #C4E3FF;
+
+    border-radius: 22px;
+}
+
+
+.parking-preview-card {
+    width: 100%;
+    min-height: 260px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 42px;
+
+    padding: 38px 76px;
+
+    background-color: #FFFFFF;
+
+    border-radius: 18px;
+}
+
+
+/* LOGO */
+
+.parking-image {
+    width: 210px;
+    height: 150px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #475467;
+
+    border-radius: 20px;
+}
+
+
+.parking-image img {
+    width: 120px;
+    height: 120px;
+
+    object-fit: contain;
+}
+
+
+/* INFORMACIÓN */
+
+.parking-preview-info h2 {
+    margin: 0;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+.parking-preview-info p {
+    margin: 28px 0 0;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    color: #475467;
+}
+
+
+/* =========================
+   DETALLES
+========================= */
+
+.details-section {
+    margin-top: 50px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        232px;
+
+    gap: 28px;
+
+    align-items: end;
+}
+
+
+.details-content h2 {
+    margin: 0 0 30px;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+
+    color: #475467;
+}
+
+
+.details-text p {
+    margin: 12px 0;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+
+    color: #475467;
+}
+
+
+.details-text span {
+    font-weight: 400;
+}
+
+
+/* =========================
+   SERVICIOS
+========================= */
+
+.services-card {
+    min-height: 156px;
+
+    padding: 22px 24px;
+
+    background-color: #FFFFFF;
+
+    border: 1px solid #B8C7D9;
+    border-radius: 18px;
+}
+
+
+.services-card h3 {
+    margin: 0 0 20px;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+.services-card p {
+    margin: 8px 0;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 14px;
+
+    color: #475467;
+}
+
+
+/* =========================
+   RESERVA
+========================= */
+
+.reservation-card {
+    min-height: 584px;
+
+    padding: 20px 36px 32px;
+
+    background-color: #FFFFFF;
+
+    border: 1px solid #B8C7D9;
+    border-radius: 18px;
+}
+
+
+.reservation-title p {
+    margin: 0;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+.reservation-title h2 {
+    margin: 18px 0 30px;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 30px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+/* =========================
+   FORMULARIO
+========================= */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+
+.form-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 22px;
+}
+
+
+.form-group label {
+    font-family: "Roboto Mono", monospace;
+    font-size: 14px;
+
+    color: #475467;
+}
+
+
+.form-group input {
+    width: 100%;
+    height: 56px;
+
+    padding: 0 16px;
+
+    border: 1px solid #B8C7D9;
+    border-radius: 12px;
+
+    outline: none;
+
+    background-color: #FFFFFF;
+
+    color: #101828;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.form-group input:focus {
+    border-color: #475467;
+
+    box-shadow:
+        0 0 0 3px rgba(132, 215, 230, 0.35);
+}
+
+
+/* =========================
+   TOTAL
+========================= */
+
+.total-card {
+    min-height: 92px;
+
+    margin-top: 22px;
+
+    padding: 20px 22px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+
+    border: 1px solid #B8C7D9;
+    border-radius: 18px;
+
+    background-color: #FFFFFF;
+}
+
+
+.total-card span {
+    font-family: "Roboto Mono", monospace;
+    font-size: 14px;
+
+    color: #475467;
+}
+
+
+.total-card strong {
+    font-family: "Roboto", sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+
+    color: #101828;
+}
+
+
+/* =========================
+   MENSAJE
+========================= */
+
+.reservation-message {
+    min-height: 22px;
+
+    margin: 14px 0 0;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 13px;
+}
+
+
+/* =========================
+   BOTÓN
+========================= */
+
+.reserve-button {
+    width: 100%;
+    height: 54px;
+
+    margin-top: 8px;
+
+    border: none;
+    border-radius: 24px;
+
+    background-color: #475467;
+
+    color: #FFFFFF;
+
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.15s ease;
+}
+
+
+.reserve-button:hover {
+    background-color: #344054;
+}
+
+
+.reserve-button:active {
+    transform: scale(0.98);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1050px) {
+
+    .detalle-layout {
+        grid-template-columns: 1fr;
+    }
+
+
+    .reservation-card {
+        width: 100%;
+    }
+
+}
+
+
+@media (max-width: 750px) {
+
+    .detalle-page {
+        padding: 30px 20px 60px;
+    }
+
+
+    .page-header h1 {
+        font-size: 40px;
+    }
+
+
+    .parking-preview {
+        min-height: auto;
+
+        padding: 30px 20px;
+    }
+
+
+    .parking-preview-card {
+        min-height: auto;
+
+        padding: 30px;
+
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+
+    .parking-image {
+        width: 100%;
+    }
+
+
+    .details-section {
+        grid-template-columns: 1fr;
+    }
+
+
+    .services-card {
+        width: 100%;
+    }
+
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+}
+/* RF06 - Interacciones integradas en el diseño original */
+.detail-quick-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.detail-quick-button{border-radius:22px;font:13px "Roboto Mono",monospace}
+.service-item{display:block;width:100%;margin:8px 0;padding:10px 12px;border:1px solid #B8C7D9;border-radius:10px;background:#fff;color:#475467;text-align:left;font:13px "Roboto Mono",monospace;cursor:pointer}
+.service-item.active,.service-item:hover{background:#C4E3FF;color:#101828;border-color:#475467}
+.service-description{margin:14px 0 0;padding:10px 0 0;border-top:1px solid #B8C7D9;font:12px/1.5 "Roboto Mono",monospace;color:#475467}
+.duration-panel{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-top:3px;padding:16px;border:1px solid #B8C7D9;border-radius:16px;background:#F6F8FC}
+.duration-copy{min-width:0;flex:1 1 160px}
+.duration-label{display:block;margin-bottom:6px;font:14px "Roboto Mono",monospace;color:#101828}
+.duration-hint{display:block;font:12px/1.5 "Roboto Mono",monospace;color:#475467}
+.duration-controls{display:flex;align-items:center;gap:7px}
+.duration-button{width:40px;height:40px;padding:0;display:grid;place-items:center;border-radius:12px;font-size:22px;line-height:1}
+.duration-value{min-width:62px;text-align:center;font:600 16px "Roboto",sans-serif;color:#101828}
+.duration-button:disabled{opacity:.45}
 .reservation-card.reservation-highlight{box-shadow:0 8px 24px rgba(71,84,103,.16)}
-
-/* Compatibilidad con dispositivos móviles */
-@media(max-width:750px){.service-item{padding:12px}}
-/* RF06: controles accesibles y responsivos para el contador dinámico. */
-.duration-controls{display:flex;align-items:center;gap:8px;flex-wrap:nowrap}
-.duration-button{width:36px;height:36px;display:grid;place-items:center;padding:0;font-size:1.25rem;line-height:1}
-.duration-value{display:inline-block;min-width:60px;text-align:center;font-weight:700;white-space:nowrap;font-family:"Roboto Mono",monospace;font-size:.85rem}
-.duration-button:disabled{opacity:.4;cursor:not-allowed}
-[data-bs-theme="dark"] .duration-value{color:#eaecf0}
-@media(max-width:410px){.duration-controls{gap:4px}.duration-button{width:32px;height:32px}.duration-value{min-width:56px}}
+.toast{border:1px solid #B8C7D9;border-radius:12px}
+.toast-header{background:#C4E3FF;color:#101828}
+@media(max-width:480px){.page-header h1{font-size:32px}.reservation-card{padding:20px}.duration-controls{width:100%;justify-content:center}}
