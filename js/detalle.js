@@ -1,801 +1,477 @@
+"use strict";
+
 /* =========================
    ESTACIONAMIENTO
 ========================= */
 
-const estacionamientoGuardado =
-    sessionStorage.getItem(
-        "estacionamientoSeleccionado"
-    );
-
-
-/*
-    Si detalle.html se abre directamente
-    sin venir desde la búsqueda, se usa
-    este estacionamiento de ejemplo.
-*/
-
-const estacionamiento =
-    estacionamientoGuardado
-        ? JSON.parse(estacionamientoGuardado)
-        : {
-            id: 1,
-            nombre: "Estacionamiento Centro",
-            ubicacion: "Centro de Pachuca",
-            precio: 20,
-            disponibles: 5,
-            distancia: 0.8
-        };
-
-
-/* =========================
-   INFORMACIÓN EXTRA
-========================= */
-
-const detallesExtra = {
-
-    1: {
-        minutos: 8,
-        horario: "07:00 – 23:00",
-        tipo: "Exterior",
-        acceso: "Automóvil y motocicleta",
-        entrada: "Entrada sobre Av. principal",
-        descripcion:
-            "Zona iluminada · Acceso amplio",
-
-        servicios: [
-            "Iluminación",
-            "Vigilancia",
-            "Acceso amplio"
-        ]
-    },
-
-
-    2: {
-        minutos: 12,
-        horario: "08:00 – 21:00",
-        tipo: "Exterior",
-        acceso: "Automóvil y motocicleta",
-        entrada: "Entrada por zona universitaria",
-        descripcion:
-            "Acceso rápido · Zona transitada",
-
-        servicios: [
-            "Iluminación",
-            "Vigilancia",
-            "Acceso amplio"
-        ]
-    },
-
-
-    3: {
-        minutos: 10,
-        horario: "07:00 – 22:00",
-        tipo: "Cubierto",
-        acceso: "Automóvil",
-        entrada: "Entrada sobre Av. principal",
-        descripcion:
-            "Zona cubierta · Acceso controlado",
-
-        servicios: [
-            "Área cubierta",
-            "Vigilancia",
-            "Iluminación"
-        ]
-    },
-
-
-    4: {
-        minutos: 15,
-        horario: "08:00 – 20:00",
-        tipo: "Exterior",
-        acceso: "Automóvil y motocicleta",
-        entrada: "Entrada norte",
-        descripcion:
-            "Espacio amplio · Fácil acceso",
-
-        servicios: [
-            "Iluminación",
-            "Acceso amplio"
-        ]
-    },
-
-
-    5: {
-        minutos: 13,
-        horario: "08:00 – 22:00",
-        tipo: "Cubierto",
-        acceso: "Automóvil",
-        entrada: "Entrada por Plaza Universidad",
-        descripcion:
-            "Zona cubierta · Vigilancia",
-
-        servicios: [
-            "Área cubierta",
-            "Vigilancia",
-            "Iluminación"
-        ]
-    },
-
-
-    6: {
-        minutos: 18,
-        horario: "07:00 – 22:00",
-        tipo: "Exterior",
-        acceso: "Automóvil y motocicleta",
-        entrada: "Acceso Las Torres",
-        descripcion:
-            "Acceso amplio · Área iluminada",
-
-        servicios: [
-            "Iluminación",
-            "Acceso amplio"
-        ]
+// Recupera el estacionamiento seleccionado desde la búsqueda.
+function obtenerEstacionamiento(){
+    try{
+        const guardado=sessionStorage.getItem("estacionamientoSeleccionado");
+        if(guardado){
+            const datos=JSON.parse(guardado);
+            if(datos&&datos.id)return datos;
+        }
+    }catch(error){
+        console.error("Error al recuperar el estacionamiento:",error);
     }
+    return {
+        id:1,
+        nombre:"Estacionamiento Centro",
+        ubicacion:"Centro de Pachuca",
+        precio:20,
+        disponibles:5,
+        distancia:0.8
+    };
+}
 
+const estacionamiento=obtenerEstacionamiento();
+
+const detallesExtra={
+    1:{minutos:8,horario:"07:00 – 23:00",tipo:"Exterior",acceso:"Automóvil y motocicleta",entrada:"Entrada sobre Av. principal",descripcion:"Zona iluminada · Acceso amplio",servicios:["Iluminación","Vigilancia","Acceso amplio"]},
+    2:{minutos:12,horario:"08:00 – 21:00",tipo:"Exterior",acceso:"Automóvil y motocicleta",entrada:"Entrada por zona universitaria",descripcion:"Acceso rápido · Zona transitada",servicios:["Iluminación","Vigilancia","Acceso amplio"]},
+    3:{minutos:10,horario:"07:00 – 22:00",tipo:"Cubierto",acceso:"Automóvil",entrada:"Entrada sobre Av. principal",descripcion:"Zona cubierta · Acceso controlado",servicios:["Área cubierta","Vigilancia","Iluminación"]},
+    4:{minutos:15,horario:"08:00 – 20:00",tipo:"Exterior",acceso:"Automóvil y motocicleta",entrada:"Entrada norte",descripcion:"Espacio amplio · Fácil acceso",servicios:["Iluminación","Acceso amplio"]},
+    5:{minutos:13,horario:"08:00 – 22:00",tipo:"Cubierto",acceso:"Automóvil",entrada:"Entrada por Plaza Universidad",descripcion:"Zona cubierta · Vigilancia",servicios:["Área cubierta","Vigilancia","Iluminación"]},
+    6:{minutos:18,horario:"07:00 – 22:00",tipo:"Exterior",acceso:"Automóvil y motocicleta",entrada:"Acceso Las Torres",descripcion:"Acceso amplio · Área iluminada",servicios:["Iluminación","Acceso amplio"]}
 };
 
-
-const extra =
-    detallesExtra[estacionamiento.id] ||
-    detallesExtra[1];
-
+const extra=detallesExtra[estacionamiento.id]||detallesExtra[1];
 
 /* =========================
-   ELEMENTOS DEL DETALLE
+   SELECTORES DEL DOM
 ========================= */
 
-const parkingName =
-    document.getElementById(
-        "parkingName"
-    );
-
-
-const parkingLocation =
-    document.getElementById(
-        "parkingLocation"
-    );
-
-
-const parkingEntrance =
-    document.getElementById(
-        "parkingEntrance"
-    );
-
-
-const parkingDescription =
-    document.getElementById(
-        "parkingDescription"
-    );
-
-
-const parkingAvailability =
-    document.getElementById(
-        "parkingAvailability"
-    );
-
-
-const parkingSchedule =
-    document.getElementById(
-        "parkingSchedule"
-    );
-
-
-const parkingType =
-    document.getElementById(
-        "parkingType"
-    );
-
-
-const parkingAccess =
-    document.getElementById(
-        "parkingAccess"
-    );
-
-
-const parkingPrice =
-    document.getElementById(
-        "parkingPrice"
-    );
-
-
-const servicesList =
-    document.getElementById(
-        "servicesList"
-    );
-
+// getElementById: elementos únicos; querySelector: un contenedor;
+// querySelectorAll: colección de botones cuyo estado se actualizará.
+const parkingName=document.getElementById("nombreEstacionamiento");
+const parkingLocation=document.getElementById("ubicacionEstacionamiento");
+const parkingAvailability=document.getElementById("espaciosDisponibles");
+const parkingCapacity=document.getElementById("capacidadTotal");
+const parkingZone=document.getElementById("zonaEstacionamiento");
+const parkingPrice=document.getElementById("precioHora");
+const detailName=document.getElementById("detalleNombre");
+const detailLocation=document.getElementById("detalleUbicacion");
+const detailZone=document.getElementById("detalleZona");
+const priceSummary=document.getElementById("precioResumen");
+const availabilitySummary=document.getElementById("resumenDisponibilidad");
+const zoneSummary=document.getElementById("resumenZona");
+const servicesList=document.getElementById("listaServicios");
+const serviceDescription=document.getElementById("descripcionServicio");
+const reservationForm=document.getElementById("formReserva");
+const fecha=document.getElementById("fechaReserva");
+const horaEntrada=document.getElementById("horaEntrada");
+const horaSalida=document.getElementById("horaSalida");
+const totalEstimado=document.getElementById("totalReserva");
+const reservationMessage=document.getElementById("mensajeValidacion");
+const durationOutput=document.getElementById("duracionReserva");
+const durationControl=document.querySelector("#durationControl");
+const durationButtons=document.querySelectorAll("#durationControl [data-duration-action]");
+const reservationCard=document.querySelector(".booking-card");
+const navLinks=document.querySelectorAll(".nav-link");
+const btnOpenReservation=document.getElementById("btnAbrirReserva");
+const btnFavorite=document.getElementById("btnFavorito");
+const btnCopyLocation=document.getElementById("btnCopiarUbicacion");
+const btnTheme=document.getElementById("btnTema");
 
 /* =========================
-   MOSTRAR INFORMACIÓN
+   NOTIFICACIONES BOOTSTRAP
 ========================= */
 
-parkingName.textContent =
-    estacionamiento.nombre;
-
-
-parkingLocation.textContent =
-    `${estacionamiento.ubicacion} · A ${extra.minutos} min de tu ubicación`;
-
-
-parkingEntrance.textContent =
-    extra.entrada;
-
-
-parkingDescription.textContent =
-    extra.descripcion;
-
-
-parkingAvailability.textContent =
-    `${estacionamiento.disponibles} espacios`;
-
-
-parkingSchedule.textContent =
-    extra.horario;
-
-
-parkingType.textContent =
-    extra.tipo;
-
-
-parkingAccess.textContent =
-    extra.acceso;
-
-
-parkingPrice.textContent =
-    `$${estacionamiento.precio} MXN / hora`;
-
+function mostrarToast(mensaje){
+    document.getElementById("mensajeToast").textContent=mensaje;
+    bootstrap.Toast.getOrCreateInstance(document.getElementById("toastAutoPark"),{delay:3000}).show();
+}
 
 /* =========================
-   SERVICIOS
+   INFORMACIÓN DEL ESTACIONAMIENTO
 ========================= */
 
-servicesList.innerHTML = "";
+function obtenerNombreZona(){
+    const zonas={centro:"Centro",upp:"Zona UPP",norte:"Norte"};
+    return zonas[estacionamiento.zona]||estacionamiento.zona||"Centro";
+}
 
+function mostrarInformacion(){
+    const zona=obtenerNombreZona();
+    const precio=Number(estacionamiento.precio)||0;
+    parkingName.textContent=estacionamiento.nombre;
+    parkingLocation.textContent=estacionamiento.ubicacion;
+    parkingAvailability.textContent=estacionamiento.disponibles+" espacios";
+    parkingCapacity.textContent=(estacionamiento.total||estacionamiento.disponibles)+" espacios";
+    parkingZone.textContent=zona;
+    parkingPrice.textContent="$"+precio.toFixed(2);
+    detailName.textContent=estacionamiento.nombre;
+    detailLocation.textContent=estacionamiento.ubicacion;
+    detailZone.textContent=zona;
+    priceSummary.textContent="$"+precio.toFixed(2);
+    availabilitySummary.textContent=estacionamiento.disponibles+" espacios";
+    zoneSummary.textContent=zona;
+    document.getElementById("precioCalculado").textContent="$"+precio.toFixed(2);
+}
 
-extra.servicios.forEach(
-    servicio => {
+/* =========================
+   DELEGACIÓN DE EVENTOS
+========================= */
 
-        const item =
-            document.createElement(
-                "p"
-            );
+// La delegación mantiene un listener para todos los servicios del panel.
+function seleccionarServicio(evento){
+    const boton=evento.target.closest("button[data-servicio]");
+    if(!boton||!servicesList.contains(boton))return;
+    const descripciones={
+        seguridad:"El estacionamiento cuenta con medidas de vigilancia de referencia.",
+        iluminacion:"El área dispone de iluminación para facilitar la visibilidad.",
+        acceso:"Dispone de acceso para vehículos.",
+        ubicacion:"Consulta la dirección del estacionamiento antes de reservar."
+    };
+    servicesList.querySelectorAll("button[data-servicio]").forEach(function quitarSeleccion(item){
+        item.classList.remove("active");
+    });
+    boton.classList.add("active");
+    serviceDescription.textContent=descripciones[boton.dataset.servicio]||"Servicio disponible.";
+}
 
+/* =========================
+   FECHA Y HORARIO
+========================= */
 
-        item.textContent =
-            servicio;
+function establecerFecha(){
+    const hoy=new Date();
+    const anio=hoy.getFullYear();
+    const mes=String(hoy.getMonth()+1).padStart(2,"0");
+    const dia=String(hoy.getDate()).padStart(2,"0");
+    const fechaActual=`${anio}-${mes}-${dia}`;
 
+    fecha.min=fechaActual;
 
-        servicesList.appendChild(
-            item
-        );
-
+    if(!fecha.value||fecha.value<fechaActual){
+        fecha.value=fechaActual;
     }
-);
-
-
-/* =========================
-   FORMULARIO
-========================= */
-
-const reservationForm =
-    document.getElementById(
-        "reservationForm"
-    );
-
-
-const fecha =
-    document.getElementById(
-        "fecha"
-    );
-
-
-const horaEntrada =
-    document.getElementById(
-        "horaEntrada"
-    );
-
-
-const horaSalida =
-    document.getElementById(
-        "horaSalida"
-    );
-
-
-const totalEstimado =
-    document.getElementById(
-        "totalEstimado"
-    );
-
-
-const reservationMessage =
-    document.getElementById(
-        "reservationMessage"
-    );
-
-
-/* =========================
-   FECHA ACTUAL
-========================= */
-
-function establecerFecha() {
-
-    const hoy =
-        new Date();
-
-
-    const anio =
-        hoy.getFullYear();
-
-
-    const mes =
-        String(
-            hoy.getMonth() + 1
-        ).padStart(
-            2,
-            "0"
-        );
-
-
-    const dia =
-        String(
-            hoy.getDate()
-        ).padStart(
-            2,
-            "0"
-        );
-
-
-    const fechaActual =
-        `${anio}-${mes}-${dia}`;
-
-
-    fecha.value =
-        fechaActual;
-
-
-    fecha.min =
-        fechaActual;
-
 }
 
-
-/* =========================
-   CONVERTIR HORA A MINUTOS
-========================= */
-
-function convertirAMinutos(hora) {
-
-    const partes =
-        hora.split(":");
-
-
-    return (
-        Number(partes[0]) * 60 +
-        Number(partes[1])
-    );
-
+function convertirAMinutos(hora){
+    const partes=hora.split(":");
+    return Number(partes[0])*60+Number(partes[1]);
 }
 
+function calcularTotal(){
+    actualizarContadorHoras();
+    reservationMessage.textContent="";
+    reservationMessage.style.color="#475467";
 
+    if(!horaEntrada.value||!horaSalida.value){
+        totalEstimado.textContent="$0 MXN";
+        return 0;
+    }
 
-/* =========================
-   COTIZADOR DINÁMICO (RF06)
-========================= */
+    const entrada=convertirAMinutos(horaEntrada.value);
+    const salida=convertirAMinutos(horaSalida.value);
 
-/*
-    getElementById: selecciona el marcador único del número de horas.
-    querySelector: selecciona el contenedor mediante selector CSS.
-    querySelectorAll: obtiene ambos botones para gestionar su estado.
-    Un único listener en el padre aplica delegación de eventos.
-*/
+    if(salida<=entrada){
+        totalEstimado.textContent="$0 MXN";
+        reservationMessage.textContent="La hora de salida debe ser posterior a la entrada.";
+        reservationMessage.style.color="#B42318";
+        return 0;
+    }
 
-const duracionHoras = document.getElementById("duracionHoras");
-const controlDuracion = document.querySelector("#durationControl");
-const botonesDuracion = document.querySelectorAll("#durationControl [data-duration-action]");
+    // Cada fracción de hora se cobra como una hora completa.
+    const horas=Math.ceil((salida-entrada)/60);
+    const total=horas*Number(estacionamiento.precio);
 
-function formatearHora(minutos) {
-    const horas = String(Math.floor(minutos / 60)).padStart(2, "0");
-    const minutosRestantes = String(minutos % 60).padStart(2, "0");
-    return horas + ":" + minutosRestantes;
+    totalEstimado.textContent=`$${total.toFixed(2)} MXN`;
+    return total;
 }
 
-function actualizarContadorHoras() {
-    const entrada = horaEntrada.value ? convertirAMinutos(horaEntrada.value) : NaN;
-    const salida = horaSalida.value ? convertirAMinutos(horaSalida.value) : NaN;
+/* =========================
+   COTIZADOR DINÁMICO RF06
+========================= */
 
-    // Mantener sincronizado el contador con la edición manual del horario.
-    const horas = Number.isFinite(entrada) && Number.isFinite(salida) && salida > entrada
-        ? Math.ceil((salida - entrada) / 60)
-        : 0;
+function formatearHora(minutos){
+    return String(Math.floor(minutos/60)).padStart(2,"0")+":"+
+           String(minutos%60).padStart(2,"0");
+}
 
-    // El formulario actual trabaja con reservas de un solo día.
-    const maxHoras = Number.isFinite(entrada)
-        ? Math.floor((1439 - entrada) / 60)
-        : 0;
-
-    duracionHoras.textContent = horas > 0 ? horas + " h" : "— h";
-
-    botonesDuracion.forEach(function actualizarBotonDuracion(boton) {
-        if (boton.dataset.durationAction === "decrease") {
-            boton.disabled = horas <= 1;
-        } else {
-            boton.disabled = maxHoras < 1 || horas >= maxHoras;
-        }
+function actualizarContadorHoras(){
+    const entrada=horaEntrada.value?convertirAMinutos(horaEntrada.value):NaN;
+    const salida=horaSalida.value?convertirAMinutos(horaSalida.value):NaN;
+    const horas=Number.isFinite(entrada)&&Number.isFinite(salida)&&salida>entrada
+        ?Math.ceil((salida-entrada)/60):0;
+    const maximo=Number.isFinite(entrada)?Math.floor((1439-entrada)/60):0;
+    durationOutput.textContent=horas?horas+(horas===1?" hora":" horas"):"— horas";
+    durationButtons.forEach(function sincronizarBoton(boton){
+        boton.disabled=boton.dataset.durationAction==="decrease"
+            ?horas<=1:maximo<1||horas>=maximo;
     });
 }
 
-function manejarClickDuracion(evento) {
-    const boton = evento.target.closest("button[data-duration-action]");
-
-    if (!boton || !controlDuracion.contains(boton) || boton.disabled) {
-        return;
-    }
-
-    if (!horaEntrada.value) {
-        return;
-    }
-
-    const entrada = convertirAMinutos(horaEntrada.value);
-    const salida = horaSalida.value ? convertirAMinutos(horaSalida.value) : NaN;
-    const horasActuales = Number.isFinite(salida) && salida > entrada
-        ? Math.ceil((salida - entrada) / 60)
-        : 0;
-    const cambio = boton.dataset.durationAction === "increase" ? 1 : -1;
-    const horasNuevas = Math.max(1, horasActuales + cambio);
-    const minutosSalida = entrada + horasNuevas * 60;
-
-    if (minutosSalida >= 1440) {
-        return;
-    }
-
-    horaSalida.value = formatearHora(minutosSalida);
+function manejarClickDuracion(evento){
+    const boton=evento.target.closest("button[data-duration-action]");
+    if(!boton||!durationControl.contains(boton)||boton.disabled||!horaEntrada.value)return;
+    const entrada=convertirAMinutos(horaEntrada.value);
+    const salida=horaSalida.value?convertirAMinutos(horaSalida.value):NaN;
+    const horasActuales=Number.isFinite(salida)&&salida>entrada
+        ?Math.ceil((salida-entrada)/60):0;
+    const variacion=boton.dataset.durationAction==="increase"?1:-1;
+    const nuevaCantidad=Math.max(1,horasActuales+variacion);
+    const nuevaSalida=entrada+nuevaCantidad*60;
+    if(nuevaSalida>=1440)return;
+    horaSalida.value=formatearHora(nuevaSalida);
+    horaSalida.setCustomValidity("");
     calcularTotal();
+    validarCampo({target:horaSalida});
 }
 
-controlDuracion.addEventListener("click", manejarClickDuracion);
-
 /* =========================
-   CALCULAR TOTAL
+   VALIDACIÓN
 ========================= */
 
-function calcularTotal() {
+function validarCampo(evento){
+    const campo=evento.target;
 
-    reservationMessage.textContent =
-        "";
-
-
-    actualizarContadorHoras();
-
-
-    if (
-        !horaEntrada.value ||
-        !horaSalida.value
-    ) {
-
-        totalEstimado.textContent =
-            "$0 MXN";
-
-
-        return 0;
-
+    if(campo===fecha){
+        campo.setCustomValidity(fecha.value&&fecha.value>=fecha.min?"":"Selecciona una fecha válida.");
     }
 
-
-    const minutosEntrada =
-        convertirAMinutos(
-            horaEntrada.value
-        );
-
-
-    const minutosSalida =
-        convertirAMinutos(
-            horaSalida.value
-        );
-
-
-    if (
-        minutosSalida <=
-        minutosEntrada
-    ) {
-
-        totalEstimado.textContent =
-            "$0 MXN";
-
-
-        reservationMessage.textContent =
-            "La hora de salida debe ser posterior a la hora de entrada.";
-
-
-        reservationMessage.style.color =
-            "#B42318";
-
-
-        return 0;
-
+    if(campo===horaSalida){
+        const horarioValido=horaEntrada.value&&horaSalida.value&&convertirAMinutos(horaSalida.value)>convertirAMinutos(horaEntrada.value);
+        campo.setCustomValidity(horarioValido?"":"La salida debe ser posterior a la entrada.");
     }
 
+    if(campo===horaEntrada){
+        campo.setCustomValidity(campo.value?"":"Selecciona la hora de entrada.");
+        horaSalida.setCustomValidity("");
+    }
 
-    const minutosTotales =
-        minutosSalida -
-        minutosEntrada;
-
-
-    /*
-        Cada fracción de hora
-        cuenta como una hora completa.
-
-        Ejemplo:
-
-        18:00 - 19:30
-        = 2 horas cobradas
-    */
-
-    const horas =
-        Math.ceil(
-            minutosTotales / 60
-        );
-
-
-    const total =
-        horas *
-        estacionamiento.precio;
-
-
-    totalEstimado.textContent =
-        `$${total} MXN`;
-
-
-    return total;
-
+    if(campo.checkValidity()){
+        campo.classList.add("is-valid");
+        campo.classList.remove("is-invalid");
+    }else{
+        campo.classList.add("is-invalid");
+        campo.classList.remove("is-valid");
+    }
 }
 
+function validarReserva(){
+    establecerFecha();
 
-/* =========================
-   CAMBIOS EN HORARIO
-========================= */
+    [fecha,horaEntrada,horaSalida].forEach(function(campo){
+        validarCampo({target:campo});
+    });
 
-horaEntrada.addEventListener(
-    "change",
-    calcularTotal
-);
-
-
-horaSalida.addEventListener(
-    "change",
-    calcularTotal
-);
-
-
-/* =========================
-   GUARDAR RESERVA
-========================= */
-
-function manejarEnvioReserva(event) {
-
-        event.preventDefault();
-
-
-        /* =========================
-           REQUIERE SESIÓN
-        ========================= */
-
-        const sesionActiva =
-            localStorage.getItem(
-                "sesionActiva"
-            ) === "true";
-
-
-        if (!sesionActiva) {
-
-            sessionStorage.setItem(
-                "redirectAfterLogin",
-                "detalle.html"
-            );
-
-
-            window.location.href =
-                "login.html";
-
-
-            return;
-
-        }
-
-
-        /* VALIDAR FECHA */
-
-        if (!fecha.value) {
-
-            reservationMessage.textContent =
-                "Selecciona una fecha.";
-
-
-            reservationMessage.style.color =
-                "#B42318";
-
-
-            return;
-
-        }
-
-
-        /* CALCULAR TOTAL */
-
-        const total =
-            calcularTotal();
-
-
-        if (total <= 0) {
-
-            return;
-
-        }
-
-
-        /* =========================
-           RESERVA PENDIENTE
-        ========================= */
-
-        const reservaPendiente = {
-
-            estacionamiento:
-                estacionamiento,
-
-            fecha:
-                fecha.value,
-
-            horaEntrada:
-                horaEntrada.value,
-
-            horaSalida:
-                horaSalida.value,
-
-            total:
-                total
-
-        };
-
-
-        sessionStorage.setItem(
-            "reservaPendiente",
-            JSON.stringify(
-                reservaPendiente
-            )
-        );
-
-
-        /* =========================
-           GUARDAR EN MIS RESERVAS
-        ========================= */
-
-        /*
-        ==========================================
-        IMPORTANTE - BACKEND
-        ==========================================
-
-        ESTA LÓGICA ES TEMPORAL.
-
-        Actualmente las reservas se almacenan
-        en localStorage únicamente para simular
-        el funcionamiento de AutoPark.
-
-        CUANDO SE IMPLEMENTE EL BACKEND:
-
-        - BORRAR / REEMPLAZAR este localStorage.
-        - Enviar la reserva mediante una API.
-        - Guardarla en la base de datos.
-        - Obtener el ID real desde el servidor.
-        - Validar disponibilidad desde el backend.
-
-        ==========================================
-        */
-
-
-        const reservasGuardadas =
-            localStorage.getItem(
-                "autoparkReservas"
-            );
-
-
-        const reservas =
-            reservasGuardadas
-                ? JSON.parse(
-                    reservasGuardadas
-                )
-                : [];
-
-
-        const nuevaReserva = {
-
-            /*
-                ID temporal.
-
-                El backend deberá generar
-                posteriormente el ID real.
-            */
-
-            id:
-                Date.now(),
-
-
-            estacionamiento:
-                estacionamiento,
-
-
-            fecha:
-                fecha.value,
-
-
-            horaEntrada:
-                horaEntrada.value,
-
-
-            horaSalida:
-                horaSalida.value,
-
-
-            total:
-                total,
-
-
-            estado:
-                "activa"
-
-        };
-
-
-        /*
-            Agregar la nueva reserva
-            al principio de la lista.
-        */
-
-        reservas.unshift(
-            nuevaReserva
-        );
-
-
-        /*
-            Guardar temporalmente.
-        */
-
-        localStorage.setItem(
-            "autoparkReservas",
-            JSON.stringify(
-                reservas
-            )
-        );
-
-
-        /* =========================
-           MENSAJE
-        ========================= */
-
-        reservationMessage.textContent =
-            "Reserva realizada correctamente.";
-
-
-        reservationMessage.style.color =
-            "#475467";
-
-
-        /* =========================
-           IR A MIS RESERVAS
-        ========================= */
-
-        window.location.href =
-            "reservas.html";
-
+    return reservationForm.checkValidity();
 }
 
-reservationForm.addEventListener("submit", manejarEnvioReserva);
+/* =========================
+   MODAL DE CONFIRMACIÓN
+========================= */
 
+function crearModalConfirmacion(){
+    let modal=document.getElementById("modalConfirmarReserva");
+
+    if(modal)return modal;
+
+    modal=document.createElement("div");
+    modal.id="modalConfirmarReserva";
+    modal.className="modal fade";
+    modal.tabIndex=-1;
+    modal.setAttribute("aria-labelledby","tituloConfirmacion");
+    modal.setAttribute("aria-hidden","true");
+
+    modal.innerHTML=`
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="tituloConfirmacion">Confirmar reserva</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="resumenConfirmacion"></p>
+                    <p>¿Deseas guardar esta reserva?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Revisar datos</button>
+                    <button type="button" class="btn btn-primary" id="btnConfirmarReserva">Confirmar</button>
+                </div>
+            </div>
+        </div>`;
+
+    document.body.appendChild(modal);
+    return modal;
+}
+
+let reservaTemporal=null;
+
+function mostrarConfirmacionTrasCerrar(){
+    document.getElementById("modalReserva").removeEventListener("hidden.bs.modal",mostrarConfirmacionTrasCerrar);
+    bootstrap.Modal.getOrCreateInstance(crearModalConfirmacion()).show();
+}
+function abrirConfirmacion(){
+    crearModalConfirmacion();
+    document.getElementById("resumenConfirmacion").textContent=
+        estacionamiento.nombre+". Fecha: "+fecha.value+
+        ". Horario: "+horaEntrada.value+" a "+horaSalida.value+
+        ". Total: $"+reservaTemporal.total.toFixed(2)+" MXN.";
+    const modalReserva=document.getElementById("modalReserva");
+    modalReserva.addEventListener("hidden.bs.modal",mostrarConfirmacionTrasCerrar);
+    bootstrap.Modal.getOrCreateInstance(modalReserva).hide();
+}
+
+function confirmarDesdeModal(){
+    if(!reservaTemporal)return;
+
+    const reservas=obtenerReservas();
+    reservas.unshift(reservaTemporal);
+
+    if(!guardarReservas(reservas))return;
+
+    reservaTemporal=null;
+
+    const modal=document.getElementById("modalConfirmarReserva");
+    bootstrap.Modal.getOrCreateInstance(modal).hide();
+
+    mostrarToast("Reserva guardada correctamente.");
+
+    setTimeout(redirigirAReservas,800);
+}
+
+/* =========================
+   SESIÓN Y RESERVAS
+========================= */
+
+function obtenerReservas(){
+    try{
+        const datos=JSON.parse(localStorage.getItem("autoparkReservas")||"[]");
+        return Array.isArray(datos)?datos:[];
+    }catch(error){
+        console.error("Error al leer las reservas:",error);
+        return [];
+    }
+}
+
+function guardarReservas(reservas){
+    try{
+        localStorage.setItem("autoparkReservas",JSON.stringify(reservas));
+        return true;
+    }catch(error){
+        console.error("Error al guardar la reserva:",error);
+        mostrarToast("No fue posible guardar la reserva.");
+        return false;
+    }
+}
+
+function enviarFormulario(evento){
+    evento.preventDefault();
+
+    reservationForm.classList.add("was-validated");
+
+    if(!validarReserva()){
+        reservationMessage.textContent="Revisa los campos marcados antes de continuar.";
+        reservationMessage.style.color="#B42318";
+        mostrarToast("Revisa la fecha y el horario.");
+        return;
+    }
+
+    const total=calcularTotal();
+
+    if(total<=0)return;
+
+    const sesionActiva=localStorage.getItem("sesionActiva")==="true";
+
+    if(!sesionActiva){
+        sessionStorage.setItem("redirectAfterLogin","detalle.html");
+        mostrarToast("Necesitas iniciar sesión para reservar.");
+
+        setTimeout(redirigirALogin,900);
+
+        return;
+    }
+
+    // Formato compatible con las pantallas de reservas trabajadas anteriormente.
+    reservaTemporal={
+        id:Date.now(),
+        nombre:estacionamiento.nombre,
+        estacionamiento:estacionamiento,
+        estacionamientoId:estacionamiento.id,
+        ubicacion:estacionamiento.ubicacion,
+        zona:estacionamiento.zona||"centro",
+        fecha:fecha.value,
+        entrada:horaEntrada.value,
+        salida:horaSalida.value,
+        horaEntrada:horaEntrada.value,
+        horaSalida:horaSalida.value,
+        precioHora:Number(estacionamiento.precio),
+        total:Number(total.toFixed(2)),
+        estado:"activa"
+    };
+
+    abrirConfirmacion();
+}
 
 /* =========================
    INICIO
 ========================= */
 
-function iniciarDetalle() {
+function redirigirAReservas(){window.location.href="reservas.html";}
+function redirigirALogin(){window.location.href="login.html";}
+
+function abrirFormularioReserva(){
     establecerFecha();
     calcularTotal();
+    bootstrap.Modal.getOrCreateInstance(document.getElementById("modalReserva")).show();
 }
 
-document.addEventListener("DOMContentLoaded", iniciarDetalle);
+function alternarFavorito(){
+    const activo=btnFavorite.getAttribute("aria-pressed")==="true";
+    btnFavorite.setAttribute("aria-pressed",String(!activo));
+    btnFavorite.textContent=activo?"♡ Agregar a favoritos":"♥ Agregado a favoritos";
+    mostrarToast(activo?"Se quitó de favoritos.":"Se agregó a favoritos.");
+}
+
+async function copiarUbicacion(){
+    try{
+        await navigator.clipboard.writeText(estacionamiento.ubicacion);
+        mostrarToast("Ubicación copiada.");
+    }catch(error){
+        mostrarToast("Ubicación: "+estacionamiento.ubicacion);
+    }
+}
+
+function cambiarTema(){
+    const raiz=document.documentElement;
+    const oscuro=raiz.getAttribute("data-bs-theme")==="dark";
+    raiz.setAttribute("data-bs-theme",oscuro?"light":"dark");
+    btnTheme.textContent=oscuro?"🌙 Tema oscuro":"☀️ Tema claro";
+}
+
+function realzarReserva(){reservationCard.classList.add("reservation-highlight");}
+function quitarRealce(){reservationCard.classList.remove("reservation-highlight");}
+
+function manejarConfirmacionDelegada(evento){
+    if(evento.target.closest("#btnConfirmarReserva"))confirmarDesdeModal();
+}
+
+function iniciarAplicacion(){
+    mostrarInformacion();
+    establecerFecha();
+    calcularTotal();
+    horaEntrada.addEventListener("input",calcularTotal);
+    horaSalida.addEventListener("input",calcularTotal);
+    horaEntrada.addEventListener("change",calcularTotal);
+    horaSalida.addEventListener("change",calcularTotal);
+    [fecha,horaEntrada,horaSalida].forEach(function registrarValidacion(campo){
+        campo.addEventListener("blur",validarCampo);
+        campo.addEventListener("change",validarCampo);
+    });
+    reservationForm.addEventListener("submit",enviarFormulario);
+    servicesList.addEventListener("click",seleccionarServicio);
+    durationControl.addEventListener("click",manejarClickDuracion);
+    btnOpenReservation.addEventListener("click",abrirFormularioReserva);
+    btnFavorite.addEventListener("click",alternarFavorito);
+    btnCopyLocation.addEventListener("click",copiarUbicacion);
+    btnTheme.addEventListener("click",cambiarTema);
+    reservationCard.addEventListener("mouseenter",realzarReserva);
+    reservationCard.addEventListener("mouseleave",quitarRealce);
+    document.addEventListener("click",manejarConfirmacionDelegada);
+}
+
+document.addEventListener("DOMContentLoaded",iniciarAplicacion);
