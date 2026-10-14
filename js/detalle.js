@@ -42,37 +42,30 @@ const extra=detallesExtra[estacionamiento.id]||detallesExtra[1];
    SELECTORES DEL DOM
 ========================= */
 
-// getElementById: elementos únicos; querySelector: un contenedor;
-// querySelectorAll: colección de botones cuyo estado se actualizará.
-const parkingName=document.getElementById("nombreEstacionamiento");
-const parkingLocation=document.getElementById("ubicacionEstacionamiento");
-const parkingAvailability=document.getElementById("espaciosDisponibles");
-const parkingCapacity=document.getElementById("capacidadTotal");
-const parkingZone=document.getElementById("zonaEstacionamiento");
-const parkingPrice=document.getElementById("precioHora");
-const detailName=document.getElementById("detalleNombre");
-const detailLocation=document.getElementById("detalleUbicacion");
-const detailZone=document.getElementById("detalleZona");
-const priceSummary=document.getElementById("precioResumen");
-const availabilitySummary=document.getElementById("resumenDisponibilidad");
-const zoneSummary=document.getElementById("resumenZona");
-const servicesList=document.getElementById("listaServicios");
-const serviceDescription=document.getElementById("descripcionServicio");
-const reservationForm=document.getElementById("formReserva");
-const fecha=document.getElementById("fechaReserva");
+// getElementById: campos únicos. querySelector: contenedor. querySelectorAll: botones.
+const parkingName=document.getElementById("parkingName");
+const parkingLocation=document.getElementById("parkingLocation");
+const parkingEntrance=document.getElementById("parkingEntrance");
+const parkingDescription=document.getElementById("parkingDescription");
+const parkingAvailability=document.getElementById("parkingAvailability");
+const parkingSchedule=document.getElementById("parkingSchedule");
+const parkingType=document.getElementById("parkingType");
+const parkingAccess=document.getElementById("parkingAccess");
+const parkingPrice=document.getElementById("parkingPrice");
+const servicesList=document.getElementById("servicesList");
+const serviceDescription=document.getElementById("serviceDescription");
+const reservationForm=document.getElementById("reservationForm");
+const fecha=document.getElementById("fecha");
 const horaEntrada=document.getElementById("horaEntrada");
 const horaSalida=document.getElementById("horaSalida");
-const totalEstimado=document.getElementById("totalReserva");
-const reservationMessage=document.getElementById("mensajeValidacion");
+const totalEstimado=document.getElementById("totalEstimado");
+const reservationMessage=document.getElementById("reservationMessage");
 const durationOutput=document.getElementById("duracionReserva");
 const durationControl=document.querySelector("#durationControl");
 const durationButtons=document.querySelectorAll("#durationControl [data-duration-action]");
-const reservationCard=document.querySelector(".booking-card");
-const navLinks=document.querySelectorAll(".nav-link");
-const btnOpenReservation=document.getElementById("btnAbrirReserva");
+const reservationCard=document.querySelector(".reservation-card");
 const btnFavorite=document.getElementById("btnFavorito");
 const btnCopyLocation=document.getElementById("btnCopiarUbicacion");
-const btnTheme=document.getElementById("btnTema");
 
 /* =========================
    NOTIFICACIONES BOOTSTRAP
@@ -87,48 +80,43 @@ function mostrarToast(mensaje){
    INFORMACIÓN DEL ESTACIONAMIENTO
 ========================= */
 
-function obtenerNombreZona(){
-    const zonas={centro:"Centro",upp:"Zona UPP",norte:"Norte"};
-    return zonas[estacionamiento.zona]||estacionamiento.zona||"Centro";
-}
-
 function mostrarInformacion(){
-    const zona=obtenerNombreZona();
-    const precio=Number(estacionamiento.precio)||0;
     parkingName.textContent=estacionamiento.nombre;
-    parkingLocation.textContent=estacionamiento.ubicacion;
+    parkingLocation.textContent=estacionamiento.ubicacion+" · A "+extra.minutos+" min de tu ubicación";
+    parkingEntrance.textContent=extra.entrada;
+    parkingDescription.textContent=extra.descripcion;
     parkingAvailability.textContent=estacionamiento.disponibles+" espacios";
-    parkingCapacity.textContent=(estacionamiento.total||estacionamiento.disponibles)+" espacios";
-    parkingZone.textContent=zona;
-    parkingPrice.textContent="$"+precio.toFixed(2);
-    detailName.textContent=estacionamiento.nombre;
-    detailLocation.textContent=estacionamiento.ubicacion;
-    detailZone.textContent=zona;
-    priceSummary.textContent="$"+precio.toFixed(2);
-    availabilitySummary.textContent=estacionamiento.disponibles+" espacios";
-    zoneSummary.textContent=zona;
-    document.getElementById("precioCalculado").textContent="$"+precio.toFixed(2);
+    parkingSchedule.textContent=extra.horario;
+    parkingType.textContent=extra.tipo;
+    parkingAccess.textContent=extra.acceso;
+    parkingPrice.textContent="$"+Number(estacionamiento.precio).toFixed(2)+" MXN / hora";
+    mostrarServicios();
+}
+function mostrarServicios(){
+    servicesList.replaceChildren();
+    extra.servicios.forEach(function crearBotonServicio(servicio){
+        const boton=document.createElement("button");
+        boton.type="button";
+        boton.className="service-item";
+        boton.dataset.servicio=servicio;
+        boton.textContent=servicio;
+        servicesList.appendChild(boton);
+    });
 }
 
 /* =========================
    DELEGACIÓN DE EVENTOS
 ========================= */
 
-// La delegación mantiene un listener para todos los servicios del panel.
+// Un solo event listener en el padre para todos los botones de servicios.
 function seleccionarServicio(evento){
     const boton=evento.target.closest("button[data-servicio]");
     if(!boton||!servicesList.contains(boton))return;
-    const descripciones={
-        seguridad:"El estacionamiento cuenta con medidas de vigilancia de referencia.",
-        iluminacion:"El área dispone de iluminación para facilitar la visibilidad.",
-        acceso:"Dispone de acceso para vehículos.",
-        ubicacion:"Consulta la dirección del estacionamiento antes de reservar."
-    };
     servicesList.querySelectorAll("button[data-servicio]").forEach(function quitarSeleccion(item){
         item.classList.remove("active");
     });
     boton.classList.add("active");
-    serviceDescription.textContent=descripciones[boton.dataset.servicio]||"Servicio disponible.";
+    serviceDescription.textContent="Servicio disponible: "+boton.dataset.servicio+".";
 }
 
 /* =========================
@@ -301,19 +289,13 @@ function crearModalConfirmacion(){
 
 let reservaTemporal=null;
 
-function mostrarConfirmacionTrasCerrar(){
-    document.getElementById("modalReserva").removeEventListener("hidden.bs.modal",mostrarConfirmacionTrasCerrar);
-    bootstrap.Modal.getOrCreateInstance(crearModalConfirmacion()).show();
-}
 function abrirConfirmacion(){
-    crearModalConfirmacion();
+    const modal=crearModalConfirmacion();
     document.getElementById("resumenConfirmacion").textContent=
         estacionamiento.nombre+". Fecha: "+fecha.value+
         ". Horario: "+horaEntrada.value+" a "+horaSalida.value+
         ". Total: $"+reservaTemporal.total.toFixed(2)+" MXN.";
-    const modalReserva=document.getElementById("modalReserva");
-    modalReserva.addEventListener("hidden.bs.modal",mostrarConfirmacionTrasCerrar);
-    bootstrap.Modal.getOrCreateInstance(modalReserva).hide();
+    bootstrap.Modal.getOrCreateInstance(modal).show();
 }
 
 function confirmarDesdeModal(){
@@ -414,12 +396,6 @@ function enviarFormulario(evento){
 function redirigirAReservas(){window.location.href="reservas.html";}
 function redirigirALogin(){window.location.href="login.html";}
 
-function abrirFormularioReserva(){
-    establecerFecha();
-    calcularTotal();
-    bootstrap.Modal.getOrCreateInstance(document.getElementById("modalReserva")).show();
-}
-
 function alternarFavorito(){
     const activo=btnFavorite.getAttribute("aria-pressed")==="true";
     btnFavorite.setAttribute("aria-pressed",String(!activo));
@@ -434,13 +410,6 @@ async function copiarUbicacion(){
     }catch(error){
         mostrarToast("Ubicación: "+estacionamiento.ubicacion);
     }
-}
-
-function cambiarTema(){
-    const raiz=document.documentElement;
-    const oscuro=raiz.getAttribute("data-bs-theme")==="dark";
-    raiz.setAttribute("data-bs-theme",oscuro?"light":"dark");
-    btnTheme.textContent=oscuro?"🌙 Tema oscuro":"☀️ Tema claro";
 }
 
 function realzarReserva(){reservationCard.classList.add("reservation-highlight");}
@@ -465,10 +434,8 @@ function iniciarAplicacion(){
     reservationForm.addEventListener("submit",enviarFormulario);
     servicesList.addEventListener("click",seleccionarServicio);
     durationControl.addEventListener("click",manejarClickDuracion);
-    btnOpenReservation.addEventListener("click",abrirFormularioReserva);
     btnFavorite.addEventListener("click",alternarFavorito);
     btnCopyLocation.addEventListener("click",copiarUbicacion);
-    btnTheme.addEventListener("click",cambiarTema);
     reservationCard.addEventListener("mouseenter",realzarReserva);
     reservationCard.addEventListener("mouseleave",quitarRealce);
     document.addEventListener("click",manejarConfirmacionDelegada);
