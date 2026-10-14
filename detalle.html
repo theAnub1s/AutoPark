@@ -179,7 +179,7 @@
 
                 <div class="reservation-title">
 
-                    <p>
+                    <p id="reservationTitle">
                         Reservar espacio
                     </p>
 
@@ -189,6 +189,8 @@
 
                 </div>
 
+
+                <p id="editModeNotice" class="edit-reserva-notice d-none">Editando una reserva existente. Los cambios reemplazarán el horario y el total anteriores.</p>
 
                 <form id="reservationForm">
 
@@ -291,7 +293,7 @@
                         type="submit"
                         class="btn reserve-button"
                     >
-                        Reservar ahora
+                        <span id="reservationSubmitText">Reservar ahora</span>
                     </button>
 
                 </form>
