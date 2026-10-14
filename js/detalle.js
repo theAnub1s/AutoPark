@@ -1,4 +1,3 @@
-javascript
 "use strict";
 
 /* =========================
@@ -43,124 +42,93 @@ const extra=detallesExtra[estacionamiento.id]||detallesExtra[1];
    SELECTORES DEL DOM
 ========================= */
 
-// getElementById: selecciona elementos únicos mediante su identificador HTML.
-const parkingName=document.getElementById("parkingName");
-const parkingLocation=document.getElementById("parkingLocation");
-const parkingEntrance=document.getElementById("parkingEntrance");
-const parkingDescription=document.getElementById("parkingDescription");
-const parkingAvailability=document.getElementById("parkingAvailability");
-const parkingSchedule=document.getElementById("parkingSchedule");
-const parkingType=document.getElementById("parkingType");
-const parkingAccess=document.getElementById("parkingAccess");
-const parkingPrice=document.getElementById("parkingPrice");
-const servicesList=document.getElementById("servicesList");
-const reservationForm=document.getElementById("reservationForm");
-const fecha=document.getElementById("fecha");
+// getElementById: elementos únicos; querySelector: un contenedor;
+// querySelectorAll: colección de botones cuyo estado se actualizará.
+const parkingName=document.getElementById("nombreEstacionamiento");
+const parkingLocation=document.getElementById("ubicacionEstacionamiento");
+const parkingAvailability=document.getElementById("espaciosDisponibles");
+const parkingCapacity=document.getElementById("capacidadTotal");
+const parkingZone=document.getElementById("zonaEstacionamiento");
+const parkingPrice=document.getElementById("precioHora");
+const detailName=document.getElementById("detalleNombre");
+const detailLocation=document.getElementById("detalleUbicacion");
+const detailZone=document.getElementById("detalleZona");
+const priceSummary=document.getElementById("precioResumen");
+const availabilitySummary=document.getElementById("resumenDisponibilidad");
+const zoneSummary=document.getElementById("resumenZona");
+const servicesList=document.getElementById("listaServicios");
+const serviceDescription=document.getElementById("descripcionServicio");
+const reservationForm=document.getElementById("formReserva");
+const fecha=document.getElementById("fechaReserva");
 const horaEntrada=document.getElementById("horaEntrada");
 const horaSalida=document.getElementById("horaSalida");
-const totalEstimado=document.getElementById("totalEstimado");
-const reservationMessage=document.getElementById("reservationMessage");
-
-// querySelector: selecciona el primer elemento que coincide con el selector CSS.
-const detallePage=document.querySelector(".detalle-page");
-const reservationCard=document.querySelector(".reservation-card");
-
-// querySelectorAll: obtiene todos los elementos que coinciden con el selector.
+const totalEstimado=document.getElementById("totalReserva");
+const reservationMessage=document.getElementById("mensajeValidacion");
+const durationOutput=document.getElementById("duracionReserva");
+const durationControl=document.querySelector("#durationControl");
+const durationButtons=document.querySelectorAll("#durationControl [data-duration-action]");
+const reservationCard=document.querySelector(".booking-card");
 const navLinks=document.querySelectorAll(".nav-link");
+const btnOpenReservation=document.getElementById("btnAbrirReserva");
+const btnFavorite=document.getElementById("btnFavorito");
+const btnCopyLocation=document.getElementById("btnCopiarUbicacion");
+const btnTheme=document.getElementById("btnTema");
 
 /* =========================
    NOTIFICACIONES BOOTSTRAP
 ========================= */
 
-function crearToast(){
-    let contenedor=document.getElementById("toastContainer");
-
-    if(!contenedor){
-        contenedor=document.createElement("div");
-        contenedor.id="toastContainer";
-        contenedor.className="toast-container position-fixed bottom-0 end-0 p-3";
-        document.body.appendChild(contenedor);
-    }
-
-    let toast=document.getElementById("toastDetalle");
-
-    if(!toast){
-        toast=document.createElement("div");
-        toast.id="toastDetalle";
-        toast.className="toast";
-        toast.setAttribute("role","status");
-        toast.setAttribute("aria-live","polite");
-        toast.innerHTML=`
-            <div class="toast-header">
-                <strong class="me-auto">AutoPark</strong>
-                <small>Notificación</small>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Cerrar"></button>
-            </div>
-            <div class="toast-body" id="toastMensaje"></div>`;
-        contenedor.appendChild(toast);
-    }
-
-    return toast;
-}
-
 function mostrarToast(mensaje){
-    const toast=crearToast();
-    document.getElementById("toastMensaje").textContent=mensaje;
-
-    if(window.bootstrap){
-        bootstrap.Toast.getOrCreateInstance(toast,{delay:3000}).show();
-    }else{
-        alert(mensaje);
-    }
+    document.getElementById("mensajeToast").textContent=mensaje;
+    bootstrap.Toast.getOrCreateInstance(document.getElementById("toastAutoPark"),{delay:3000}).show();
 }
 
 /* =========================
    INFORMACIÓN DEL ESTACIONAMIENTO
 ========================= */
 
-function mostrarInformacion(){
-    parkingName.textContent=estacionamiento.nombre;
-    parkingLocation.textContent=`${estacionamiento.ubicacion} · A ${extra.minutos} min de tu ubicación`;
-    parkingEntrance.textContent=extra.entrada;
-    parkingDescription.textContent=extra.descripcion;
-    parkingAvailability.textContent=`${estacionamiento.disponibles} espacios`;
-    parkingSchedule.textContent=extra.horario;
-    parkingType.textContent=extra.tipo;
-    parkingAccess.textContent=extra.acceso;
-    parkingPrice.textContent=`$${estacionamiento.precio} MXN / hora`;
-
-    mostrarServicios();
+function obtenerNombreZona(){
+    const zonas={centro:"Centro",upp:"Zona UPP",norte:"Norte"};
+    return zonas[estacionamiento.zona]||estacionamiento.zona||"Centro";
 }
 
-function mostrarServicios(){
-    servicesList.replaceChildren();
-
-    extra.servicios.forEach(function(servicio){
-        const boton=document.createElement("button");
-        boton.type="button";
-        boton.className="service-item";
-        boton.dataset.servicio=servicio;
-        boton.textContent=servicio;
-        servicesList.appendChild(boton);
-    });
+function mostrarInformacion(){
+    const zona=obtenerNombreZona();
+    const precio=Number(estacionamiento.precio)||0;
+    parkingName.textContent=estacionamiento.nombre;
+    parkingLocation.textContent=estacionamiento.ubicacion;
+    parkingAvailability.textContent=estacionamiento.disponibles+" espacios";
+    parkingCapacity.textContent=(estacionamiento.total||estacionamiento.disponibles)+" espacios";
+    parkingZone.textContent=zona;
+    parkingPrice.textContent="$"+precio.toFixed(2);
+    detailName.textContent=estacionamiento.nombre;
+    detailLocation.textContent=estacionamiento.ubicacion;
+    detailZone.textContent=zona;
+    priceSummary.textContent="$"+precio.toFixed(2);
+    availabilitySummary.textContent=estacionamiento.disponibles+" espacios";
+    zoneSummary.textContent=zona;
+    document.getElementById("precioCalculado").textContent="$"+precio.toFixed(2);
 }
 
 /* =========================
    DELEGACIÓN DE EVENTOS
 ========================= */
 
-// Un solo listener en el contenedor atiende los botones de servicios.
+// La delegación mantiene un listener para todos los servicios del panel.
 function seleccionarServicio(evento){
-    const boton=evento.target.closest("[data-servicio]");
-
+    const boton=evento.target.closest("button[data-servicio]");
     if(!boton||!servicesList.contains(boton))return;
-
-    servicesList.querySelectorAll(".service-item").forEach(function(item){
+    const descripciones={
+        seguridad:"El estacionamiento cuenta con medidas de vigilancia de referencia.",
+        iluminacion:"El área dispone de iluminación para facilitar la visibilidad.",
+        acceso:"Dispone de acceso para vehículos.",
+        ubicacion:"Consulta la dirección del estacionamiento antes de reservar."
+    };
+    servicesList.querySelectorAll("button[data-servicio]").forEach(function quitarSeleccion(item){
         item.classList.remove("active");
     });
-
     boton.classList.add("active");
-    mostrarToast(`Servicio seleccionado: ${boton.dataset.servicio}`);
+    serviceDescription.textContent=descripciones[boton.dataset.servicio]||"Servicio disponible.";
 }
 
 /* =========================
@@ -187,6 +155,7 @@ function convertirAMinutos(hora){
 }
 
 function calcularTotal(){
+    actualizarContadorHoras();
     reservationMessage.textContent="";
     reservationMessage.style.color="#475467";
 
@@ -211,6 +180,45 @@ function calcularTotal(){
 
     totalEstimado.textContent=`$${total.toFixed(2)} MXN`;
     return total;
+}
+
+/* =========================
+   COTIZADOR DINÁMICO RF06
+========================= */
+
+function formatearHora(minutos){
+    return String(Math.floor(minutos/60)).padStart(2,"0")+":"+
+           String(minutos%60).padStart(2,"0");
+}
+
+function actualizarContadorHoras(){
+    const entrada=horaEntrada.value?convertirAMinutos(horaEntrada.value):NaN;
+    const salida=horaSalida.value?convertirAMinutos(horaSalida.value):NaN;
+    const horas=Number.isFinite(entrada)&&Number.isFinite(salida)&&salida>entrada
+        ?Math.ceil((salida-entrada)/60):0;
+    const maximo=Number.isFinite(entrada)?Math.floor((1439-entrada)/60):0;
+    durationOutput.textContent=horas?horas+(horas===1?" hora":" horas"):"— horas";
+    durationButtons.forEach(function sincronizarBoton(boton){
+        boton.disabled=boton.dataset.durationAction==="decrease"
+            ?horas<=1:maximo<1||horas>=maximo;
+    });
+}
+
+function manejarClickDuracion(evento){
+    const boton=evento.target.closest("button[data-duration-action]");
+    if(!boton||!durationControl.contains(boton)||boton.disabled||!horaEntrada.value)return;
+    const entrada=convertirAMinutos(horaEntrada.value);
+    const salida=horaSalida.value?convertirAMinutos(horaSalida.value):NaN;
+    const horasActuales=Number.isFinite(salida)&&salida>entrada
+        ?Math.ceil((salida-entrada)/60):0;
+    const variacion=boton.dataset.durationAction==="increase"?1:-1;
+    const nuevaCantidad=Math.max(1,horasActuales+variacion);
+    const nuevaSalida=entrada+nuevaCantidad*60;
+    if(nuevaSalida>=1440)return;
+    horaSalida.value=formatearHora(nuevaSalida);
+    horaSalida.setCustomValidity("");
+    calcularTotal();
+    validarCampo({target:horaSalida});
 }
 
 /* =========================
@@ -293,13 +301,19 @@ function crearModalConfirmacion(){
 
 let reservaTemporal=null;
 
+function mostrarConfirmacionTrasCerrar(){
+    document.getElementById("modalReserva").removeEventListener("hidden.bs.modal",mostrarConfirmacionTrasCerrar);
+    bootstrap.Modal.getOrCreateInstance(crearModalConfirmacion()).show();
+}
 function abrirConfirmacion(){
-    const modal=crearModalConfirmacion();
-    const resumen=document.getElementById("resumenConfirmacion");
-
-    resumen.textContent=`${estacionamiento.nombre}. Fecha: ${fecha.value}. Horario: ${horaEntrada.value} a ${horaSalida.value}. Total: $${reservaTemporal.total.toFixed(2)} MXN.`;
-
-    bootstrap.Modal.getOrCreateInstance(modal).show();
+    crearModalConfirmacion();
+    document.getElementById("resumenConfirmacion").textContent=
+        estacionamiento.nombre+". Fecha: "+fecha.value+
+        ". Horario: "+horaEntrada.value+" a "+horaSalida.value+
+        ". Total: $"+reservaTemporal.total.toFixed(2)+" MXN.";
+    const modalReserva=document.getElementById("modalReserva");
+    modalReserva.addEventListener("hidden.bs.modal",mostrarConfirmacionTrasCerrar);
+    bootstrap.Modal.getOrCreateInstance(modalReserva).hide();
 }
 
 function confirmarDesdeModal(){
@@ -317,9 +331,7 @@ function confirmarDesdeModal(){
 
     mostrarToast("Reserva guardada correctamente.");
 
-    setTimeout(function(){
-        window.location.href="reservas.html";
-    },800);
+    setTimeout(redirigirAReservas,800);
 }
 
 /* =========================
@@ -369,9 +381,7 @@ function enviarFormulario(evento){
         sessionStorage.setItem("redirectAfterLogin","detalle.html");
         mostrarToast("Necesitas iniciar sesión para reservar.");
 
-        setTimeout(function(){
-            window.location.href="login.html";
-        },900);
+        setTimeout(redirigirALogin,900);
 
         return;
     }
@@ -391,7 +401,7 @@ function enviarFormulario(evento){
         horaSalida:horaSalida.value,
         precioHora:Number(estacionamiento.precio),
         total:Number(total.toFixed(2)),
-        estado:"Confirmada"
+        estado:"activa"
     };
 
     abrirConfirmacion();
@@ -401,54 +411,67 @@ function enviarFormulario(evento){
    INICIO
 ========================= */
 
+function redirigirAReservas(){window.location.href="reservas.html";}
+function redirigirALogin(){window.location.href="login.html";}
+
+function abrirFormularioReserva(){
+    establecerFecha();
+    calcularTotal();
+    bootstrap.Modal.getOrCreateInstance(document.getElementById("modalReserva")).show();
+}
+
+function alternarFavorito(){
+    const activo=btnFavorite.getAttribute("aria-pressed")==="true";
+    btnFavorite.setAttribute("aria-pressed",String(!activo));
+    btnFavorite.textContent=activo?"♡ Agregar a favoritos":"♥ Agregado a favoritos";
+    mostrarToast(activo?"Se quitó de favoritos.":"Se agregó a favoritos.");
+}
+
+async function copiarUbicacion(){
+    try{
+        await navigator.clipboard.writeText(estacionamiento.ubicacion);
+        mostrarToast("Ubicación copiada.");
+    }catch(error){
+        mostrarToast("Ubicación: "+estacionamiento.ubicacion);
+    }
+}
+
+function cambiarTema(){
+    const raiz=document.documentElement;
+    const oscuro=raiz.getAttribute("data-bs-theme")==="dark";
+    raiz.setAttribute("data-bs-theme",oscuro?"light":"dark");
+    btnTheme.textContent=oscuro?"🌙 Tema oscuro":"☀️ Tema claro";
+}
+
+function realzarReserva(){reservationCard.classList.add("reservation-highlight");}
+function quitarRealce(){reservationCard.classList.remove("reservation-highlight");}
+
+function manejarConfirmacionDelegada(evento){
+    if(evento.target.closest("#btnConfirmarReserva"))confirmarDesdeModal();
+}
+
 function iniciarAplicacion(){
     mostrarInformacion();
     establecerFecha();
     calcularTotal();
-
-    // Eventos de formulario registrados desde JavaScript.
     horaEntrada.addEventListener("input",calcularTotal);
     horaSalida.addEventListener("input",calcularTotal);
     horaEntrada.addEventListener("change",calcularTotal);
     horaSalida.addEventListener("change",calcularTotal);
-
-    [fecha,horaEntrada,horaSalida].forEach(function(campo){
+    [fecha,horaEntrada,horaSalida].forEach(function registrarValidacion(campo){
         campo.addEventListener("blur",validarCampo);
         campo.addEventListener("change",validarCampo);
     });
-
     reservationForm.addEventListener("submit",enviarFormulario);
-
-    // Delegación de eventos para los servicios.
     servicesList.addEventListener("click",seleccionarServicio);
-
-    // querySelector se usa para localizar la tarjeta de reserva.
-    if(reservationCard){
-        reservationCard.addEventListener("mouseenter",function(){
-            reservationCard.classList.add("reservation-highlight");
-        });
-
-        reservationCard.addEventListener("mouseleave",function(){
-            reservationCard.classList.remove("reservation-highlight");
-        });
-    }
-
-    // querySelectorAll se usa para identificar los enlaces del navbar.
-    navLinks.forEach(function(link){
-        link.addEventListener("click",function(){
-            navLinks.forEach(function(enlace){
-                enlace.classList.remove("active");
-            });
-            link.classList.add("active");
-        });
-    });
-
-    // El botón de confirmación se crea dinámicamente dentro del modal.
-    document.addEventListener("click",function(evento){
-        if(evento.target.closest("#btnConfirmarReserva")){
-            confirmarDesdeModal();
-        }
-    });
+    durationControl.addEventListener("click",manejarClickDuracion);
+    btnOpenReservation.addEventListener("click",abrirFormularioReserva);
+    btnFavorite.addEventListener("click",alternarFavorito);
+    btnCopyLocation.addEventListener("click",copiarUbicacion);
+    btnTheme.addEventListener("click",cambiarTema);
+    reservationCard.addEventListener("mouseenter",realzarReserva);
+    reservationCard.addEventListener("mouseleave",quitarRealce);
+    document.addEventListener("click",manejarConfirmacionDelegada);
 }
 
 document.addEventListener("DOMContentLoaded",iniciarAplicacion);

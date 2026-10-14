@@ -94,3 +94,10 @@ h3{font-size:1.15rem;font-weight:800}
 
 /* Compatibilidad con dispositivos móviles */
 @media(max-width:750px){.service-item{padding:12px}}
+/* RF06: controles accesibles y responsivos para el contador dinámico. */
+.duration-controls{display:flex;align-items:center;gap:8px;flex-wrap:nowrap}
+.duration-button{width:36px;height:36px;display:grid;place-items:center;padding:0;font-size:1.25rem;line-height:1}
+.duration-value{display:inline-block;min-width:60px;text-align:center;font-weight:700;white-space:nowrap;font-family:"Roboto Mono",monospace;font-size:.85rem}
+.duration-button:disabled{opacity:.4;cursor:not-allowed}
+[data-bs-theme="dark"] .duration-value{color:#eaecf0}
+@media(max-width:410px){.duration-controls{gap:4px}.duration-button{width:32px;height:32px}.duration-value{min-width:56px}}
