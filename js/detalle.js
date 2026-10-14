@@ -569,9 +569,7 @@ horaSalida.addEventListener(
    GUARDAR RESERVA
 ========================= */
 
-reservationForm.addEventListener(
-    "submit",
-    event => {
+function manejarEnvioReserva(event) {
 
         event.preventDefault();
 
@@ -786,21 +784,18 @@ reservationForm.addEventListener(
         window.location.href =
             "reservas.html";
 
-    }
-);
+}
+
+reservationForm.addEventListener("submit", manejarEnvioReserva);
 
 
 /* =========================
    INICIO
 ========================= */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
+function iniciarDetalle() {
+    establecerFecha();
+    calcularTotal();
+}
 
-        establecerFecha();
-
-        calcularTotal();
-
-    }
-);
+document.addEventListener("DOMContentLoaded", iniciarDetalle);
