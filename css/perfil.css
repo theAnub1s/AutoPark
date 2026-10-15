@@ -16,8 +16,6 @@ body {
     font-family:
         "Roboto",
         sans-serif;
-
-    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 
@@ -112,8 +110,6 @@ body {
         #B8C7D9;
 
     border-radius: 18px;
-
-    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 
@@ -239,22 +235,14 @@ body {
 
 
 /* =========================
-   FORMULARIO Y ENCABEZADO
+   FORMULARIO
 ========================= */
 
-.card-form-header {
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    margin-bottom: 30px;
-}
-
-
-.card-form-header h2 {
-    margin: 0;
+.card-form h2 {
+    margin:
+        0
+        0
+        30px;
 
     font-family:
         "Roboto",
@@ -264,30 +252,6 @@ body {
     font-weight: 500;
 
     color: #101828;
-}
-
-
-.theme-label {
-    font-family:
-        "Roboto Mono",
-        monospace;
-
-    font-size: 15px;
-
-    color: #101828;
-}
-
-
-/* Switch de Bootstrap */
-.form-check-input {
-    cursor: pointer;
-    width: 3em !important;
-    height: 1.5em !important;
-}
-
-.form-check-input:checked {
-    background-color: #212B38;
-    border-color: #84D7E6;
 }
 
 
@@ -352,9 +316,7 @@ body {
 
     transition:
         border-color 0.2s ease,
-        box-shadow 0.2s ease,
-        background-color 0.3s ease,
-        color 0.3s ease;
+        box-shadow 0.2s ease;
 }
 
 
@@ -418,9 +380,7 @@ body {
 
     transition:
         transform 0.15s ease,
-        opacity 0.15s ease,
-        background-color 0.3s ease,
-        color 0.3s ease;
+        opacity 0.15s ease;
 }
 
 
@@ -481,116 +441,6 @@ body {
 
 
 /* =========================
-   MODO OSCURO (DATA-BS-THEME & CLASSLIST)
-========================= */
-
-[data-bs-theme="dark"] body,
-body.dark-mode {
-    background-color: #1A212D;
-
-    color: #F0F4F8;
-}
-
-
-[data-bs-theme="dark"] .card-sidebar,
-[data-bs-theme="dark"] .card-form,
-body.dark-mode .card-sidebar,
-body.dark-mode .card-form {
-    background-color: #212B38;
-
-    border-color: #2D3949;
-}
-
-
-[data-bs-theme="dark"] .perfil-header h1,
-[data-bs-theme="dark"] .user-name,
-[data-bs-theme="dark"] .stat-number,
-[data-bs-theme="dark"] .card-form-header h2,
-[data-bs-theme="dark"] .form-group label,
-body.dark-mode .perfil-header h1,
-body.dark-mode .user-name,
-body.dark-mode .stat-number,
-body.dark-mode .card-form-header h2,
-body.dark-mode .form-group label {
-    color: #FFFFFF;
-}
-
-
-[data-bs-theme="dark"] .perfil-header p,
-[data-bs-theme="dark"] .user-status,
-[data-bs-theme="dark"] .stat-item,
-[data-bs-theme="dark"] .form-hint,
-[data-bs-theme="dark"] .theme-label,
-body.dark-mode .perfil-header p,
-body.dark-mode .user-status,
-body.dark-mode .stat-item,
-body.dark-mode .form-hint,
-body.dark-mode .theme-label {
-    color: #94A3B8;
-}
-
-
-[data-bs-theme="dark"] .divider,
-body.dark-mode .divider {
-    background-color: #2D3949;
-}
-
-
-[data-bs-theme="dark"] .avatar,
-body.dark-mode .avatar {
-    background-color: #CCE7FF;
-
-    color: #1E293B;
-}
-
-
-[data-bs-theme="dark"] .form-group input,
-body.dark-mode .form-group input {
-    background-color: #161D27;
-
-    border-color: #2D3949;
-
-    color: #FFFFFF;
-}
-
-
-[data-bs-theme="dark"] .form-group input:disabled,
-body.dark-mode .form-group input:disabled {
-    background-color: #161D27;
-
-    color: #94A3B8;
-
-    border-color: #252F3E;
-}
-
-
-[data-bs-theme="dark"] .btn-dark,
-body.dark-mode .btn-dark {
-    background-color: #FAF4E1;
-
-    color: #101828;
-}
-
-
-[data-bs-theme="dark"] .btn-cyan,
-body.dark-mode .btn-cyan {
-    background-color: #84D7E6;
-
-    color: #101828;
-}
-
-
-[data-bs-theme="dark"] .btn-outline,
-body.dark-mode .btn-outline {
-    background-color: transparent;
-
-    border-color: #3B485A;
-
-    color: #FFFFFF;
-}
-
-
-/* =========================
    RESPONSIVE
 ========================= */
 
@@ -624,15 +474,6 @@ body.dark-mode .btn-outline {
 
     .perfil-header h1 {
         font-size: 36px;
-    }
-
-
-    .card-form-header {
-        flex-direction: column;
-
-        align-items: flex-start;
-
-        gap: 16px;
     }
 
 
