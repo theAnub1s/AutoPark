@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AutoPark - Mis espacios</title>
+
+    
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="gestionarDisponibilidad.css">
+</head>
+
+<body>
+
+    
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+
+            <a class="navbar-brand" href="#">
+                <span class="logo">P</span>
+                AutoPark
+            </a>
+
+            <div class="menu">
+                <a href="#">Inicio</a>
+                <a href="#">Buscar</a>
+                <a href="#">Mis reservas</a>
+                <a class="activo" href="#">Mis espacios</a>
+                <a href="#">Perfil</a>
+            </div>
+
+        </div>
+    </nav>
+
+
+    
+    <main class="container py-4">
+
+        <div class="encabezado">
+
+            <div>
+                <h1>Mis espacios</h1>
+
+                <p>
+                    Publica y administra la disponibilidad
+                    de tus estacionamientos.
+                </p>
+            </div>
+
+            <button class="btn publicar" type="button">
+                + Publicar espacio
+            </button>
+
+        </div>
+
+
+        <div class="row g-4">
+
+        
+            <section class="col-lg-8 lista-espacios">
+
+                
+            
+                <div class="espacio">
+                    <div class="imagen-espacio">
+                        P
+                    </div>
+
+                    <div class="informacion">
+                        <h3 class="nombre-estacionamiento">
+                            Estacionamiento Centro
+                        </h3>
+
+                        <p>
+                            <span class="direccion-estacionamiento">
+                                Centro de Pachuca
+                            </span><br>
+
+                            $<span class="precio-estacionamiento">20</span> MXN / hora<br>
+
+                            Horario:
+                            <span id="horario1">07:00 - 23:00</span>
+                        </p>
+                    </div>
+
+                    <div class="acciones">
+                        <span id="estado1" class="disponible">Disponible</span>
+
+                        <button class="btn editar" type="button"
+                                data-bs-toggle="modal"
+                                data-bs-target="#modalEditar">
+                            Editar
+                        </button>
+
+                        <button class="btn gestionar" type="button">
+                            Gestionar
+                        </button>
+                    </div>
+                </div>
+
+                
+                <div class="espacio">
+                    <div class="imagen-espacio">
+                        P
+                    </div>
+
+                    <div class="informacion">
+                        <h3 class="nombre-estacionamiento">
+                            Zona Universidad
+                        </h3>
+
+                        <p>
+                            <span class="direccion-estacionamiento">
+                                Zona UPP
+                            </span><br>
+
+                            $<span class="precio-estacionamiento">18</span> MXN / hora<br>
+
+                            Horario:
+                            <span id="horario2">08:00 - 21:00</span>
+                        </p>
+                    </div>
+
+                    <div class="acciones">
+                        <span id="estado2" class="disponible">Disponible</span>
+
+                        <button class="btn editar" type="button"
+                                data-bs-toggle="modal"
+                                data-bs-target="#modalEditar">
+                            Editar
+                        </button>
+
+                        <button class="btn gestionar" type="button">
+                            Gestionar
+                        </button>
+                    </div>
+                </div>
+                
+            </section>
+
+            <aside class="col-lg-4">
+
+                <div class="resumen">
+
+                    <h3>Resumen de disponibilidad</h3>
+
+                    <div class="dato">
+                        <small>Espacios publicados</small>
+                        <strong>3</strong>
+                    </div>
+
+                    <div class="dato">
+                        <small>Disponibles hoy</small>
+                        <strong>2</strong>
+                    </div>
+
+                    <div class="dato">
+                        <small>Reservas próximas</small>
+                        <strong>5</strong>
+                    </div>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+
+       
+        <div id="panelGestion" class="collapse gestion">
+
+            <h3>Gestionar espacio</h3>
+
+            <label>Disponibilidad</label>
+
+            <select id="nuevaDisponibilidad">
+                <option value="Disponible">Disponible</option>
+                <option value="No disponible">No disponible</option>
+            </select>
+
+            <label>Horario</label>
+
+            <div class="horarios">
+
+                <input
+                    type="time"
+                    id="horaInicio"
+                    value="07:00">
+
+                <span>hasta</span>
+
+                <input
+                    type="time"
+                    id="horaFin"
+                    value="23:00">
+
+            </div>
+
+            <button
+                class="btn guardar"
+                id="btnGuardar"
+                type="button">
+
+                Guardar cambios
+
+            </button>
+
+        </div>
+
+    </main>
+
+
+    
+    <div class="modal fade" id="modalEditar" tabindex="-1"
+         aria-labelledby="tituloModalEditar" aria-hidden="true">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tituloModalEditar">
+                        Editar estacionamiento
+                    </h5>
+
+                    <button type="button" class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Cerrar"></button>
+                </div>
+
+                <div class="modal-body">
+                    <label for="nombreEstacionamiento" class="form-label">
+                        Nombre del estacionamiento
+                    </label>
+                    <input type="text" id="nombreEstacionamiento"
+                           class="form-control" required>
+
+                    <label for="direccionEstacionamiento"
+                           class="form-label mt-3">
+                        Dirección
+                    </label>
+                    <input type="text" id="direccionEstacionamiento"
+                           class="form-control" required>
+
+                    <label for="precioEstacionamiento"
+                           class="form-label mt-3">
+                        Precio por hora
+                    </label>
+                    <input type="number" id="precioEstacionamiento"
+                           class="form-control" min="1" required>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">
+                        Cancelar
+                    </button>
+
+                    <button type="button" class="btn btn-primary"
+                            id="guardarEdicion">
+                        Guardar cambios
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+<div class="toast-container position-fixed top-0 end-0 p-3">
+
+    <div id="autoparkToast"
+         class="toast"
+         role="status"
+         aria-live="polite"
+         aria-atomic="true">
+
+        <div class="toast-header">
+            <strong class="me-auto">AutoPark</strong>
+
+            <small>Ahora</small>
+
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="toast"
+                    aria-label="Cerrar">
+            </button>
+        </div>
+
+        <div class="toast-body" id="mensajeToast">
+            Operación realizada correctamente.
+        </div>
+
+    </div>
+
+</div>
+
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    
+    <script src="gestionarDisponibilidad.js"></script>
+
+
+</body>
+
+</html>
